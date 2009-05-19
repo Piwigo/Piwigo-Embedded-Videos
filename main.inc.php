@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: PY GVideo
-Version: 2.0.f
+Version: 2.0.g
 Description: Adds some videos from Google Video, Dailymotion, Youtube, Wideo or Vimeo.
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=136
 Author: PYwaie & P@t

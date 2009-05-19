@@ -16,8 +16,8 @@ function get_video_infos($url, $type)
     if ($_POST['thumbnail'] == 'thumb_from_server' and fetchRemote($url, $source))
     {
       @preg_match("#thumbnailUrl\\\\x3d(http://.*/ThumbnailServer.*)\\\\x26#", $source, $thumb_url);
-      //$video['thumb_url'] = @str_replace(array('\x3d', '\x26'), array('=', '&'), $thumb_url[1]);
       $video['thumb_url'] = @urldecode($thumb_url[1]);
+      $video['thumb_url'] = @str_replace(array('\x3d', '\x26'), array('=', '&'), $video['thumb_url']);
     }
     return $video;
 
@@ -62,7 +62,7 @@ function get_video_infos($url, $type)
     $video['ext'] = 'vimeo';
     if ($_POST['thumbnail'] == 'thumb_from_server' and fetchRemote($url, $source))
     {
-      @preg_match('#link rel="image_src" href="(http://images.vimeo.com/.*?)"#', $source, $matches);
+      @preg_match('#link rel="image_src" href="(http://.*?)"#', $source, $matches);
       $video['thumb_url'] = @str_replace('160.jpg', '200.jpg', $matches[1]);
     }
     return $video;
