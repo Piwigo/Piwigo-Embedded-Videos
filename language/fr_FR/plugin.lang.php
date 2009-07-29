@@ -22,7 +22,7 @@ $lang['py_playermode'] = 'Player Mode';
 
 
 // Infobulles
-$lang['pybulle_reference'] = "Collez ici le lien de la page où se trouve la vidéo.<br>Vous pouvez utiliser des vidéos de Google, YouTube, DailyMotion, Wideo et Vimeo. Exemples:<br><br>- http://video.google.fr/videoplay?docid=4600755234172037942<br>- http://www.youtube.com/watch?v=eUvApC0bwUk<br>- http://www.dailymotion.com/video/x29fys_doorway<br>- http://www.wideo.fr/video/iLyROoaftYvl.html<br>- http://www.vimeo.com/1747316";
+$lang['pybulle_reference'] = "Collez ici le lien de la page où se trouve la vidéo.<br>Vous pouvez utiliser des vidéos de Google, YouTube, DailyMotion, Wideo, Vimeo et Wat. Exemples:<br><br>- http://video.google.fr/videoplay?docid=4600755234172037942<br>- http://www.youtube.com/watch?v=eUvApC0bwUk<br>- http://www.dailymotion.com/video/x29fys_doorway<br>- http://www.wideo.fr/video/iLyROoaftYvl.html<br>- http://www.vimeo.com/1747316<br>- http://www.wat.tv/video/abcd.html";
 $lang['pybulle_start'] = "Définie le point de départ (en secondes) de la vidéo.<br>Cette option n'est active qu'avec Google Vidéo.";
 $lang['pybulle_categorie'] = "Catégorie où sera écrit le fichier: seules les catégories réelles sont listées ici. Si vous souhaitez avoir le fichier dans une catégorie virtuelle, il faudra l'associer après.";
 $lang['pybulle_miniature'] = "Vous pouvez choisir de récupérer la miniature correspondante a la vidéo sur le serveur. Par défaut, la taille des miniatures est de 320x240 sur Google Vidéo, 320x240 sur Dailymotion, 130x97 sur Youtube, 154x114 sur Wideo et 200x150 pour Vimeo.<br><br>Vous pouvez également choisir d'uploader votre propre miniature.<br><br>Dans tous les cas, vous pouvez éventuellement la redimensionner.";

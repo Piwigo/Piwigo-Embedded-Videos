@@ -22,7 +22,7 @@ $lang['py_playermode'] = 'Player Mode';
 
 
 // Infobulles
-$lang['pybulle_reference'] = "Paste here a linkpage of the video.<br>You can use GoogleVideo, YouTube, DailyMotion, Wideo or Vimeo. Examples:<br><br>- http://video.google.fr/videoplay?docid=4600755234172037942<br>- http://www.youtube.com/watch?v=eUvApC0bwUk<br>- http://www.dailymotion.com/video/x29fys_doorway<br>- http://www.wideo.fr/video/iLyROoaftYvl.html<br>- http://www.vimeo.com/1747316";
+$lang['pybulle_reference'] = "Paste here a linkpage of the video.<br>You can use GoogleVideo, YouTube, DailyMotion, Wideo, Vimeo or Wat. Examples:<br><br>- http://video.google.fr/videoplay?docid=4600755234172037942<br>- http://www.youtube.com/watch?v=eUvApC0bwUk<br>- http://www.dailymotion.com/video/x29fys_doorway<br>- http://www.wideo.fr/video/iLyROoaftYvl.html<br>- http://www.vimeo.com/1747316<br>- http://www.wat.tv/video/abcd.html";
 $lang['pybulle_start'] = "Choose the starting point (in seconds) of the video.<br>This option can be use only with GoogleVideo.";
 $lang['pybulle_categorie'] = "Category where the file will be created: only real categories are listed. If you wanft to link this file to a virtual category, you have to link after.";
 $lang['pybulle_miniature'] = "You can get thumbnail back on the server. By default, thumbnails size are 320x240 on Google Video, 320x240 on Dailymotion, 130x97 on Youtube, 154x114 on Wideo and 200x150 on Vimeo.<br><br> Or you can upload your own thumbnail.<br><br> In both case, you can change dimension of thumbnail.";

@@ -2,7 +2,7 @@
 
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
-$video_types = array('google', 'youtube', 'dailymotion', 'wideo', 'vimeo');
+$video_types = array('google', 'youtube', 'dailymotion', 'wideo', 'vimeo', 'wat');
 
 function get_video_infos($url, $type)
 {
@@ -67,117 +67,23 @@ function get_video_infos($url, $type)
     }
     return $video;
 
+  case "wat":
+    if (fetchRemote($url, $source))
+    {
+      @preg_match('#link rel="video_src" href="http://www.wat.tv/swf2/(.*?)"#i', $source, $id);
+      if (empty($id[1])) return false;
+      $video['id'] = $id[1];
+      $video['ext'] = 'wat';
+      if ($_POST['thumbnail'] == 'thumb_from_server')
+      {
+        @preg_match('#link rel="image_src" href="(.*?)"#', $source, $matches);
+        $video['thumb_url'] = @str_replace('120x90', '320x240', $matches[1]);
+      }
+      return $video;
+    }
+
   default:
     return false;
-  }
-}
-
-/* MUST BE REMOVED WITH PIWIGO 2.0.0 */
-if (!function_exists('fetchRemote'))
-{
-  function fetchRemote($src, &$dest, $user_agent='Piwigo', $step=0)
-  {
-    // After 3 redirections, return false
-    if ($step > 3) return false;
-
-    // Initialize $dest
-    is_resource($dest) or $dest = '';
-
-    // Try curl to read remote file
-    if (function_exists('curl_init'))
-    {
-      $ch = @curl_init();
-      @curl_setopt($ch, CURLOPT_URL, $src);
-      @curl_setopt($ch, CURLOPT_HEADER, 1);
-      @curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
-      @curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-      $content = @curl_exec($ch);
-      $header_length = @curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-      $status = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      @curl_close($ch);
-      if ($content !== false and $status >= 200 and $status < 400)
-      {
-        if (preg_match('/Location:\s+?(.+)/', substr($content, 0, $header_length), $m))
-        {
-          return fetchRemote($m[1], $dest, $user_agent, $step+1);
-        }
-        $content = substr($content, $header_length);
-        is_resource($dest) ? @fwrite($dest, $content) : $dest = $content;
-        return true;
-      }
-    }
-
-    // Try file_get_contents to read remote file
-    if (ini_get('allow_url_fopen'))
-    {
-      $content = @file_get_contents($src);
-      if ($content !== false)
-      {
-        is_resource($dest) ? @fwrite($dest, $content) : $dest = $content;
-        return true;
-      }
-    }
-
-    // Try fsockopen to read remote file
-    $src = parse_url($src);
-    $host = $src['host'];
-    $path = isset($src['path']) ? $src['path'] : '/';
-    $path .= isset($src['query']) ? '?'.$src['query'] : '';
-    
-    if (($s = @fsockopen($host,80,$errno,$errstr,5)) === false)
-    {
-      return false;
-    }
-
-    fwrite($s,
-      "GET ".$path." HTTP/1.0\r\n"
-      ."Host: ".$host."\r\n"
-      ."User-Agent: ".$user_agent."\r\n"
-      ."Accept: */*\r\n"
-      ."\r\n"
-    );
-
-    $i = 0;
-    $in_content = false;
-    while (!feof($s))
-    {
-      $line = fgets($s);
-
-      if (rtrim($line,"\r\n") == '' && !$in_content)
-      {
-        $in_content = true;
-        $i++;
-        continue;
-      }
-      if ($i == 0)
-      {
-        if (!preg_match('/HTTP\/(\\d\\.\\d)\\s*(\\d+)\\s*(.*)/',rtrim($line,"\r\n"), $m))
-        {
-          fclose($s);
-          return false;
-        }
-        $status = (integer) $m[2];
-        if ($status < 200 || $status >= 400)
-        {
-          fclose($s);
-          return false;
-        }
-      }
-      if (!$in_content)
-      {
-        if (preg_match('/Location:\s+?(.+)$/',rtrim($line,"\r\n"),$m))
-        {
-          fclose($s);
-          return fetchRemote(trim($m[1]),$dest,$user_agent,$step+1);
-        }
-        $i++;
-        continue;
-      }
-      is_resource($dest) ? @fwrite($dest, $line) : $dest .= $line;
-      $i++;
-    }
-    fclose($s);
-    return true;
   }
 }
 

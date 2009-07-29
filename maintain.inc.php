@@ -7,7 +7,8 @@ function plugin_install()
     'ytube' => array('480','640','1'),
     'dm' =>  array('480','640','1'),
     'wideo' => array('480', '640', 'true'),
-    'vimeo' => array('480', '640', '1')
+    'vimeo' => array('480', '640', '1'),
+    'wat' => array('480', '640', 'true'),
     );
 
 	$q = 'REPLACE INTO ' . CONFIG_TABLE . ' (param,value,comment)
@@ -28,7 +29,7 @@ function plugin_activate()
   
   // Vérification des nouveaux paramètres
   if (!isset($conf['PY_GVideo'])
-    or ($params = unserialize($conf['PY_GVideo']) and !isset($params['vimeo'])))
+    or ($params = unserialize($conf['PY_GVideo']) and !isset($params['wat'])))
   {
     plugin_install();
   }

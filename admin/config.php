@@ -29,7 +29,11 @@ if (isset($_POST['submit']))
     'vimeo' => array(
       $_POST['pywaie_vimeo_h'],
       $_POST['pywaie_vimeo_w'],
-      $_POST['pywaie_vimeo_autoplay'])
+      $_POST['pywaie_vimeo_autoplay']),
+    'wat' => array(
+      $_POST['pywaie_wat_h'],
+      $_POST['pywaie_wat_w'],
+      $_POST['pywaie_wat_autoplay'])
     );
   
   $query = '
@@ -53,7 +57,9 @@ $template->assign(array(
   'PYWAIE_WIDEO_H' => $params['wideo'][0],
   'PYWAIE_WIDEO_W' => $params['wideo'][1],
   'PYWAIE_VIMEO_H' => $params['vimeo'][0],
-  'PYWAIE_VIMEO_W' => $params['vimeo'][1]));
+  'PYWAIE_VIMEO_W' => $params['vimeo'][1],
+  'PYWAIE_WAT_H' => $params['wat'][0],
+  'PYWAIE_WAT_W' => $params['wat'][1]));
 
 if ($params['gvideo'][2] == 'true')
 {
@@ -94,6 +100,14 @@ if ($params['vimeo'][2] == '1')
 else
 {
   $template->assign(array('PYWAIE_VIMEO_AUTOPLAY_FALSE' => 'checked="checked"'));
+}
+if ($params['wat'][2] == 'true')
+{
+  $template->assign(array('PYWAIE_WAT_AUTOPLAY_TRUE' => 'checked="checked"'));
+}
+else
+{
+  $template->assign(array('PYWAIE_WAT_AUTOPLAY_FALSE' => 'checked="checked"'));
 }
 
 $template->set_filenames(array('plugin_admin_content' => dirname(__FILE__) . '/config.tpl'));

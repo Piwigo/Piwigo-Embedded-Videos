@@ -133,7 +133,32 @@
 				</tr>
 			</table>
 			</fieldset> </td>    
-	</table>
+	
+			<td><fieldset>
+			<legend>Wat</legend>
+			<table>
+				<tr>
+					<td>{'py_width'|@translate}</td>
+					<td>&nbsp;
+					<input type="text" size="3" maxlength="3" value="{$PYWAIE_WAT_W}" name="pywaie_wat_w" /></td>
+				</tr>
+				<tr>
+					<td>{'py_height'|@translate}</td>
+					<td>&nbsp;
+					<input type="text" size="3" maxlength="3" value="{$PYWAIE_WAT_H}" name="pywaie_wat_h" /></td>
+				</tr>
+				<tr>
+					<td>{'py_autostart'|@translate}</td>
+					<td>&nbsp;
+					<input type="radio" value="true" name="pywaie_wat_autoplay" {$PYWAIE_WAT_AUTOPLAY_TRUE} /> 
+					On
+					<input type="radio" value="false" name="pywaie_wat_autoplay" {$PYWAIE_WAT_AUTOPLAY_FALSE} /> 
+					Off </td>
+				</tr>
+			</table>
+			</fieldset> </td>  
+  
+  </table>
 	<div align="center">
 		<input class="submit" type="submit" value="{'Submit'|@translate}" name="submit" /></div>
 </form>

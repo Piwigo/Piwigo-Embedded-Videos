@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: PY GVideo
-Version: 2.0.g
-Description: Adds some videos from Google Video, Dailymotion, Youtube, Wideo or Vimeo.
+Version: auto
+Description: Adds some videos from Google Video, Dailymotion, Youtube, Wideo, Vimeo or Wat.
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=136
 Author: PYwaie & P@t
 */
@@ -12,7 +12,7 @@ define('GVIDEO_DIR' , basename(dirname(__FILE__)));
 define('GVIDEO_PATH' , PHPWG_PLUGINS_PATH . GVIDEO_DIR . '/');
 
 global $conf, $py_addext;
-$py_addext = array("gvideo", "dm", "ytube", "wideo", "vimeo");
+$py_addext = array("gvideo", "dm", "ytube", "wideo", "vimeo", "wat");
 $conf['file_ext'] = array_merge($conf['file_ext'], $py_addext);
 
 function gvideoadd($content)
