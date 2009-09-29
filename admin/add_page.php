@@ -94,6 +94,10 @@ if (isset($_POST['submit_add']) and !is_adviser())
   {
     array_push($page['errors'], l10n('py_error2'), l10n('py_error3'));
   }
+  elseif (!preg_match('/^[a-zA-Z0-9-_.]+$/', $_POST['pywaie_add_name']))
+  {
+    array_push($page['errors'], l10n('update_wrong_dirname_info'));
+  }
   else
   {
     $py_url = $_POST['pywaie_add_url'];
