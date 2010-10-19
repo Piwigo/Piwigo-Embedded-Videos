@@ -64,8 +64,10 @@ function get_video_infos($url, $type)
     $video['ext'] = 'vimeo';
     if ($_POST['thumbnail'] == 'thumb_from_server' and fetchRemote($url, $source))
     {
-      @preg_match('#link rel="image_src" href="(http://.*?)"#', $source, $matches);
-      $video['thumb_url'] = @str_replace('160.jpg', '200.jpg', $matches[1]);
+      if (preg_match('#meta property="og:image" content="(http://.*?)"#', $source, $matches))
+      {
+        $video['thumb_url'] = str_replace('160.jpg', '200.jpg', $matches[1]);
+      }
     }
     return $video;
 
