@@ -111,23 +111,23 @@ function Py_RatioResizeImg($url, $path, $newWidth, $newHeight)
 if ($_POST['thumbnail'] == 'thumb_from_server')
 {
   $video['thumb_url'] = str_replace('&amp;', '&', $video['thumb_url']);
-  if (($path = mkget_thumbnail_dir($catpath[$cat], $error)) == false)
+  if (($thumb_dir = mkget_thumbnail_dir(dirname($file_path), $error)) == false)
   {
     array_push($page['errors'], l10n('py_error9'));
   }
   else
   {
-    $path .= '/' . $conf['prefix_thumbnail'] . $video['name'] . '.jpg';
-    if (file_exists($path))
+    $thumb_path = file_path_for_type($file_path, 'thumb');
+    if (file_exists($thumb_path))
     {
       array_push($page['errors'], sprintf(l10n('py_error11'), $path), l10n('py_error9'));
     }
     else
     {
-      if (Py_RatioResizeImg($video['thumb_url'], $path, $_POST['thumb_width'], $_POST['thumb_hight']))
+      if (Py_RatioResizeImg($video['thumb_url'], $thumb_path, $_POST['thumb_width'], $_POST['thumb_hight']))
       {
         array_push($page['infos'], l10n('py_info2'));
-        $thumb_extension = '"jpg"';
+        $thumb_extension = 'jpg';
       }
       else
       {
@@ -147,22 +147,22 @@ if ($_POST['thumbnail'] == 'thumb_from_user')
   else
   {
     $ext = get_extension($_FILES['picture']['name']);
-    if (($path = mkget_thumbnail_dir($catpath[$cat], $error)) == false)
+    if (($thumb_dir = mkget_thumbnail_dir(dirname($file_path), $error)) == false)
     {
       array_push($page['errors'], l10n('py_error9'));
     }
     else
     {
-      $path .= '/' . $conf['prefix_thumbnail'] . $video['name'] . '.' . $ext;
-      if (file_exists($path))
+      $thumb_path = get_filename_wo_extension(file_path_for_type($file_path, 'thumb')).'.'.$ext;
+      if (file_exists($thumb_path))
       {
-        array_push($page['errors'], sprintf(l10n('py_error11'), $path), l10n('py_error9'));
+        array_push($page['errors'], sprintf(l10n('py_error11'), $thumb_path), l10n('py_error9'));
       }
       else
       {
-        if (Py_RatioResizeImg($_FILES['picture']['tmp_name'], $path, $_POST['thumb_width'], $_POST['thumb_hight']))
+        if (Py_RatioResizeImg($_FILES['picture']['tmp_name'], $thumb_path, $_POST['thumb_width'], $_POST['thumb_hight']))
         {
-          $thumb_extension = "\"$ext\"";
+          $thumb_extension = $ext;
           array_push($page['infos'], l10n('py_info2'));
         }
         else

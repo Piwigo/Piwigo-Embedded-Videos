@@ -126,7 +126,7 @@ jQuery().ready(function(){ldelim}
         		<td></td>
 			<td>{'Description'|@translate}</td>
         		<td>&nbsp;
-			<textarea rows="4" cols="42" name="description">{$DESCRIPTION}</textarea></td>
+			<textarea rows="4" cols="42" name="comment">{$COMMENT}</textarea></td>
       	</tr>
 
 

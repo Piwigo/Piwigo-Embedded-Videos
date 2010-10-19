@@ -2,6 +2,8 @@
 
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
+include_once(PHPWG_ROOT_PATH.'admin/include/functions_upload.inc.php');
+
 $video_types = array('google', 'youtube', 'dailymotion', 'wideo', 'vimeo', 'wat');
 
 function get_video_infos($url, $type)
@@ -119,57 +121,154 @@ if (isset($_POST['submit_add']) and !is_adviser())
     }
     else
     {
-      $cat = $_POST['parent'];
+      // current date
+      list($dbnow) = pwg_db_fetch_row(pwg_query('SELECT NOW();'));
+
       $video['name'] = str_replace(" ", "_", $_POST['pywaie_add_name']);
-      $catpath = get_fulldirs(array($cat));
-      $path_file = $catpath[$cat] . '/' . $video['name'] . '.' . $video['ext'];
-      $thefile = substr($path_file, 2);
-      if (file_exists($path_file))
+      $file_name = $video['name'].'.'.$video['ext'];
+
+      // prepare database registration
+      $insert = array(
+        'file' => $file_name,
+        'date_available' => $dbnow,
+        );
+      
+      $optional_fields = array('author', 'name', 'comment');
+      foreach ($optional_fields as $field)
       {
-        array_push($page['errors'], sprintf(l10n('py_error6'), $thefile));
+        if (isset($_POST[$field]) and !empty($_POST[$field]))
+        {
+          $insert[$field] = $_POST[$field];
+        }
+      }
+      
+      check_input_parameter('parent', $_POST, false, PATTERN_ID);
+      $category_id = $_POST['parent'];
+      
+      $query = '
+SELECT
+    c.id,
+    c.name,
+    c.permalink,
+    c.dir,
+    c.site_id,
+    s.galleries_url
+  FROM '.CATEGORIES_TABLE.' AS c
+    LEFT JOIN '.SITES_TABLE.' AS s ON s.id = c.site_id
+  WHERE c.id = '.$category_id.'
+;';
+      $result = pwg_query($query);
+      $category = pwg_db_fetch_assoc($result);
+
+      // is the category virtual or is the category on a remote site?
+      $use_galleries_directory = true;
+      if (empty($category['dir']))
+      {
+        $use_galleries_directory = false;
+      }
+      if (!empty($category['galleries_url']) and url_is_remote($category['galleries_url']))
+      {
+        $use_galleries_directory = false;
+      }
+      
+      if (!$use_galleries_directory)
+      {
+        list($year, $month, $day) = preg_split('/[^\d]/', $dbnow, 4);
+  
+        // upload directory hierarchy
+        $upload_dir = sprintf(
+          PHPWG_ROOT_PATH.$conf['upload_dir'].'/%s/%s/%s',
+          $year,
+          $month,
+          $day
+          );
+        prepare_directory($upload_dir);
+
+        $file_path = $upload_dir.'/'.$file_name;
+        $thumb_path = file_path_for_type($file_path, 'thumb');
+        $thumb_dir = dirname($thumb_path);
+        prepare_directory($thumb_dir);
+      }
+      // or physical and local
+      else
+      {
+        $catpath = get_fulldirs(array($category_id));
+        $file_path = $catpath[$category_id].'/'.$file_name;
+
+        $insert['storage_category_id'] = $category_id;
+      }
+
+      $insert['path'] = $file_path;
+      
+      if (file_exists($file_path))
+      {
+        array_push($page['errors'], sprintf(l10n('py_error6'), $file_path));
       }
       else
       {
-        $file = @fopen($thefile , 'w');
+        // Write fake file with video settings inside
+        //
+        // TODO: store these information in a specific database table instead
+        $file_content = stripslashes($video['id']);
+        $file_content.= '/'.$_POST['pywaie_add_h'];
+        $file_content.= '/'.$_POST['pywaie_add_w'];
+        $file_content.= '/'.$_POST['pywaie_add_start'];
 
-        // Ecriture du fichier et attribution des messages
-        if (@!fwrite ($file, stripslashes($video['id']) . '/' . $_POST['pywaie_add_h'] . '/' . $_POST['pywaie_add_w'] . '/' . $_POST['pywaie_add_start']))
+        $bytes_written = file_put_contents($file_path, $file_content);        
+        if (false === $bytes_written)
         {
-          array_push($page['errors'], sprintf(l10n('py_error7'), $thefile), sprintf(l10n('py_error8'), $catpath[$cat]));
+          array_push(
+            $page['errors'],
+            
+            sprintf(
+              l10n('py_error7'),
+              $file_path
+              ),
+            
+            sprintf(
+              l10n('py_error8'),
+              dirname($file_path)
+              )
+            );
+
         }
         else
         {
-          // Miniatures
-          $thumb_extension = 'NULL';
+          // thumbnail
+          $thumb_extension = null;
           if ($_POST['thumbnail'] == 'thumb_from_server' or $_POST['thumbnail'] == 'thumb_from_user')
           {
-					  include_once ('thumbnails.php');
+            include_once ('thumbnails.php');
+            $insert['tn_ext'] = $thumb_extension;
           }
+
+          // database registration
+          mass_inserts(
+            IMAGES_TABLE,
+            array_keys($insert),
+            array($insert)
+            );
           
-          // Synchronisation avec la base de donnees
-          $infos['name'] = (!empty($_POST['name']) ? '"' . $_POST['name'] . '"' : 'NULL');
-          $infos['description'] = (!empty($_POST['description']) ? '"' . $_POST['description'] . '"' : 'NULL');
-          $infos['author'] = (!empty($_POST['author']) ? '"' . $_POST['author'] . '"' : 'NULL');
-
-          $query = 'SELECT IF(MAX(id)+1 IS NULL, 1, MAX(id)+1) AS next_element_id  FROM ' . IMAGES_TABLE . ' ;';
-          list($next_element_id) = mysql_fetch_array(pwg_query($query));
-
-          pwg_query('INSERT INTO ' . IMAGES_TABLE . ' ( id , file , date_available , date_creation , tn_ext , name , comment , author , hit , filesize , width , height , representative_ext , date_metadata_update , average_rate , has_high , path , storage_category_id , high_filesize )
-					  VALUES ( ' . $next_element_id . ', "' . $video['name'] . '.' . $video['ext'] . '", NOW() , NULL , ' . $thumb_extension . ' ,  ' . $infos['name'] . ' , ' . $infos['description'] . ' , ' . $infos['author'] . ' , 0 , NULL , NULL , NULL , NULL , NULL , NULL , NULL , "' . $path_file . '", ' . $cat . ', NULL);');
-          pwg_query('INSERT INTO ' . IMAGE_CATEGORY_TABLE . ' ( image_id , category_id )
-					  VALUES ( ' . $next_element_id . ', ' . $cat . ');');
-
-          $query = 'SELECT representative_picture_id FROM ' . CATEGORIES_TABLE . ' WHERE id =' .  $cat . ';';
-          list($result) = mysql_fetch_array(pwg_query($query));
-          if ($result === NULL)
-          {
-            pwg_query('UPDATE ' . CATEGORIES_TABLE . ' SET representative_picture_id=' . $next_element_id . ' WHERE id = ' . $cat . ' LIMIT 1');
-          }
-
+          $image_id = pwg_db_insert_id(IMAGES_TABLE);
+          associate_images_to_categories(array($image_id), array($category_id));
           invalidate_user_cache();
-          array_unshift($page['infos'], sprintf(l10n('py_info3'), $thefile));
-          array_push($page['infos'], sprintf(l10n('py_show_file'), PHPWG_ROOT_PATH . 'picture.php?/' . $next_element_id . '/category/' . $cat));
-          @fclose($file);
+
+          // success information to display
+          array_unshift($page['infos'], sprintf(l10n('py_info3'), $file_path));
+          
+          array_push(
+            $page['infos'],
+            sprintf(
+              l10n('py_show_file'),
+              make_picture_url(
+                array(
+                  'image_id' => $image_id,
+                  'section' => 'categories',
+                  'category' => $category,
+                  )
+                )
+              )
+            );
         }
       }
     }
@@ -177,34 +276,24 @@ if (isset($_POST['submit_add']) and !is_adviser())
 }
 
 
-// Affichage de la liste des categories
-$site_locaux = array();
+// display list of all categories
 $query = '
-SELECT id , galleries_url
-FROM ' . SITES_TABLE . '
-ORDER by id';
-$result = pwg_query($query);
+SELECT
+    id,
+    name,
+    uppercats,
+    global_rank
+  FROM '.CATEGORIES_TABLE.'
+;';
 
-if (mysql_num_rows($result) > 0)
+if (isset($_POST['parent']))
 {
-  while (list($id , $galleries_url) = mysql_fetch_row($result))
-  {
-    if (!url_is_remote($galleries_url)) array_push($site_locaux , $id);
-  }
+  $selected = array($_POST['parent']);
 }
-if (empty($site_locaux))
+else
 {
-  array_push($page['errors'], l10n('py_error1'));
-  $site_locaux = array(0);
+  $selected = array();
 }
-
-$query = '
-SELECT id,name,uppercats,global_rank
-  FROM ' . CATEGORIES_TABLE . '
-  WHERE site_id IN (' . implode("," , $site_locaux) . ');';
-
-if (isset($_POST['parent'])) $selected = array($_POST['parent']);
-else $selected = array();
 
 display_select_cat_wrapper($query, $selected , 'category_option_parent', false);
 
@@ -223,7 +312,7 @@ if (isset($_POST['submit_add']))
     'PYWAIE_ADD_H' => $_POST['pywaie_add_h'],
     'NAME' => $_POST['name'],
     'AUTHOR' => $_POST['author'],
-    'DESCRIPTION' => $_POST['description']));
+    'COMMENT' => $_POST['comment']));
 }
 else
 {
