@@ -46,18 +46,25 @@ function Py_RatioResizeImg($url, $path, $newWidth, $newHeight)
       return false;
     }
 
-    $ver_info = gd_info();
-    preg_match('/\d/', $ver_info['GD Version'], $gd_ver);
-
-    if (!($tempfile = @tempnam( $path, 'jpg')
-      and $handle = @fopen($tempfile, 'wb')
-      and fetchRemote($url, $handle)
-      and @fclose($handle)
-      and $srcImage = @imagecreatefromjpeg($tempfile)))
+    $tempfile = $url;
+    if (url_is_remote($url))
     {
-      return false;
+      $tempfile = tempnam($path, 'jpg');
+      fetchRemote($url, $tempfile_content);
+      file_put_contents($tempfile, $tempfile_content);
     }
-    @unlink($tempfile);
+
+    list($width, $height, $type) = getimagesize($tempfile);
+    if (IMAGETYPE_PNG == $type)
+    {
+      $srcImage = imagecreatefrompng($tempfile);
+    }
+    else
+    {
+      $srcImage = imagecreatefromjpeg($tempfile);
+    }
+    
+    unlink($tempfile);
 
     if (isset($_POST['add_band']))
     {
@@ -88,20 +95,30 @@ function Py_RatioResizeImg($url, $path, $newWidth, $newHeight)
       $destHigh = $srcHeight;
     }
 
-    if ($gd_ver[0] >= 2)
+    $destImage = imagecreatetruecolor($destWidth, $destHigh);
+    
+    imagecopyresampled(
+      $destImage,
+      $srcImage,
+      0,
+      0,
+      0,
+      0,
+      $destWidth,
+      $destHigh,
+      $srcWidth,
+      $srcHeight
+      );
+
+    if (IMAGETYPE_PNG == $type)
     {
-        $destImage = imagecreatetruecolor($destWidth, $destHigh);
-        imagecopyresampled($destImage, $srcImage, 0, 0, 0, 0,
-            $destWidth, $destHigh, $srcWidth, $srcHeight);
+      imagepng($destImage, $path);
     }
     else
     {
-        $destImage = imagecreate($destWidth, $destHigh);
-        imagecopyresized($destImage, $srcImage, 0, 0, 0, 0,
-            $destWidth, $destHigh, $srcWidth, $srcHeight);
+      imagejpeg($destImage, $path, 95);
     }
-
-    imagejpeg($destImage, $path);
+    
     imagedestroy($srcImage);
     imagedestroy($destImage);
     return true;
