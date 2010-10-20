@@ -39,8 +39,8 @@ $lang['py_error9'] = 'Error when the thumbnail is uploaded or resized.';
 $lang['py_error11'] = 'A thumbnail with the same name already exists (%s)';
 $lang['py_error12'] = 'field thumbnail no filled : thumbnail not uploaded.';
 $lang['py_info2'] = 'thumbnail successfully uploaded';
-$lang['py_info3'] = 'file saved and syncronized successfully (%s)';
+$lang['py_info3'] = 'Video successfully added';
 $lang['py_info4'] = 'Configuration saved.';
-$lang['py_show_file'] = '<a href="%s">Show file</a>.';
+$lang['py_show_file'] = '<a href="%s" class="externalLink">Show video</a>.';
 
 ?>

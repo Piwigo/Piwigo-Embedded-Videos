@@ -39,9 +39,9 @@ $lang['py_error9'] = 'Non è stato possibile aggiungere o ridimensionare la minia
 $lang['py_error11'] = 'Una miniatura esiste già con questo nome (%s)';
 $lang['py_error12'] = 'Campo miniatura non completato: miniatura non aggiunta.';
 $lang['py_info2'] = 'Miniatura aggiunto con successo';
-$lang['py_info3'] = 'File registrato e sincronizzato con successo (%s)';
+$lang['py_info3'] = 'File registrato e sincronizzato con successo';
 $lang['py_info4'] = 'Configurazione salvata.';
-$lang['py_show_file'] = '<a href="%s">Visualizzare il file</a>.';
+$lang['py_show_file'] = '<a href="%s" class="externalLink">Visualizzare il file</a>.';
 
 
 ?>

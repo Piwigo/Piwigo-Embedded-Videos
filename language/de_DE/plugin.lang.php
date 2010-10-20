@@ -41,8 +41,8 @@ $lang['py_error9'] = 'Das Miniaturbild konnte nicht hinzugefügt oder die Gröss
 $lang['py_error11'] = 'Es existiert bereits ein Miniaturbild mit dem gleichen Namen (%s)';
 $lang['py_error12'] = 'Das Feld des Miniaturbildes wurde nicht ausgefüllt : Das Miniaturbild wurde nicht hochgeladen.';
 $lang['py_info2'] = 'Das Miniaturbild wurde erfolgreich hochgeladen';
-$lang['py_info3'] = 'Die Datei wurde erfolgreich gespeichert und synchronisiert (%s)';
+$lang['py_info3'] = 'Die Datei wurde erfolgreich gespeichert';
 $lang['py_info4'] = 'Einstellungen gespeichert.';
-$lang['py_show_file'] = '<a href="%s">Datei anzeigen</a>.';
+$lang['py_show_file'] = '<a href="%s" class="externalLink">Videos anzeigen</a>.';
 
 ?>

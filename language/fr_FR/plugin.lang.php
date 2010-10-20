@@ -39,9 +39,9 @@ $lang['py_error9'] = 'Impossible d\'uploader ou de redimmensionner la miniature.
 $lang['py_error11'] = 'Une miniature existe déjà sous ce nom (%s)';
 $lang['py_error12'] = 'Champ miniature non renseigné : miniature non uploadée.';
 $lang['py_info2'] = 'Miniature uploadée avec succès.';
-$lang['py_info3'] = 'Fichier enregistré et synchronisé avec succès (%s)';
+$lang['py_info3'] = 'Vidéo ajoutée';
 $lang['py_info4'] = 'Configuration sauvegardée.';
-$lang['py_show_file'] = '<a href="%s">Voir le fichier</a>.';
+$lang['py_show_file'] = '<a href="%s" class="externalLink">Voir la vidéo</a>.';
 
 
 ?>

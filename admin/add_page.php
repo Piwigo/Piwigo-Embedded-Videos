@@ -252,7 +252,7 @@ SELECT
           invalidate_user_cache();
 
           // success information to display
-          array_unshift($page['infos'], sprintf(l10n('py_info3'), $file_path));
+          array_unshift($page['infos'], l10n('py_info3'));
           
           array_push(
             $page['infos'],

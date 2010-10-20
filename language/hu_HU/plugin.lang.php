@@ -39,8 +39,8 @@ $lang['py_error9'] = 'Hiba a bélyegkép féltöltésénél vagy átméretezés�
 $lang['py_error11'] = 'Ilyen nevű bélyegkép már létezik (%s)';
 $lang['py_error12'] = 'bélyegkép mező nincs kitöltve : bélyegkép nincs feltöltve.';
 $lang['py_info2'] = 'bélyegkép sikeresen feltöltve';
-$lang['py_info3'] = 'fájl feltöltése és szinkronizálása sikeres (%s)';
+$lang['py_info3'] = 'fájl feltöltése és szinkronizálása sikeres';
 $lang['py_info4'] = 'A beállítások mentése sikeres.';
-$lang['py_show_file'] = '<a href="%s">Fájl megjelenítése</a>.';
+$lang['py_show_file'] = '<a href="%s" class="externalLink">Fájl megjelenítése</a>.';
 
 ?>
