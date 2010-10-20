@@ -20,7 +20,7 @@ jQuery().ready(function(){ldelim}
 	<table>
 		<tr>
 			<td></td>
-			<td>{'py_filename'|@translate} *</td>
+			<td>{'Name'|@translate} *</td>
 			<td>&nbsp;
 			<input type="text" size="55" maxlength="50" value="{$PYWAIE_ADD_NAME}" name="pywaie_add_name"/></td>
 		</tr>
@@ -109,12 +109,6 @@ jQuery().ready(function(){ldelim}
 		<tr>
 			<td colspan="3"><br><hr></td>
 		</tr>
-		<tr>
-			<td></td>
-		      <td>{'Name'|@translate}</td>
-        		<td>&nbsp;
-			<input type="text" size="30" name="name" value="{$NAME}" /></td>
-      	</tr>
 		<tr>
 			<td></td>
 		      <td>{'Author'|@translate}</td>

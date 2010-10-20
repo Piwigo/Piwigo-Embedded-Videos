@@ -98,10 +98,6 @@ if (isset($_POST['submit_add']) and !is_adviser())
   {
     array_push($page['errors'], l10n('py_error2'), l10n('py_error3'));
   }
-  elseif (!preg_match('/^[a-zA-Z0-9-_.]+$/', $_POST['pywaie_add_name']))
-  {
-    array_push($page['errors'], l10n('update_wrong_dirname_info'));
-  }
   else
   {
     $py_url = $_POST['pywaie_add_url'];
@@ -126,16 +122,16 @@ if (isset($_POST['submit_add']) and !is_adviser())
       // current date
       list($dbnow) = pwg_db_fetch_row(pwg_query('SELECT NOW();'));
 
-      $video['name'] = str_replace(" ", "_", $_POST['pywaie_add_name']);
-      $file_name = $video['name'].'.'.$video['ext'];
+      $file_name = str2url($_POST['pywaie_add_name']).'.'.$video['ext'];
 
       // prepare database registration
       $insert = array(
+        'name' => $_POST['pywaie_add_name'],
         'file' => $file_name,
         'date_available' => $dbnow,
         );
       
-      $optional_fields = array('author', 'name', 'comment');
+      $optional_fields = array('author', 'comment');
       foreach ($optional_fields as $field)
       {
         if (isset($_POST[$field]) and !empty($_POST[$field]))
@@ -312,7 +308,6 @@ if (isset($_POST['submit_add']))
     'PYWAIE_ADD_START' => $_POST['pywaie_add_start'],
     'PYWAIE_ADD_W' => $_POST['pywaie_add_w'],
     'PYWAIE_ADD_H' => $_POST['pywaie_add_h'],
-    'NAME' => $_POST['name'],
     'AUTHOR' => $_POST['author'],
     'COMMENT' => $_POST['comment']));
 }
