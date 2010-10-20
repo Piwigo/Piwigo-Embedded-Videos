@@ -2,21 +2,14 @@
 
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
-function get_image_with_band($srcImage, $gd_ver)
+function get_image_with_band($srcImage)
 {
     $srcWidth = imagesx($srcImage);
     $srcHeight = imagesy($srcImage);
     $const = intval($srcWidth * 0.04);
 
-    if ($gd_ver >= 2)
-    {
-      $imgBand = imagecreatetruecolor($srcWidth + 6 * $const, $srcHeight);
-    }
-    else
-    {
-      $imgBand = imagecreate($srcWidth + 6 * $const, $srcHeight);
-    }
-
+    $imgBand = imagecreatetruecolor($srcWidth + 6 * $const, $srcHeight);
+    
     $white = imagecolorallocate($imgBand, 255, 255, 255);
     $y_start = intval($srcHeight / 2);
     $aug = intval($y_start / 4) + 1;
@@ -68,7 +61,7 @@ function Py_RatioResizeImg($url, $path, $newWidth, $newHeight)
 
     if (isset($_POST['add_band']))
     {
-      $srcImage = get_image_with_band($srcImage, $gd_ver[0]);
+      $srcImage = get_image_with_band($srcImage);
     }
 
     $srcWidth = imagesx($srcImage);
