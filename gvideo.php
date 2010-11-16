@@ -11,7 +11,7 @@ $template->assign(array(
   'ID_GVIDEO' => $sp[0],
   'AUTO_GVIDEO' => $params[$extension][2],
   'HEIGHT_IMG' => !empty($sp[1]) ? $sp[1] : $params[$extension][0],
-  'WIDTH_IMG' => !empty($sp[1]) ? $sp[1] : $params[$extension][0],
+  'WIDTH_IMG' => !empty($sp[2]) ? $sp[2] : $params[$extension][1],
   ));
 
 if ($extension == 'gvideo')
