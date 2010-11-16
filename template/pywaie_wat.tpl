@@ -1,2 +1,2 @@
 {* pywaie_wat.tpl *}
-<embed style="width:{$W_GVIDEO}px; height:{$H_GVIDEO}px;" src="http://www.wat.tv/swf2/{$ID_GVIDEO}" type="application/x-shockwave-flash" allowFullScreen="true" allowScriptAccess="always" flashvars="autoStart={$AUTO_GVIDEO}"></embed>
+<embed style="width:{$WIDTH_IMG}px; height:{$HEIGHT_IMG}px;" src="http://www.wat.tv/swf2/{$ID_GVIDEO}" type="application/x-shockwave-flash" allowFullScreen="true" allowScriptAccess="always" flashvars="autoStart={$AUTO_GVIDEO}"></embed>
