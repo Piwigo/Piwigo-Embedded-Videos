@@ -11,7 +11,10 @@ $template->assign(array(
   'ID_GVIDEO' => $sp[0],
   'H_GVIDEO' => !empty($sp[1]) ? $sp[1] : $params[$extension][0],
   'W_GVIDEO' => !empty($sp[2]) ? $sp[2] : $params[$extension][1],
-  'AUTO_GVIDEO' => $params[$extension][2]));
+  'AUTO_GVIDEO' => $params[$extension][2],
+  'HEIGHT_IMG' => !empty($sp[1]) ? $sp[1] : $params[$extension][0],
+  'WIDTH_IMG' => !empty($sp[1]) ? $sp[1] : $params[$extension][0],
+  ));
 
 if ($extension == 'gvideo')
 {
@@ -32,7 +35,7 @@ foreach(array('.asf', '.wmv', '.divx', '.xvid', '.avi', '.AVI', '.qt', '.mov', '
   }
 }
 
-$template->set_filenames(array('default_content' => dirname(__FILE__) . '/template/pywaie_' . $extension . '.tpl'));
-$content = $template->parse('default_content', true);
+$template->set_filenames(array('py_content' => dirname(__FILE__) . '/template/pywaie_' . $extension . '.tpl'));
+$content = $template->parse('py_content', true);
 
 ?>
