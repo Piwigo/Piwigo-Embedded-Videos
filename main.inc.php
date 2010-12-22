@@ -33,16 +33,18 @@ function gvideoadd($content)
 }
 
 
-function py_mimetype($path, $element_info)
+function py_mimetype($location, $element_info)
 {
-  global $py_addext;
-	
-  $extension = strtolower(get_extension($element_info['path']));
-  if (empty($element_info['tn_ext']) and in_array($extension, $py_addext))
-	{
-    $path = GVIDEO_PATH . 'mimetypes/' . $extension . '.png';
-	}
-  return $path;
+  if ( empty( $element_info['tn_ext'] ) )
+  {
+    global $py_addext;
+    $extension = strtolower(get_extension($element_info['path']));
+    if (in_array($extension, $py_addext))
+    {
+      $location= 'plugins/' . GVIDEO_DIR . '/mimetypes/' . $extension . '.png';
+    }
+  }
+  return $location;
 }
 
 if (script_basename() == 'admin')
@@ -59,6 +61,6 @@ if (script_basename() == 'admin')
 }
 
 add_event_handler('render_element_content', 'gvideoadd');
-add_event_handler('get_thumbnail_url', 'py_mimetype', 60, 2);
+add_event_handler('get_thumbnail_location', 'py_mimetype', 60, 2);
 
 ?>
