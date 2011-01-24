@@ -7,7 +7,7 @@ $lang['py_filename'] = 'Filename';
 $lang['py_url'] = 'URL of the video';
 $lang['py_parent'] = 'Main Category';
 $lang['py_thumb'] = 'Thumbnail';
-$lang['py_no_thumb'] = 'Pas de miniature';
+$lang['py_no_thumb'] = 'No thumbnail';
 $lang['py_thumb_from_server'] = 'Upload thumbnail from server';
 $lang['py_thumb_from_user'] = 'Upload your own thumbnail:';
 $lang['py_add_band'] = 'Add bands on the sides of the thumbnail';
@@ -27,7 +27,7 @@ $lang['pybulle_start'] = "Choose the starting point (in seconds) of the video.<b
 $lang['pybulle_categorie'] = "Category where the file will be created: only real categories are listed. If you wanft to link this file to a virtual category, you have to link after.";
 $lang['pybulle_miniature'] = "You can get thumbnail back on the server. By default, thumbnails size are 320x240 on Google Video, 320x240 on Dailymotion, 130x97 on Youtube, 154x114 on Wideo and 200x150 on Vimeo.<br><br> Or you can upload your own thumbnail.<br><br> In both case, you can change dimension of thumbnail.";
 
-// Messages d'infos ou d'erreurs
+//Info messages or error
 $lang['py_error1'] = 'No local site! Impossible to create a video file.';
 $lang['py_error2'] = 'Impossible to save. You do not fill correctly formulary.';
 $lang['py_error3'] = 'You must fill obligatory field *';
