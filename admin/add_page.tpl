@@ -1,5 +1,5 @@
 {include file='include/autosize.inc.tpl'}
-{known_script id="jquery.cluetip" src=$ROOT_URL|@cat:"themes/default/js/plugins/jquery.cluetip.packed.js"}
+{combine_script id="jquery.cluetip" path="themes/default/js/plugins/jquery.cluetip.js"}
 
 <script type="text/javascript">
 jQuery().ready(function(){ldelim}
