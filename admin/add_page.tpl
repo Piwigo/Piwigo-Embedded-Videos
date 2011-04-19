@@ -1,14 +1,14 @@
 {include file='include/autosize.inc.tpl'}
-{combine_script id="jquery.cluetip" path="themes/default/js/plugins/jquery.cluetip.js"}
+{combine_script id='jquery.cluetip' load='async' require='jquery' path='themes/default/js/plugins/jquery.cluetip.js'}
 
-<script type="text/javascript">
+{footer_script require='jquery.cluetip'}
 jQuery().ready(function(){ldelim}
-  jQuery('.cluetip').cluetip({ldelim}
-    width: 400,
-    splitTitle: '|'
-  });
+	jQuery('.cluetip').cluetip({ldelim}
+		width: 400,
+		splitTitle: '|'
+	});
 });
-</script>
+{/footer_script}
 
 <div class="titrePage">
 <h2>{'py_title'|@translate}</h2>
