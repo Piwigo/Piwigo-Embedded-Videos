@@ -319,8 +319,8 @@ else
 $template->assign(array(
   'INFOBULLES_JS' => GVIDEO_PATH . 'admin/infobulles.js',
   'ICON_INFOBULLE' => GVIDEO_PATH . 'admin/infobulle.png',
-  'DEFAULT_THUMB_W' => $conf['tn_width'],
-  'DEFAULT_THUMB_H' => $conf['tn_height']));
+  'DEFAULT_THUMB_W' => $conf['upload_form_thumb_maxwidth'],
+  'DEFAULT_THUMB_H' => $conf['upload_form_thumb_maxheight']));
 
 $template->set_filenames(array('plugin_admin_content' => dirname(__FILE__) . '/add_page.tpl'));
 $template->assign_var_from_handle('ADMIN_CONTENT', 'plugin_admin_content');
