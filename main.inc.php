@@ -33,6 +33,7 @@ function gvideoadd($content)
 }
 
 
+add_event_handler('get_thumbnail_location', 'py_mimetype', 60, 2);
 function py_mimetype($location, $element_info)
 {
   if ( empty( $element_info['tn_ext'] ) )
@@ -43,6 +44,17 @@ function py_mimetype($location, $element_info)
     {
       $location= 'plugins/' . GVIDEO_DIR . '/mimetypes/' . $extension . '.png';
     }
+  }
+  return $location;
+}
+
+add_event_handler('get_mimetype_location', 'py_mimetype_location', 60, 2);
+function py_mimetype_location($location, $ext)
+{
+  global $py_addext;
+  if (in_array($ext, $py_addext))
+  {
+    $location= 'plugins/' . GVIDEO_DIR . '/mimetypes/' . $ext . '.png';
   }
   return $location;
 }
