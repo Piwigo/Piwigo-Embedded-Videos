@@ -54,4 +54,7 @@ $lang['py_error12'] = 'поле міріатюри не заповнено: мі
 $lang['py_error6'] = 'Файл "%s" вже існує.';
 $lang['py_error7'] = 'Неможливо записати файл "%s"';
 $lang['py_error8'] = 'будь ласка, перевірте, чи має каталог %s права(chmod)';
+$lang['pybulle_categorie'] = 'Категорія, де буде створено файл: перераховані лише реальні категорії. Якщо ви хочете зв\'язати файл з віртуальною категорією, ви повинні зв\'язати пізніше.';
+$lang['pybulle_miniature'] = 'Ви можете отримати мініатюру назад на сервер. За замовчуванням, мініатюри розміру 320x240 на Google Video, 320x240 на Dailymotion, 130x97 на Youtube, 154x114 на Wideo і 200x150 на Vimeo.<br><br> Або ви можете завантажити свою власну мініатюру.<br><br> В обох випадках Ви можете змінити розмір мініатюр.';
+$lang['pybulle_reference'] = 'Скопіюйте сюди посилання на відео.<br>Ви можете використовувати GoogleVideo, YouTube, DailyMotion, Wideo, Vimeo або Wat. приклади:<br><br>- http://video.google.fr/videoplay?docid=4600755234172037942<br>- http://www.youtube.com/watch?v=eUvApC0bwUk<br>- http://www.dailymotion.com/video/x29fys_doorway<br>- http://www.wideo.fr/video/iLyROoaftYvl.html<br>- http://www.vimeo.com/1747316<br>- http://www.wat.tv/video/abcd.html';
 ?>
