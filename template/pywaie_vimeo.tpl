@@ -1,8 +1,2 @@
 {* pywaie_vimeo.tpl *}
-<br />
-<object width="{$WIDTH_IMG}" height="{$HEIGHT_IMG}">
-<param name="allowfullscreen" value="true" />
-<param name="allowscriptaccess" value="always" />
-<param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id={$ID_GVIDEO}&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;fullscreen=1&amp;autoplay={$AUTO_GVIDEO}" />
-<embed src="http://vimeo.com/moogaloop.swf?clip_id={$ID_GVIDEO}&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;fullscreen=1&amp;autoplay={$AUTO_GVIDEO}" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="{$WIDTH_IMG}" height="{$HEIGHT_IMG}"></embed>
-</object>
+<iframe src="http://player.vimeo.com/video/{$ID_GVIDEO}?title=0&amp;byline=0&amp;portrait=0&amp;autoplay={$AUTO_GVIDEO}" width="{$WIDTH_IMG}" height="{$HEIGHT_IMG}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
