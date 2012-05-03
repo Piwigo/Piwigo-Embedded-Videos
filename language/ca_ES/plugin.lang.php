@@ -40,4 +40,11 @@ $lang['py_thumb'] = 'Miniatura';
 $lang['py_title'] = 'PYWaie GVideo';
 $lang['py_url'] = 'URL del vídeo';
 $lang['py_width'] = 'Amplada';
+$lang['py_error11'] = 'Ja existeix una imatge amb el mateix nom (%s)';
+$lang['py_error12'] = 'No s\'ha pogut pujar la miniatura el seu camp no s\'ha emplenat correctament.';
+$lang['py_error2'] = 'No s\'ha pogut desar perquè no ha emplenat el formulari correctament.';
+$lang['py_error3'] = 'Ha d\'omplir el camp obligatori (*)';
+$lang['py_info2'] = 'La miniatura s\'ha pujat correctament';
+$lang['py_info3'] = 'El vídeo s\'ha afegit correctament';
+$lang['py_info4'] = 'Configuració guardada.';
 ?>
