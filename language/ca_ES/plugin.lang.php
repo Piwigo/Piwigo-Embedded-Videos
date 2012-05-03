@@ -47,4 +47,5 @@ $lang['py_error3'] = 'Ha d\'omplir el camp obligatori (*)';
 $lang['py_info2'] = 'La miniatura s\'ha pujat correctament';
 $lang['py_info3'] = 'El vídeo s\'ha afegit correctament';
 $lang['py_info4'] = 'Configuració guardada.';
+$lang['py_error9'] = 'Error al pujar o redimensionar una miniatura.';
 ?>
