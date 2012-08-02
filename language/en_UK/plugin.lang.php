@@ -19,5 +19,6 @@ $lang['Please add a thumbnail'] = 'Please add a thumbnail';
 $lang['Unable to contact host server'] = 'Unable to contact host server';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Video successfully added. <a href="%s">View</a>';
 $lang['This element is a video added with "Embedded Video"'] = 'This element is a video added with "Embedded Video"';
+$lang['Add film effect'] = 'Add film effect';
 
 ?>

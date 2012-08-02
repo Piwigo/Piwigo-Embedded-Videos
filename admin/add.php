@@ -56,6 +56,11 @@ if (isset($_POST['add_video']))
     
     if (count($page['errors']) == 0)
     {
+      if (isset($_POST['add_film_frame']))
+      {
+        add_film_frame($thumb_source);
+      }
+      
       // add image and update infos
       $image_id = add_uploaded_file($thumb_source, $thumb_name, array($_POST['category']));
       

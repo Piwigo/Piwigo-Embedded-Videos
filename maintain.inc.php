@@ -178,6 +178,7 @@ SELECT *
       {
         $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
         copy(gvideo_path.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
+        add_film_frame($thumb_source);
       }
     }
     

@@ -4,6 +4,13 @@
 jQuery("input[data-toggle]").change(function() {
   $('#'+ $(this).data('toggle')).toggle();
 });
+jQuery(".showInfo").tipTip({
+  delay: 0,
+  fadeIn: 200,
+  fadeOut: 200,
+  maxWidth: '300px',
+  defaultPosition: 'right'
+});
 {/literal}{/footer_script}
 
 <div class="titrePage">
@@ -39,9 +46,9 @@ jQuery("input[data-toggle]").change(function() {
       <input type="text" name="name" value="{$POST.name}" size="70">
     </li>
     <li>
-        <span class="property">{'Author'|@translate}</span>
-        <label><input type="radio" name="author_server" value="true" {if $POST.author_server != 'false'}checked="checked"{/if} data-toggle="author"> {'From the video'|@translate}</label>
-        <label><input type="radio" name="author_server" value="false" {if $POST.author_server == 'false'}checked="checked"{/if} data-toggle="author"> {'Change'|@translate}</label>
+      <span class="property">{'Author'|@translate}</span>
+      <label><input type="radio" name="author_server" value="true" {if $POST.author_server != 'false'}checked="checked"{/if} data-toggle="author"> {'From the video'|@translate}</label>
+      <label><input type="radio" name="author_server" value="false" {if $POST.author_server == 'false'}checked="checked"{/if} data-toggle="author"> {'Change'|@translate}</label>
     </li>
     <li {if $POST.author_server != 'false'}style="display:none;"{/if} id="author">
       <span class="property">&nbsp;</span>
@@ -57,11 +64,9 @@ jQuery("input[data-toggle]").change(function() {
       <textarea name="description" rows="5" cols="50">{$POST.description}</textarea>
     </li>
     <li>
-      <label>
-        <span class="property">{'Thumbnail'|@translate}</span>
-        <label><input type="radio" name="thumbnail_server" value="true" checked="checked" data-toggle="thumbnail_src"> {'From the video'|@translate}</label>
-        <label><input type="radio" name="thumbnail_server" value="false" data-toggle="thumbnail_src"> {'Change'|@translate}</label>
-      </label>
+      <span class="property">{'Thumbnail'|@translate}</span>
+      <label><input type="radio" name="thumbnail_server" value="true" checked="checked" data-toggle="thumbnail_src"> {'From the video'|@translate}</label>
+      <label><input type="radio" name="thumbnail_server" value="false" data-toggle="thumbnail_src"> {'Change'|@translate}</label>
     </li>
     <li id="thumbnail_src" style="display:none;">
       <span class="property">&nbsp;</span>
@@ -69,6 +74,11 @@ jQuery("input[data-toggle]").change(function() {
       <span class="property">&nbsp;</span>
       {'Maximum file size: %sB.'|@translate|@sprintf:$upload_max_filesize_shorthand} {'Allowed file types: %s.'|@translate|@sprintf:'jpg, png, gif'}
       <input type="hidden" name="MAX_FILE_SIZE" value="{$upload_max_filesize}">
+    </li>
+    <li>
+      <span class="property">&nbsp;</span>
+      <label><input type="checkbox" name="add_film_frame" value="true"> {'Add film effect'|@translate} </label>
+      <a class="showInfo" title="<img src='{$GVIDEO_PATH}admin/template/example-frame.jpg'>">i</a>
     </li>
   </ul>  
 </fieldset>
