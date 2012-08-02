@@ -1,0 +1,2 @@
+<iframe src="http://player.vimeo.com/video/{$GVIDEO.video_id}?autoplay={$GVIDEO.autoplay}&amp;title={$GVIDEO.config.vimeo.title}&amp;portrait={$GVIDEO.config.vimeo.portrait}&amp;byline={$GVIDEO.config.vimeo.byline}&amp;color={$GVIDEO.config.vimeo.color}" 
+  width="{$GVIDEO.width}" height="{$GVIDEO.height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>

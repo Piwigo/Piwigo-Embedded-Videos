@@ -1,1 +1,1 @@
-Permet afegir vídeos de GoogleVideo, Dailymotion, Youtube, Wideo, Vimeo o Wat.
+Permet afegir vídeos de Dailymotion, Youtube, Wideo, Vimeo, videobb o Wat.

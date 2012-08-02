@@ -1,1 +1,1 @@
-Umožňuje vložení video souborů z Youtube, Google Video, Dailymotion, Wideo, Vimeo nebo Wat.
+Umožňuje vložení video souborů z Youtube, Dailymotion, Wideo, Vimeo, videobb nebo Wat.

@@ -1,0 +1,1 @@
+<iframe src="http://www.wat.tv/embedframe/{$GVIDEO.video_id}?autoStart={$GVIDEO.autoplay}" width="{$GVIDEO.width}" height="{$GVIDEO.height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>

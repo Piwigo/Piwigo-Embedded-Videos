@@ -1,1 +1,1 @@
-Додає деякі відео з Google Video, Dailymotion, Youtube, Wideo, Vimeo або Wat.
+Додає деякі відео з Dailymotion, Youtube, Wideo, Vimeo, videobb або Wat.

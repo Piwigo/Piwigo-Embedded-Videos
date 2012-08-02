@@ -1,0 +1,43 @@
+div.left {
+  float:left;
+  width:50%;
+}
+div.right {
+  float:right;
+  width:50%;
+}
+
+FORM.properties SPAN.property {
+  width:150px;
+}
+
+img.icon {
+  vertical-align:middle;
+}
+
+label.color {
+  display:inline-block;
+  width:12px;
+  height:12px;
+  margin:3px;
+  vertical-align:middle;
+}
+  label.color:hover {
+    width:16px;
+    height:16px;
+    margin:1px;
+  }
+    
+  label.color.active {
+    border:1px solid #000;
+    border-radius:3px;
+    width:16px;
+    height:16px;
+    margin:0;
+  }
+    label.color.active.roma {
+      border-color:#fff;
+    }
+  label.color input {
+    visibility:hidden;
+  }

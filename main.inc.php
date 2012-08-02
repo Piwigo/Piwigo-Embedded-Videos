@@ -1,78 +1,39 @@
-<?php
+<?php 
 /*
-Plugin Name: PY GVideo
+Plugin Name: Embedded Videos
 Version: auto
-Description: Adds some videos from Google Video, Dailymotion, Youtube, Wideo, Vimeo or Wat.
+Description: Add videos from Dailymotion, Youtube, Vimeo, Wideo, videobb and Wat.
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=136
-Author: PYwaie & P@t
+Author: Mistic & P@t
+Author URI: http://www.strangeplanet.fr
 */
 
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
-define('GVIDEO_DIR' , basename(dirname(__FILE__)));
-define('GVIDEO_PATH' , PHPWG_PLUGINS_PATH . GVIDEO_DIR . '/');
 
-global $conf, $py_addext;
-$py_addext = array("gvideo", "dm", "ytube", "wideo", "vimeo", "wat");
-$conf['file_ext'] = array_merge($conf['file_ext'], $py_addext);
+global $prefixeTable;
 
-function gvideoadd($content)
+define('GVIDEO_PATH', PHPWG_PLUGINS_PATH . basename(dirname(__FILE__)) . '/');
+define('GVIDEO_ADMIN', get_root_url() . 'admin.php?page=plugin-' . basename(dirname(__FILE__)));
+define('GVIDEO_TABLE', $prefixeTable.'image_video');
+
+include(GVIDEO_PATH . 'include/gvideo.inc.php');
+
+add_event_handler('render_element_content', 'gvideo_element_content', EVENT_HANDLER_PRIORITY_NEUTRAL-10, 2);
+
+if (defined('IN_ADMIN'))
 {
-  global $page, $picture, $template, $py_addext, $conf;
+  add_event_handler('delete_elements', 'gvideo_delete_elements');
+  add_event_handler('loc_begin_admin_page', 'gvideo_photo_edit');
+  add_event_handler('get_admin_plugin_menu_links', 'gvideo_admin_menu');
 
-  if (!isset($picture['current']['file']))
-	{
-		return $content;
-	}
-  $extension = strtolower(get_extension($picture['current']['file']));
-  if (!in_array($extension, $py_addext) or $page['slideshow'])
-	{
-    return $content;
-	}
-	include_once( GVIDEO_PATH . '/gvideo.php');
-  return $content;
-}
-
-
-add_event_handler('get_thumbnail_location', 'py_mimetype', 60, 2);
-function py_mimetype($location, $element_info)
-{
-  if ( empty( $element_info['tn_ext'] ) )
+  function gvideo_admin_menu($menu) 
   {
-    global $py_addext;
-    $extension = strtolower(get_extension($element_info['path']));
-    if (in_array($extension, $py_addext))
-    {
-      $location= 'plugins/' . GVIDEO_DIR . '/mimetypes/' . $extension . '.png';
-    }
+    array_push($menu, array(
+      'NAME' => 'Embedded Videos',
+      'URL' => GVIDEO_ADMIN,
+    ));
+    return $menu;
   }
-  return $location;
 }
-
-add_event_handler('get_mimetype_location', 'py_mimetype_location', 60, 2);
-function py_mimetype_location($location, $ext)
-{
-  global $py_addext;
-  if (in_array($ext, $py_addext))
-  {
-    $location= 'plugins/' . GVIDEO_DIR . '/mimetypes/' . $ext . '.png';
-  }
-  return $location;
-}
-
-if (script_basename() == 'admin')
-{
-	add_event_handler('get_admin_plugin_menu_links', 'gvideo_admin_menu');
-	
-	function gvideo_admin_menu($menu)
-	{
-		array_push($menu, array(
-			'NAME' => 'PY GVideo',
-			'URL' => get_admin_plugin_menu_link( GVIDEO_PATH . '/admin/pywaie_admin.php')));
-		return $menu;
-	}
-}
-
-add_event_handler('render_element_content', 'gvideoadd');
-add_event_handler('get_thumbnail_location', 'py_mimetype', 60, 2);
 
 ?>

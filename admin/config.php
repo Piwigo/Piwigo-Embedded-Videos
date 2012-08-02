@@ -1,116 +1,41 @@
 <?php
+if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
 
-if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
-
-// Chargement des parametres
-$params = unserialize($conf['PY_GVideo']);
-
-// Mise a jour de la base de donnee
-if (isset($_POST['submit']))
+if (isset($_POST['save_config']))
 {
-  $params  = array(
-    'gvideo' => array(
-      $_POST['pywaie_gvideo_h'],
-      $_POST['pywaie_gvideo_w'],
-      $_POST['pywaie_gvideo_autoplay'],
-      $_POST['pywaie_gvideo_hl']),
-    'ytube' => array(
-      $_POST['pywaie_ytube_h'],
-      $_POST['pywaie_ytube_w'],
-      $_POST['pywaie_ytube_autoplay']),
-    'dm' => array(
-      $_POST['pywaie_dm_h'],
-      $_POST['pywaie_dm_w'],
-      $_POST['pywaie_dm_autoplay']),
-    'wideo' => array(
-      $_POST['pywaie_wideo_h'],
-      $_POST['pywaie_wideo_w'],
-      $_POST['pywaie_wideo_autoplay']),
+  $conf['gvideo'] = array(
+    'autoplay' => $_POST['autoplay'],
+    'width' => $_POST['width'],
+    'height' => $_POST['height'],
     'vimeo' => array(
-      $_POST['pywaie_vimeo_h'],
-      $_POST['pywaie_vimeo_w'],
-      $_POST['pywaie_vimeo_autoplay']),
-    'wat' => array(
-      $_POST['pywaie_wat_h'],
-      $_POST['pywaie_wat_w'],
-      $_POST['pywaie_wat_autoplay'])
+      'title' => (int)isset($_POST['vimeo']['title']),
+      'portrait' => (int)isset($_POST['vimeo']['portrait']),
+      'byline' => (int)isset($_POST['vimeo']['byline']),
+      'color' => $_POST['vimeo']['color'],
+      ),
+    'dailymotion' => array(
+      'logo' => (int)isset($_POST['dailymotion']['logo']),
+      'title' => (int)isset($_POST['dailymotion']['title']),
+      'color' => $_POST['dailymotion']['color'],
+      ),
+    'youtube' => array(),
+    'wat' => array(),
+    'wideo' => array(),
+    'videobb' => array(),
     );
-  
-  $query = '
-UPDATE ' . CONFIG_TABLE . '
-  SET value="' . addslashes(serialize($params)) . '"
-  WHERE param="PY_GVideo"
-  LIMIT 1';
-  pwg_query($query);
-  
-  array_push($page['infos'], l10n('py_info4'));
+      
+  conf_update_param('gvideo', serialize($conf['gvideo']));
+  array_push($page['infos'], l10n('Information data registered in database'));
 }
+
 
 $template->assign(array(
-  'PYWAIE_GVIDEO_H' => $params['gvideo'][0],
-  'PYWAIE_GVIDEO_W' => $params['gvideo'][1],
-  'PYWAIE_GVIDEO_HL' => $params['gvideo'][3],
-  'PYWAIE_YTUBE_H' => $params['ytube'][0],
-  'PYWAIE_YTUBE_W' => $params['ytube'][1],
-  'PYWAIE_DM_H' => $params['dm'][0],
-  'PYWAIE_DM_W' => $params['dm'][1],
-  'PYWAIE_WIDEO_H' => $params['wideo'][0],
-  'PYWAIE_WIDEO_W' => $params['wideo'][1],
-  'PYWAIE_VIMEO_H' => $params['vimeo'][0],
-  'PYWAIE_VIMEO_W' => $params['vimeo'][1],
-  'PYWAIE_WAT_H' => $params['wat'][0],
-  'PYWAIE_WAT_W' => $params['wat'][1]));
+  'gvideo' => $conf['gvideo'],
+  'vimeo_colors' => array('00adef', 'ff9933', 'c9ff23', 'ff0179', 'ffffff'),
+  'dailymotion_colors' => array('F7FFFD', 'E02C72', '92ADE0', 'E8D9AC', 'C2E165', '052880', 'FF0000', '834596'),
+  ));
 
-if ($params['gvideo'][2] == 'true')
-{
-  $template->assign(array('PYWAIE_GVIDEO_AUTOPLAY_TRUE' => 'checked="checked"'));
-}
-else
-{
-  $template->assign(array('PYWAIE_GVIDEO_AUTOPLAY_FALSE' => 'checked="checked"'));
-}
-if ($params['ytube'][2] == '1')
-{
-  $template->assign(array('PYWAIE_YTUBE_AUTOPLAY_TRUE' => 'checked="checked"'));
-}
-else
-{
-  $template->assign(array('PYWAIE_YTUBE_AUTOPLAY_FALSE' => 'checked="checked"'));
-}
-if ($params['dm'][2] == '1')
-{
-  $template->assign(array('PYWAIE_DM_AUTOPLAY_TRUE' => 'checked="checked"'));
-}
-else
-{
-  $template->assign(array('PYWAIE_DM_AUTOPLAY_FALSE' => 'checked="checked"'));
-}
-if ($params['wideo'][2] == 'true')
-{
-  $template->assign(array('PYWAIE_WIDEO_AUTOPLAY_TRUE' => 'checked="checked"'));
-}
-else
-{
-  $template->assign(array('PYWAIE_WIDEO_AUTOPLAY_FALSE' => 'checked="checked"'));
-}
-if ($params['vimeo'][2] == '1')
-{
-  $template->assign(array('PYWAIE_VIMEO_AUTOPLAY_TRUE' => 'checked="checked"'));
-}
-else
-{
-  $template->assign(array('PYWAIE_VIMEO_AUTOPLAY_FALSE' => 'checked="checked"'));
-}
-if ($params['wat'][2] == 'true')
-{
-  $template->assign(array('PYWAIE_WAT_AUTOPLAY_TRUE' => 'checked="checked"'));
-}
-else
-{
-  $template->assign(array('PYWAIE_WAT_AUTOPLAY_FALSE' => 'checked="checked"'));
-}
 
-$template->set_filenames(array('plugin_admin_content' => dirname(__FILE__) . '/config.tpl'));
-$template->assign_var_from_handle('ADMIN_CONTENT', 'plugin_admin_content');
+$template->set_filename('gvideo_content', dirname(__FILE__) . '/template/config.tpl');
 
 ?>

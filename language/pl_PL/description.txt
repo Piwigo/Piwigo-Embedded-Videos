@@ -1,1 +1,1 @@
-Dodaje wsparcie dla Google Video, Dailymotion, Youtube, Wideo, Vimeo lub Wat.
+Dodaje wsparcie dla Dailymotion, Youtube, Wideo, Vimeo, videobb lub Wat.
