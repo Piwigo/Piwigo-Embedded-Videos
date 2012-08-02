@@ -309,8 +309,7 @@ function add_film_frame($src, $dest=null)
   }
   
   // open source image
-  $imgExt = strtolower(get_extension($src));
-  switch ($imgExt)
+  switch (strtolower(get_extension($src)))
   {
     case 'jpg':
     case 'jpeg':
@@ -359,11 +358,11 @@ function add_film_frame($src, $dest=null)
   imagecopy($imgBand, $srcImage, 3*$const, (3/2)*$const, 0, 0, $srcWidth, $srcHeight);
   
   // save image
-  switch ($imgExt)
+  switch (strtolower(get_extension($dest)))
   {
     case 'jpg':
     case 'jpeg':
-      imagejpeg($imgBand, $dest);
+      imagejpeg($imgBand, $dest, 85);
       break;
     case 'png':
       imagepng($imgBand, $dest);
