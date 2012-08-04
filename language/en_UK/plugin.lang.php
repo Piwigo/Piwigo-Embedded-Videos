@@ -2,6 +2,7 @@
 
 $lang['Add a video'] = 'Add a video';
 $lang['Video URL'] = 'Video URL';
+$lang['Change'] = 'Change'; 
 $lang['Video size'] = 'Video size';
 $lang['Use common setting'] = 'Use common setting';
 $lang['Autoplay'] = 'Autoplay';
