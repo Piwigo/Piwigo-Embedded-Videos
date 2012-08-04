@@ -30,7 +30,7 @@ define(
     ))
   );
 
-
+/* install */
 function plugin_install() 
 {
   global $conf;
@@ -40,11 +40,12 @@ function plugin_install()
   $query = '
 CREATE TABLE IF NOT EXISTS `'.gvideo_table.'` (
   `picture_id` mediumint(8) NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
   `type` varchar(64) NOT NULL,
   `video_id` varchar(64) NOT NULL,
   `width` smallint(9) DEFAULT NULL,
   `height` smallint(9) DEFAULT NULL,
-  `autoplay` tinyint(1) DEFAULT NULL
+  `autoplay` tinyint(1) DEFAULT NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8
 ;';
   pwg_query($query);
@@ -58,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `'.gvideo_table.'` (
   }
 }
 
+/* activate */
 function plugin_activate()
 {
   global $conf;
@@ -66,12 +68,22 @@ function plugin_activate()
   {
     plugin_install();
   }
-  else if (!isset($conf['gvideo']))
+  else 
   {
-    conf_update_param('gvideo', gvideo_default_config);
+    if (!isset($conf['gvideo']))
+    {
+      conf_update_param('gvideo', gvideo_default_config);
+    }
+    
+    $result = pwg_query('SHOW COLUMNS FROM '.gvideo_table.' LIKE "url";');
+    if (!pwg_db_num_rows($result))
+    {      
+      pwg_query('ALTER TABLE '.gvideo_table.' ADD `url` VARCHAR(255) DEFAULT NULL;');
+    }
   }
 }
 
+/* uninstall */
 function plugin_uninstall() 
 {  
   pwg_query('DELETE FROM `'. CONFIG_TABLE .'` WHERE param = "gvideo" LIMIT 1;');
@@ -105,6 +117,16 @@ SELECT *
     return;
   }
   
+  if (!isset($conf['prefix_thumbnail']))
+  {
+    $conf['prefix_thumbnail'] = 'TN-';
+  }
+
+  if (!isset($conf['dir_thumbnail']))
+  {
+    $conf['dir_thumbnail'] = 'thumbnail';
+  }
+  
   set_time_limit(600);
   include_once(gvideo_path . '/include/functions.inc.php');
   include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
@@ -122,75 +144,69 @@ SELECT *
     switch ($file['type'])
     {
       case 'vimeo':
-        $url = 'http://vimeo.com/'.$file['id'];
-        break;
-      case 'dm':
-        $url = 'http://dailymotion.com/video/'.$file['id'];
-        break;
-      case 'ytube':
-        $url = 'http://youtu.be/'.$file['id'];
-        break;
-      case 'wideo':
-        $url = 'http://wideo.fr/video/'.$file['id'].'.html';
-        break;
-        
-      case 'wat': // can't get original page from id !
-        $thumb = str_replace($img['file'], null, $img['path']).'thumbnail/TN-'.get_filename_wo_extension($img['file']).'.*';
-        $thumb = glob($thumb);
-        if (!empty($thumb))
-        {
-          $thumb_name = 'wat-'.$file['id'].'-'.uniqid().'.'.get_extension($thumb[0]);
-          $thumb_source = $conf['data_location'].$thumb_name;
-          copy($thumb[0], $thumb_source);
-        }
-        
         $video = array(
-          'type' => 'wat',
-          'id' => $file['id'],
-          'title' => null,
-          'description' => null,
-          'thumbnail' => null,
+          'type' => 'vimeo',
+          'url' => 'http://vimeo.com/'.$file['id'],
           );
         break;
-        
+      case 'dm':
+        $video = array(
+          'type' => 'dailymotion',
+          'url' => 'http://dailymotion.com/video/'.$file['id'],
+          );
+        break;
+      case 'ytube':
+        $video = array(
+          'type' => 'youtube',
+          'url' => 'http://youtube.com/watch?v='.$file['id'],
+          );
+        break;
+      case 'wideo':
+        $video = array(
+          'type' => 'wideo',
+          'url' => 'http://wideo.fr/video/'.$file['id'].'.html',
+          );
+        break;
+      case 'wat':
+        $video = array(
+          'type' => 'wat',
+          'url' => null,
+          );
+        break;
       case 'gvideo': // closed
       default:
         array_push($images_delete, $img['id']);
         continue;
     }
     
-    // get video infos
-    if (!isset($video))
-    {
-      if ( ($video = parse_video_url($url)) === false )
-      {
-        array_push($images_delete, $img['id']);
-        continue;
-      }
-    }
+    $real_path = str_replace($img['file'], null, str_replace('././', './', $img['path']));
     
-    // download thumbnail
-    if (!isset($thumb_source))
+    // get existing thumbnail
+    $thumb = $real_path.$conf['dir_thumbnail'].'/'.$conf['prefix_thumbnail'].get_filename_wo_extension($img['file']).'.*';
+    $thumb = glob($thumb);
+    if (!empty($thumb))
     {
-      $thumb_name = $video['type'].'-'.$video['id'].'-'.uniqid().'.'.get_extension($video['thumbnail']);
+      $thumb_name = $video['type'].'-'.$file['id'].'-'.uniqid().'.'.get_extension($thumb[0]);
       $thumb_source = $conf['data_location'].$thumb_name;
-      if (download_remote_file($video['thumbnail'], $thumb_source) !== true)
-      {
-        $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
-        copy(gvideo_path.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
-        add_film_frame($thumb_source);
-      }
+      copy($thumb[0], $thumb_source);
+    }
+    else
+    {
+      $thumb_name = $video['type'].'-'.$file['id'].'-'.uniqid().'.jpg';
+      $thumb_source = $conf['data_location'].$thumb_name;
+      copy(gvideo_path.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
+      add_film_frame($thumb_source);
     }
     
     // update element
     $image_id = add_uploaded_file($thumb_source, $thumb_name, null, null, $img['id']);
     
     // update path and rename the file
-    $img['new_path'] = str_replace($img['file'], null, $img['path']).$thumb_name;
+    $img['new_path'] = $real_path.$thumb_name;
     rename($img['path'], $img['new_path']);
     array_push($images_updates, array(
       'id' => $img['id'],
-      'path' => str_replace('././', './', $img['new_path']),
+      'path' => $img['new_path'],
       ));
     
     if (empty($file['width'])) $file['width'] = '';
@@ -199,8 +215,9 @@ SELECT *
     // register video    
     array_push($videos_inserts, array(
       'picture_id' => $image_id,
+      'url' => $video['url'],
       'type' => $video['type'],
-      'video_id' => $video['id'],
+      'video_id' => $file['id'],
       'width' => $file['width'],
       'height' => $file['height'],
       'autoplay' => '',
@@ -215,7 +232,7 @@ SELECT *
   // registers videos
   mass_inserts(
     gvideo_table,
-    array('picture_id', 'type', 'video_id', 'width', 'height', 'autoplay'),
+    array('picture_id', 'url', 'type', 'video_id', 'width', 'height', 'autoplay'),
     $videos_inserts
     );
     

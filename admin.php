@@ -4,7 +4,6 @@ if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
 global $template, $page, $conf;
 
 $conf['gvideo'] = unserialize($conf['gvideo']);
-load_language('plugin.lang', GVIDEO_PATH);
 
 // tabsheet
 include_once(PHPWG_ROOT_PATH.'admin/include/tabsheet.class.php');

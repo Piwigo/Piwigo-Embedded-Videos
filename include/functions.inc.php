@@ -39,6 +39,7 @@ function parse_video_url($source_url)
       
       $json = json_decode($json, true);
       $video = array_merge($video, array(
+        'url' => 'http://youtube.com/watch?v='.$video['id'],
         'title' => $json['entry']['title']['$t'],
         'description' => $json['entry']['media$group']['media$description']['$t'],
         'thumbnail' => $json['entry']['media$group']['media$thumbnail'][2]['url'],
@@ -61,6 +62,7 @@ function parse_video_url($source_url)
       
       $json = json_decode($json, true);
       $video = array_merge($video, array(
+        'url' => 'http://vimeo.com/'.$video['id'],
         'title' => $json[0]['title'],
         'description' => $json[0]['description'],
         'thumbnail' => $json[0]['thumbnail_large'],
@@ -87,6 +89,7 @@ function parse_video_url($source_url)
       
       $video = array_merge($video, array(
         'id' => $json['id'],
+        'url' => 'http://dailymotion.com/video/'.$json['id'],
         'title' => $json['title'],
         'description' => $json['description'],
         'thumbnail' => $json['thumbnail_large_url'],
@@ -106,6 +109,8 @@ function parse_video_url($source_url)
       preg_match('#<meta property="og:video" content="http://www.wat.tv/swf2/([^"/>]+)" />#', $html, $matches);
       if (empty($matches[1])) return false;
       $video['id'] = $matches[1];
+      
+      $video['url'] = $source_url;
       
       preg_match('#<meta name="name" content="([^">]*)" />#', $html, $matches);
       $video['title'] = $matches[1];
@@ -130,7 +135,9 @@ function parse_video_url($source_url)
       
       $html = download_remote_file($source_url, true);
       if ($html === false or $html == 'file_error') return false;
-            
+      
+      $video['url'] = 'http://wideo.fr/video/'.$video['id'].'.html';
+      
       preg_match('#<meta property="og:title" content="([^">]*)" />#', $html, $matches);
       $video['title'] = $matches[1];
       
@@ -165,7 +172,9 @@ function parse_video_url($source_url)
       
       $html = download_remote_file($source_url, true);
       if ($html === false or $html == 'file_error') return false;
-            
+      
+      $video['url'] = 'http://www.videobb.com/video/'.$video['id'];
+      
       preg_match('#<meta content="videobb - ([^">]*)"  name="title" property="" />#', $html, $matches);
       $video['title'] = $matches[1];
       

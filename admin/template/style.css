@@ -51,3 +51,8 @@ label.color {
   line-height:16px;
   font-size:0.8em;
 }
+
+ul.services li {
+  display:inline;
+  margin-left:20px;
+}

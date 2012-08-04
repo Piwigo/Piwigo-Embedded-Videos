@@ -2,8 +2,6 @@
 
 $lang['Add a video'] = 'Ajouter une vidéo';
 $lang['Video URL'] = 'URL de la vidéo';
-$lang['From the video'] = 'Conserver';
-$lang['Change'] = 'Changer';
 $lang['Video size'] = 'Taille de la vidéo';
 $lang['Use common setting'] = 'Utiliser les paramètres généraux';
 $lang['Autoplay'] = 'Démarrage auto.';
@@ -14,8 +12,6 @@ $lang['Author portrait'] = 'Avatar de l\'auteur';
 $lang['Author name'] = 'Nom de l\'auteur';
 $lang['Logo'] = 'Logo';
 $lang['Please fill the video URL'] = 'Veuillez renseigner l\'URL de la vidéo';
-$lang['Please fill the video name'] = 'Veuillez renseigner le nom de la vidéo';
-$lang['Please add a thumbnail'] = 'Veuillez choisir une miniature';
 $lang['Unable to contact host server'] = 'Impossible de contacter le serveur';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Vidéo ajoutée. <a href="%s">Voir</a>';
 $lang['This element is a video added with "Embedded Video"'] = 'Cet élément est une vidéo ajoutée avec "Embedded Video"';

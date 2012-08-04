@@ -36,50 +36,13 @@ jQuery(".showInfo").tipTip({
         <input type="text" name="url" value="{$POST.url}" size="70">
       </label>
     </li>
-    <li>
-      <span class="property">{'Name'|@translate}</span>
-      <label><input type="radio" name="name_server" value="true" {if $POST.name_server != 'false'}checked="checked"{/if} data-toggle="name"> {'From the video'|@translate}</label>
-      <label><input type="radio" name="name_server" value="false" {if $POST.name_server == 'false'}checked="checked"{/if} data-toggle="name"> {'Change'|@translate}</label>
-    </li>
-    <li {if $POST.name_server != 'false'}style="display:none;"{/if} id="name">
-      <span class="property">&nbsp;</span>
-      <input type="text" name="name" value="{$POST.name}" size="70">
-    </li>
-    <li>
-      <span class="property">{'Author'|@translate}</span>
-      <label><input type="radio" name="author_server" value="true" {if $POST.author_server != 'false'}checked="checked"{/if} data-toggle="author"> {'From the video'|@translate}</label>
-      <label><input type="radio" name="author_server" value="false" {if $POST.author_server == 'false'}checked="checked"{/if} data-toggle="author"> {'Change'|@translate}</label>
-    </li>
-    <li {if $POST.author_server != 'false'}style="display:none;"{/if} id="author">
-      <span class="property">&nbsp;</span>
-      <input type="text" name="author" value="{$POST.author}" size="20">
-    </li>
-    <li>
-      <span class="property">{'Description'|@translate}</span>
-      <label><input type="radio" name="description_server" value="true" {if $POST.description_server != 'false'}checked="checked"{/if} data-toggle="description"> {'From the video'|@translate}</label>
-      <label><input type="radio" name="description_server" value="false" {if $POST.description_server == 'false'}checked="checked"{/if} data-toggle="description"> {'Change'|@translate}</label>
-    </li>
-    <li {if $POST.description_server != 'false'}style="display:none;"{/if} id="description">
-      <span class="property">&nbsp;</span>
-      <textarea name="description" rows="5" cols="50">{$POST.description}</textarea>
-    </li>
+  {if $gd_available}
     <li>
       <span class="property">{'Thumbnail'|@translate}</span>
-      <label><input type="radio" name="thumbnail_server" value="true" checked="checked" data-toggle="thumbnail_src"> {'From the video'|@translate}</label>
-      <label><input type="radio" name="thumbnail_server" value="false" data-toggle="thumbnail_src"> {'Change'|@translate}</label>
-    </li>
-    <li id="thumbnail_src" style="display:none;">
-      <span class="property">&nbsp;</span>
-      <input type="file" name="thumbnail_src"><br>
-      <span class="property">&nbsp;</span>
-      {'Maximum file size: %sB.'|@translate|@sprintf:$upload_max_filesize_shorthand} {'Allowed file types: %s.'|@translate|@sprintf:'jpg, png, gif'}
-      <input type="hidden" name="MAX_FILE_SIZE" value="{$upload_max_filesize}">
-    </li>
-    <li>
-      <span class="property">&nbsp;</span>
       <label><input type="checkbox" name="add_film_frame" value="true"> {'Add film effect'|@translate} </label>
       <a class="showInfo" title="<img src='{$GVIDEO_PATH}admin/template/example-frame.jpg'>">i</a>
     </li>
+  {/if}
   </ul>  
 </fieldset>
 
@@ -116,7 +79,7 @@ jQuery(".showInfo").tipTip({
 <fieldset>
   <legend>{'Supported services'|@translate}</legend>
   
-  <ul>
+  <ul class="services">
     <li>
       <img class="icon" src="{$GVIDEO_PATH}admin/template/icons/youtube.png">
       <a href="http://www.youtube.com" target="_blank">YouTube</a>

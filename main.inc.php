@@ -25,6 +25,12 @@ if (defined('IN_ADMIN'))
   add_event_handler('delete_elements', 'gvideo_delete_elements');
   add_event_handler('loc_begin_admin_page', 'gvideo_photo_edit');
   add_event_handler('get_admin_plugin_menu_links', 'gvideo_admin_menu');
+  add_event_handler('init', 'gvideo_init');
+  
+  function gvideo_init()
+  {
+    load_language('plugin.lang', GVIDEO_PATH);
+  }
 
   function gvideo_admin_menu($menu) 
   {
