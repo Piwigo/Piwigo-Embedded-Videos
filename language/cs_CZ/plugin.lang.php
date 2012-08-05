@@ -36,4 +36,5 @@ $lang['Use common setting'] = 'Použít běžné nastavení';
 $lang['Video URL'] = 'URL videa';
 $lang['Video size'] = 'Velikost videa';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Video úspěšně vloženo. <a href="%s">Zobrazit</a> ';
+$lang['Change'] = 'Změnit';
 ?>
