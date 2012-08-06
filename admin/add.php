@@ -73,14 +73,21 @@ if (isset($_POST['add_video']))
       $insert
       );
       
+    $query = '
+SELECT id, name, permalink
+  FROM '.CATEGORIES_TABLE.'
+  WHERE id = '.$_POST['category'].'
+;';
+    $category = pwg_db_fetch_assoc(pwg_query($query));
+      
     array_push($page['infos'], sprintf(
       l10n('Video successfully added. <a href="%s">View</a>'), 
       make_picture_url(array(
         'image_id' => $image_id,
         'category' => array(
-          'id' => $_POST['category'],
-          'name' => '',
-          'permalink' => '',
+          'id' => $category['id'],
+          'name' => $category['name'],
+          'permalink' => $category['permalink'],
           ),
         ))
       ));
