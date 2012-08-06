@@ -1,4 +1,6 @@
 {combine_css path=$GVIDEO_PATH|@cat:"admin/template/style.css"}
+{include file='include/colorbox.inc.tpl'}
+{include file='include/add_album.inc.tpl'}
 
 {footer_script}{literal}
 jQuery("input[data-toggle]").change(function() {
@@ -25,15 +27,16 @@ jQuery(".showInfo").tipTip({
     <li>
       <label>
         <span class="property">{'Album'|@translate}</span>
-        <select name="category" size="1">
+        <select style="width:400px" name="category" id="albumSelect" size="1">
           {html_options options=$category_parent_options selected=$POST.category}
         </select>
       </label>
+      {'... or '|@translate}<a href="#" class="addAlbumOpen" title="{'create a new album'|@translate}">{'create a new album'|@translate}</a>
     </li>
     <li>
       <label>
         <span class="property">{'Video URL'|@translate}</span>
-        <input type="text" name="url" value="{$POST.url}" size="70">
+        <input type="text" name="url" value="{$POST.url}" style="width:400px">
       </label>
     </li>
   {if $gd_available}

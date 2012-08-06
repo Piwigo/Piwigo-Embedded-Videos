@@ -3,7 +3,7 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
 global $prefixeTable;
 
-define('gvideo_path', PHPWG_PLUGINS_PATH . basename(dirname(__FILE__)));
+define('gvideo_path', PHPWG_PLUGINS_PATH . basename(dirname(__FILE__)) . '/');
 define('gvideo_table', $prefixeTable.'image_video');
 
 define(
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `'.gvideo_table.'` (
   `video_id` varchar(64) NOT NULL,
   `width` smallint(9) DEFAULT NULL,
   `height` smallint(9) DEFAULT NULL,
-  `autoplay` tinyint(1) DEFAULT NULL,
+  `autoplay` tinyint(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8
 ;';
   pwg_query($query);
