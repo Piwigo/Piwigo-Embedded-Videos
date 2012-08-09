@@ -225,6 +225,7 @@ SELECT *
     array_push($images_updates, array(
       'id' => $img['id'],
       'path' => $img['new_path'],
+      'is_gvideo' => 1,
       ));
     
     if (empty($file['width'])) $file['width'] = '';
