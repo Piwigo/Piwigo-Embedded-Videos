@@ -258,7 +258,7 @@ SELECT *
   // update images
   mass_updates(
     IMAGES_TABLE,
-    array('primary'=>array('id'), 'update'=>array('path')),
+    array('primary'=>array('id'), 'update'=>array('path', 'is_gvideo')),
     $images_updates
     );
 }
