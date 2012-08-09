@@ -50,6 +50,8 @@ CREATE TABLE IF NOT EXISTS `'.gvideo_table.'` (
 ;';
   pwg_query($query);
   
+  pwg_query('ALTER TABLE `' . IMAGES_TABLE . '` ADD `is_gvideo` TINYINT(1) NOT NULL DEFAULT 0;');
+  
   if (isset($conf['PY_GVideo']))
   {
     pwg_query('DELETE FROM `'. CONFIG_TABLE .'` WHERE param = "PY_GVideo" LIMIT 1;');
@@ -80,6 +82,21 @@ function plugin_activate()
     {      
       pwg_query('ALTER TABLE '.gvideo_table.' ADD `url` VARCHAR(255) DEFAULT NULL;');
     }
+    
+    $result = pwg_query('SHOW COLUMNS FROM '.IMAGES_TABLE.' LIKE "is_gvideo";');
+    if (!pwg_db_num_rows($result))
+    {      
+      pwg_query('ALTER TABLE `' . IMAGES_TABLE . '` ADD `is_gvideo` TINYINT(1) NOT NULL DEFAULT 0;');
+      
+      $query = '
+UPDATE '.IMAGES_TABLE.'
+  SET is_gvideo = 1
+  WHERE id IN(
+    SELECT picture_id FROM '.gvideo_table.'
+    )
+;';
+      pwg_query($query);
+    }
   }
 }
 
@@ -88,6 +105,7 @@ function plugin_uninstall()
 {  
   pwg_query('DELETE FROM `'. CONFIG_TABLE .'` WHERE param = "gvideo" LIMIT 1;');
   pwg_query('DROP TABLE `'.gvideo_table.'`;');
+  pwg_query('ALTER TABLE `' . IMAGES_TABLE . '` DROP `is_gvideo`;');
 }
 
 

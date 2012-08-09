@@ -6,25 +6,24 @@ if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
  */
 function gvideo_element_content($content, $element_info)
 {
+  if (!$element_info['is_gvideo'])
+  {
+    return $content;
+  }
+  
   global $page, $picture, $template, $conf;
+  
+  $conf['gvideo'] = unserialize($conf['gvideo']);
+  
+  remove_event_handler('render_element_content', 'default_picture_content', EVENT_HANDLER_PRIORITY_NEUTRAL);
   
   $query = '
 SELECT *
   FROM '.GVIDEO_TABLE.'
   WHERE picture_id = '.$element_info['id'].'
 ;';
-  $result = pwg_query($query);
+  $video = pwg_db_fetch_assoc(pwg_query($query));
   
-  if (!pwg_db_num_rows($result))
-  {
-    return $content;
-  }
-  
-  remove_event_handler('render_element_content', 'default_picture_content', EVENT_HANDLER_PRIORITY_NEUTRAL);
-  
-  $conf['gvideo'] = unserialize($conf['gvideo']);
-  
-  $video = pwg_db_fetch_assoc($result);  
   if (empty($video['width']))
   {
     $video['width'] = $conf['gvideo']['width'];

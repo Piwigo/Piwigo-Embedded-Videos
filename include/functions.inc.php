@@ -195,6 +195,18 @@ function parse_video_url($source_url)
 }
 
 /**
+ * test if a download method is available
+ * @return: bool
+ */
+if (!function_exists('test_remote_download'))
+{
+  function test_remote_download()
+  {
+    return function_exists('curl_init') || ini_get('allow_url_fopen');
+  }
+}
+
+/**
  * download a remote file
  *  - needs cURL or allow_url_fopen
  *  - take care of SSL urls
@@ -223,7 +235,7 @@ if (!function_exists('download_remote_file'))
       $ch = curl_init();
       
       curl_setopt($ch, CURLOPT_URL, $src);
-      curl_setopt($ch, CURLOPT_HEADER, 0);
+      curl_setopt($ch, CURLOPT_HEADER, false);
       curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept-language: en"));
       curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)');
       curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -242,14 +254,14 @@ if (!function_exists('download_remote_file'))
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
       }
       
-      if (($out = curl_exec($ch)) === false)
+      $out = curl_exec($ch);
+      curl_close($ch);
+      
+      if ($out === false)
       {
         return 'file_error';
       }
-      
-      curl_close($ch);
-      
-      if (!$return)
+      else if (!$return)
       {
         fclose($newf);
         return true;

@@ -39,6 +39,7 @@ if (isset($_POST['add_video']))
       'name' => pwg_db_real_escape_string($video['title']),
       'comment' => pwg_db_real_escape_string($video['description']),
       'author' => pwg_db_real_escape_string($video['author']),
+      'is_gvideo' => 1,
       );
     
     single_update(
