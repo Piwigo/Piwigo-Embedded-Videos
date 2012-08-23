@@ -37,4 +37,8 @@ $lang['Unable to contact host server'] = 'Sunucu ile bağlantı kurulamadı';
 $lang['Use common setting'] = 'Genel ayarları kullan';
 $lang['Video URL'] = 'Video URL';
 $lang['Video size'] = 'Video büyüklüğü';
+$lang['Video successfully updated'] = 'Video başarılı biçimde güncellendi';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'URL \'nin değiştirilmesi video açıklamasını, ismini ve küçük resmi sıfırlayacaktır';
+$lang['The thumbnail was updated'] = 'Küçük resim güncellendi';
+$lang['Upload a new thumbnail'] = 'Yeni bir küçük resim yükleyin';
 ?>
