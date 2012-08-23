@@ -23,8 +23,8 @@ add_event_handler('render_element_content', 'gvideo_element_content', EVENT_HAND
 if (defined('IN_ADMIN'))
 {
   add_event_handler('delete_elements', 'gvideo_delete_elements');
-  add_event_handler('loc_begin_admin_page', 'gvideo_photo_edit');
   add_event_handler('get_admin_plugin_menu_links', 'gvideo_admin_menu');
+  add_event_handler('tabsheet_before_select','gvideo_tab', EVENT_HANDLER_PRIORITY_NEUTRAL+10, 2); 
   add_event_handler('init', 'gvideo_init');
   
   function gvideo_init()
@@ -39,6 +39,31 @@ if (defined('IN_ADMIN'))
       'URL' => GVIDEO_ADMIN,
     ));
     return $menu;
+  }
+  
+  function gvideo_tab($sheets, $id)
+  {
+    if ($id != 'photo') return $sheets;
+    
+    $query = '
+SELECT *
+  FROM '.GVIDEO_TABLE.'
+  WHERE picture_id = '.$_GET['image_id'].'
+;';
+    $result = pwg_query($query);
+  
+    if (!pwg_db_num_rows($result)) return $sheets;
+    
+    global $gvideo;
+    $gvideo = pwg_db_fetch_assoc($result);
+    
+    $sheets['gvideo'] = array(
+      'caption' => l10n('Video properties'),
+      'url' => GVIDEO_ADMIN.'-photo&amp;image_id='.$_GET['image_id'],
+      );
+    unset($sheets['coi'], $sheets['update']);
+    
+    return $sheets;
   }
 }
 

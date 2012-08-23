@@ -56,3 +56,9 @@ ul.services li {
   display:inline;
   margin-left:20px;
 }
+
+#change_warning {
+  display:block;
+  color:#c00;
+  font-weight:bold;
+}

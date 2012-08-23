@@ -36,7 +36,7 @@ jQuery(".showInfo").tipTip({
     <li>
       <label>
         <span class="property">{'Video URL'|@translate}</span>
-        <input type="text" name="url" value="{$POST.url}" style="width:400px">
+        <input type="text" name="url" value="{$POST.url}" style="width:400px;">
       </label>
     </li>
   {if $gd_available}

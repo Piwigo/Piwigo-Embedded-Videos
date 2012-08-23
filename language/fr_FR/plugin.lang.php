@@ -17,5 +17,9 @@ $lang['Unable to contact host server'] = 'Impossible de contacter le serveur';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Vidéo ajoutée. <a href="%s">Voir</a>';
 $lang['This element is a video added with "Embedded Video"'] = 'Cet élément est une vidéo ajoutée avec "Embedded Video"';
 $lang['Add film effect'] = 'Ajouter un effet pellicule';
+$lang['Upload a new thumbnail'] = 'Uploader une nouvelle miniature';
+$lang['The thumbnail was updated'] = 'La miniature a été mise à jour';
+$lang['Video successfully updated'] = 'Vidéo mise à jour';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Changer l\'url réinitialisera le nom, la description et la miniature de la vidéo';
 
 ?>

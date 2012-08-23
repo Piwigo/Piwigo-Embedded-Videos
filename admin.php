@@ -5,15 +5,19 @@ global $template, $page, $conf;
 
 $conf['gvideo'] = unserialize($conf['gvideo']);
 
-// tabsheet
-include_once(PHPWG_ROOT_PATH.'admin/include/tabsheet.class.php');
 $page['tab'] = (isset($_GET['tab'])) ? $_GET['tab'] : $page['tab'] = 'add';
-  
-$tabsheet = new tabsheet();
-$tabsheet->add('add', l10n('Add a video'), GVIDEO_ADMIN . '-add');
-$tabsheet->add('config', l10n('Configuration'), GVIDEO_ADMIN . '-config');
-$tabsheet->select($page['tab']);
-$tabsheet->assign();
+
+
+if ($page['tab'] != 'photo')
+{
+  // tabsheet
+  include_once(PHPWG_ROOT_PATH.'admin/include/tabsheet.class.php');
+  $tabsheet = new tabsheet();
+  $tabsheet->add('add', l10n('Add a video'), GVIDEO_ADMIN . '-add');
+  $tabsheet->add('config', l10n('Configuration'), GVIDEO_ADMIN . '-config');
+  $tabsheet->select($page['tab']);
+  $tabsheet->assign();
+}
 
 // include page
 include(GVIDEO_PATH . 'admin/' . $page['tab'] . '.php');

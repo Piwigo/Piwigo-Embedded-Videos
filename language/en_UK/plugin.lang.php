@@ -17,5 +17,9 @@ $lang['Unable to contact host server'] = 'Unable to contact host server';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Video successfully added. <a href="%s">View</a>';
 $lang['This element is a video added with "Embedded Video"'] = 'This element is a video added with "Embedded Video"';
 $lang['Add film effect'] = 'Add film effect';
+$lang['Upload a new thumbnail'] = 'Upload a new thumbnail';
+$lang['The thumbnail was updated'] = 'The thumbnail was updated';
+$lang['Video successfully updated'] = 'Video successfully updated';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Changing the url will reset video description, name and thumbnail';
 
 ?>
