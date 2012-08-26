@@ -28,11 +28,8 @@ $lang['Autoplay'] = 'Автовідтворення';
 $lang['Change'] = 'Змінити';
 $lang['Color'] = 'Колір';
 $lang['Common configuration'] = 'Загальна конфігурація';
-$lang['From the video'] = 'Від відео';
 $lang['Logo'] = 'Логотип';
-$lang['Please add a thumbnail'] = 'Будь ласка, додайте мініатюру';
 $lang['Please fill the video URL'] = 'Будь ласка, введіть URL відео';
-$lang['Please fill the video name'] = 'Будь ласка, заповніть ім\'я відео';
 $lang['Supported services'] = 'Підтримувані послуги';
 $lang['This element is a video added with "Embedded Video"'] = 'Цей елемент додано з "Embedded Video"';
 $lang['Unable to contact host server'] = 'Не вдалося підключитись до вузла сервера';
@@ -40,4 +37,8 @@ $lang['Use common setting'] = 'Використовувати загальні �
 $lang['Video URL'] = 'URL відео ';
 $lang['Video size'] = 'Розмір відео';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Відео успішно додано. <a href="%s">Переглянути</a>';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Зміна URL, скидання опису відео, ім\'я та мініатюри';
+$lang['The thumbnail was updated'] = 'Мініатюра була оновлена';
+$lang['Upload a new thumbnail'] = 'Завантажити нову мініатюру';
+$lang['Video successfully updated'] = 'Відео успішно оновлено';
 ?>
