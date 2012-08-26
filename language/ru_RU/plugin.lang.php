@@ -28,7 +28,7 @@ $lang['Autoplay'] = 'Автопроигрывание';
 $lang['Color'] = 'Цвет';
 $lang['Common configuration'] = 'Общая конфигурация';
 $lang['Logo'] = 'Лого';
-$lang['Please fill the video URL'] = 'Пожалуйста, заполните видео URL';
+$lang['Please fill the video URL'] = 'Пожалуйста, заполните URL видео ';
 $lang['Supported services'] = 'Поддерживаемые сервисы';
 $lang['This element is a video added with "Embedded Video"'] = 'Этот элемент был добавлен с помощью "Embedded Video"';
 $lang['Unable to contact host server'] = 'Невозможно соединиться с хостинговым сервером';
@@ -37,4 +37,8 @@ $lang['Video URL'] = 'URL видео';
 $lang['Video size'] = 'Размер видео';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Видео добавлено успешно. <a href="%s">Посмотреть</a>';
 $lang['Change'] = 'Изменить';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Изменение этого адреса URL сбросит описание, название и миниатюру для видео';
+$lang['The thumbnail was updated'] = 'Миниатюра была обновлена';
+$lang['Upload a new thumbnail'] = 'Загрузить новую миниатюру';
+$lang['Video successfully updated'] = 'Видео успешно обновлено';
 ?>
