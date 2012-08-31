@@ -2,6 +2,33 @@
 if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
 
 /**
+ * some stuff at the begining of picture.php
+ */
+function gvideo_prepare_picture($picture)
+{
+  if ($picture['current']['is_gvideo'])
+  {
+    // remove default parser
+    remove_event_handler('render_element_content', 'default_picture_content', EVENT_HANDLER_PRIORITY_NEUTRAL);
+  
+    // remove autosize
+    global $pwg_loaded_plugins, $autosize_controler;
+    
+    if ( isset($pwg_loaded_plugins['Autosize']) and isset($autosize_controler) )
+    {
+      remove_event_handler('render_element_content', array(&$autosize_controler, 'init'), EVENT_HANDLER_PRIORITY_NEUTRAL);
+      remove_event_handler('render_element_content', array(&$autosize_controler, 'autosize_calcContent'), 40); 
+      remove_event_handler('loc_after_page_header', array(&$autosize_controler, 'cl_autosize_script_1'), EVENT_HANDLER_PRIORITY_NEUTRAL);
+      remove_event_handler('loc_after_page_header', array(&$autosize_controler, 'cl_autosize_script_2'), EVENT_HANDLER_PRIORITY_NEUTRAL);
+      remove_event_handler('loc_after_page_header', array(&$autosize_controler, 'cl_autosize_script_3'), EVENT_HANDLER_PRIORITY_NEUTRAL);
+      remove_event_handler('loc_after_page_header', array(&$autosize_controler, 'cl_autosize_affiche'), EVENT_HANDLER_PRIORITY_NEUTRAL+21);
+    }
+  }
+  
+  return $picture;
+}
+
+/**
  * replace content on picture page
  */
 function gvideo_element_content($content, $element_info)
@@ -15,7 +42,6 @@ function gvideo_element_content($content, $element_info)
   
   $conf['gvideo'] = unserialize($conf['gvideo']);
   
-  remove_event_handler('render_element_content', 'default_picture_content', EVENT_HANDLER_PRIORITY_NEUTRAL);
   
   $query = '
 SELECT *
@@ -49,7 +75,14 @@ SELECT *
       );
     $video['config']['dailymotion']['color'] = $colors[ $video['config']['dailymotion']['color'] ];
   }
+  
   $template->assign('GVIDEO', $video);
+  
+  global $user;
+  if (strpos('stripped', $user['theme']) !== false)
+  {
+    $template->append('head_elements', '<style type="text/css">.hideTabs{display:none;}</style>');
+  }
 
   $template->set_filename('gvideo_content', dirname(__FILE__).'/../template/video_'.$video['type'].'.tpl');
   return $template->parse('gvideo_content', true);

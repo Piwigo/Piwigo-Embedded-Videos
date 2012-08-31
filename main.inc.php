@@ -19,6 +19,7 @@ define('GVIDEO_VERSION', '2.4.c');
 
 
 add_event_handler('init', 'gvideo_init');
+add_event_handler('picture_pictures_data', 'gvideo_prepare_picture');
 add_event_handler('render_element_content', 'gvideo_element_content', EVENT_HANDLER_PRIORITY_NEUTRAL-10, 2);
 
 if (defined('IN_ADMIN'))
