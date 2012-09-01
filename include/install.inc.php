@@ -4,7 +4,7 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 global $prefixeTable;
 
 // defined here only because it's more convenient
-define('gvideo_path', PHPWG_PLUGINS_PATH . basename(dirname(__FILE__)) . '/');
+define('gvideo_path', PHPWG_PLUGINS_PATH . 'gvideo/');
 define('gvideo_table', $prefixeTable.'image_video');
 
 /**
@@ -120,7 +120,7 @@ SELECT *
   }
   
   set_time_limit(600);
-  include_once(gvideo_path . '/include/functions.inc.php');
+  include_once(gvideo_path . 'include/functions.inc.php');
   include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
   
   $videos_inserts = array();
