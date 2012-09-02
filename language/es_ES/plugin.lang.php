@@ -37,4 +37,8 @@ $lang['Use common setting'] = 'Usar ajustes comunes';
 $lang['Video URL'] = 'URL del vídeo';
 $lang['Video size'] = 'Tamaño del vídeo';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Vídeo correctamente añadido. <a href="%s">Ver</a>';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Cambiar la URL de la vídeo restablecerá la descripción, el nombre y la miniatura';
+$lang['The thumbnail was updated'] = 'Se ha actualizado la miniatura';
+$lang['Upload a new thumbnail'] = 'Subir una nueva miniatura';
+$lang['Video successfully updated'] = 'La vídeo se actualizo con exito';
 ?>
