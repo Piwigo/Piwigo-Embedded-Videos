@@ -23,18 +23,22 @@
 $lang['Add a video'] = '添加一个视频';
 $lang['Add film effect'] = '添加电影效果';
 $lang['Author name'] = '作者姓名';
-$lang['Author portrait'] = '作者肖像';
+$lang['Author portrait'] = '作者头像';
 $lang['Autoplay'] = '自动播放';
 $lang['Change'] = '变更';
 $lang['Color'] = '颜色';
 $lang['Common configuration'] = '常规设置';
-$lang['Logo'] = '商标';
+$lang['Logo'] = 'Logo';
 $lang['Please fill the video URL'] = '请填入视频 URL';
 $lang['Supported services'] = '支持的服务';
-$lang['This element is a video added with "Embedded Video"'] = '该组件用于添加“嵌入视频”';
-$lang['Unable to contact host server'] = '不能连接到服务器';
+$lang['This element is a video added with "Embedded Video"'] = '本元素是使用 "Embedded Video" 添加的一个视频';
+$lang['Unable to contact host server'] = '无法连接到服务器';
 $lang['Use common setting'] = '使用常规设置';
 $lang['Video URL'] = '视频 URL';
 $lang['Video size'] = '视频大小';
-$lang['Video successfully added. <a href="%s">View</a>'] = '成功添加视频。<a href="%s">查看</a>';
+$lang['Video successfully added. <a href="%s">View</a>'] = '视频添加成功。<a href="%s">查看</a>';
+$lang['Video successfully updated'] = '视频更新成功';
+$lang['Upload a new thumbnail'] = '上传新的缩略图';
+$lang['The thumbnail was updated'] = '缩略图已更新';
+$lang['Changing the url will reset video description, name and thumbnail'] = '改变 url 将重置视频的描述、名称和缩略图';
 ?>
