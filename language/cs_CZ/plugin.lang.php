@@ -37,4 +37,8 @@ $lang['Video URL'] = 'URL videa';
 $lang['Video size'] = 'Velikost videa';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Video úspěšně vloženo. <a href="%s">Zobrazit</a> ';
 $lang['Change'] = 'Změnit';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Změna URL adresy vynuluje popis, jméno a náhled videa';
+$lang['The thumbnail was updated'] = 'Náhled byl aktualizován';
+$lang['Upload a new thumbnail'] = 'Nahrát nový náhled';
+$lang['Video successfully updated'] = 'Video bylo uspešně aktualizováno';
 ?>
