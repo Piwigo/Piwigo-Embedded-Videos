@@ -67,7 +67,7 @@ jQuery("input[name='url']").keyup(function() {ldelim}
       <label><input type="radio" name="size_common" value="true" {if $GVIDEO.size_common == 'true'}checked="checked"{/if} data-toggle="size"> {'Use common setting'|@translate}</label>
       <label><input type="radio" name="size_common" value="false" {if $GVIDEO.size_common != 'true'}checked="checked"{/if} data-toggle="size"> {'Change'|@translate}</label>
       
-      <span {if $GVIDEO.size_common == 'true'}style="display:none;"{/if} id="size">
+      <span style="display:{if $GVIDEO.size_common == 'true'}none{else}block{/if};" id="size">
         <input type="text" name="width" value="{$GVIDEO.width}" size="4"> &times;
         <input type="text" name="height" value="{$GVIDEO.height}" size="4"> px
       </span>
@@ -78,7 +78,7 @@ jQuery("input[name='url']").keyup(function() {ldelim}
       <label><input type="radio" name="autoplay_common" value="true" {if $GVIDEO.autoplay_common == 'true'}checked="checked"{/if} data-toggle="autoplay"> {'Use common setting'|@translate}</label>
       <label><input type="radio" name="autoplay_common" value="false" {if $GVIDEO.autoplay_common != 'true'}checked="checked"{/if} data-toggle="autoplay"> {'Change'|@translate}</label>
       
-      <span {if $GVIDEO.autoplay_common == 'true'}style="display:none;"{/if} id="autoplay">
+      <span style="display:{if $GVIDEO.autoplay_common == 'true'}none{else}block{/if};" id="autoplay">
         <label><input type="radio" name="autoplay" value="0" {if $GVIDEO.autoplay == '0'}checked="checked"{/if}> {'No'|@translate}</label>
         <label><input type="radio" name="autoplay" value="1" {if $GVIDEO.autoplay == '1'}checked="checked"{/if}> {'Yes'|@translate}</label>
       </span>

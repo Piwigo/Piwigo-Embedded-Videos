@@ -23,6 +23,8 @@
 
 if(!defined("PHPWG_ROOT_PATH")) die ("Hacking attempt!");
 
+include_once(GVIDEO_PATH.'include/functions.inc.php');
+
 
 // +-----------------------------------------------------------------------+
 // | Basic checks                                                          |
@@ -74,38 +76,45 @@ if (isset($_POST['save_properties']))
   
   if (count($page['errors']) == 0)
   {
-    include_once(GVIDEO_PATH.'include/functions.inc.php');
     include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
 
-    // download thumbnail
-    $thumb_name = $video['type'].'-'.$video['id'].'-'.uniqid().'.'.get_extension($video['thumbnail']);
-    $thumb_source = $conf['data_location'].$thumb_name;
-    if (download_remote_file($video['thumbnail'], $thumb_source) !== true)
+    if ( $gvideo['url'] != $video['url'] )
     {
-      $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
-      copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
+      // download thumbnail
+      $thumb_name = $video['type'].'-'.$video['id'].'-'.uniqid().'.'.get_extension($video['thumbnail']);
+      $thumb_source = $conf['data_location'].$thumb_name;
+      if (download_remote_file($video['thumbnail'], $thumb_source) !== true)
+      {
+        $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
+        copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
+      }
+      
+      // add image and update infos
+      $image_id = add_uploaded_file($thumb_source, $thumb_name, null, null, $_GET['image_id']);
+      
+      $updates = array(
+        'name' => pwg_db_real_escape_string($video['title']),
+        'comment' => pwg_db_real_escape_string($video['description']),
+        'author' => pwg_db_real_escape_string($video['author']),
+        'is_gvideo' => 1,
+        );
+      
+      single_update(
+        IMAGES_TABLE,
+        $updates,
+        array('id' => $_GET['image_id']),
+        true
+        );
     }
-    
-    // add image and update infos
-    $image_id = add_uploaded_file($thumb_source, $thumb_name, null, null, $_GET['image_id']);
-    
-    $updates = array(
-      'name' => pwg_db_real_escape_string($video['title']),
-      'comment' => pwg_db_real_escape_string($video['description']),
-      'author' => pwg_db_real_escape_string($video['author']),
-      'is_gvideo' => 1,
-      );
-    
-    single_update(
-      IMAGES_TABLE,
-      $updates,
-      array('id' => $_GET['image_id']),
-      true
-      );
     
     // register video
     if ($_POST['size_common'] == 'true')
     {
+      $_POST['width'] = $_POST['height'] = '';
+    }
+    else if ( !preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']) )
+    {
+      array_push($page['errors'], l10n('Width and height must be integers'));
       $_POST['width'] = $_POST['height'] = '';
     }
     if ($_POST['autoplay_common'] == 'true')
@@ -130,7 +139,7 @@ if (isset($_POST['save_properties']))
       );
       
     array_push($page['infos'], l10n('Video successfully updated'));
-    unset($_POST);
+    $gvideo = array_merge($gvideo, $updates);
   }
 }
 
