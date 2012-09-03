@@ -37,4 +37,8 @@ $lang['Author portrait'] = 'Πορτρέτο Δημιουργού';
 $lang['Author name'] = 'Όνομα Δημιουργού';
 $lang['Add film effect'] = 'Προσθήκη εφέ ταινίας';
 $lang['Add a video'] = 'Προσθέστε ένα βίντεο';
+$lang['Video successfully updated'] = 'Το βίντεο ενημερώθηκε επιτυχώς';
+$lang['Upload a new thumbnail'] = 'Ανεβάστε νέα μικρογραφία';
+$lang['The thumbnail was updated'] = 'Η μικρογραφία ενημερώθηκε';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Αλλάζοντας τη διεύθυνση url θα μηδενιστεί η περιγραφή, το όνομα και η μικρογραφία του βίντεο ';
 ?>
