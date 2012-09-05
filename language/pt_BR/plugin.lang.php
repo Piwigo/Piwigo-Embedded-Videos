@@ -37,4 +37,8 @@ $lang['Unable to contact host server'] = 'Não foi possível acessar o servidor'
 $lang['Video URL'] = 'URL do Vídeo';
 $lang['Video size'] = 'Tamanho do Vídeo';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Vídeo adicionado com sucesso. <a href="%s">Ver</a>';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Mudando a URL vai apagar a descrição, o nome e o ícone do vídeo.';
+$lang['The thumbnail was updated'] = 'O ícone do vídeo foi atualizado';
+$lang['Upload a new thumbnail'] = 'Envie um novo ícone';
+$lang['Video successfully updated'] = 'Vídeo enviado com sucesso.';
 ?>
