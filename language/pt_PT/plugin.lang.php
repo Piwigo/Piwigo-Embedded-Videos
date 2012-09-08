@@ -21,23 +21,24 @@
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
 $lang['Add a video'] = 'Adicionar uma video';
-$lang['Add film effect'] = 'Adicionar um efeito película';
+$lang['Add film effect'] = 'Adicionar efeito de filme';
 $lang['Author name'] = 'nome do autor';
 $lang['Author portrait'] = 'Avatar do autor';
-$lang['Autoplay'] = 'Arranque automático';
+$lang['Autoplay'] = 'Exibir automáticamente';
 $lang['Change'] = 'Mudar';
 $lang['Color'] = 'Cor';
-$lang['Common configuration'] = 'Configuração geral';
-$lang['From the video'] = 'conservar';
+$lang['Common configuration'] = 'Configuração comum';
 $lang['Logo'] = 'Logotipo';
-$lang['Please add a thumbnail'] = 'Escolhe uma miniatura';
 $lang['Please fill the video URL'] = 'Indique a URL da video';
-$lang['Please fill the video name'] = 'Indicar o nome da foto';
 $lang['Supported services'] = 'Serviços suportados';
-$lang['This element is a video added with "Embedded Video"'] = 'Este elemento é uma video adicionada com "Embedded Video" ';
+$lang['This element is a video added with "Embedded Video"'] = 'Este elemento é uma video adicionado com "Embedded Video" ';
 $lang['Unable to contact host server'] = 'Impossível contactar o servidor';
-$lang['Use common setting'] = 'Utilizar o parâmetros gerais';
-$lang['Video URL'] = 'URL da video';
-$lang['Video size'] = 'Tamanho da video';
-$lang['Video successfully added. <a href="%s">View</a>'] = 'Video adicionada.<a href="%s">Ver</a>';
+$lang['Use common setting'] = 'Utilizar o parâmetros comuns';
+$lang['Video URL'] = 'URL do video';
+$lang['Video size'] = 'Tamanho do video';
+$lang['Video successfully added. <a href="%s">View</a>'] = 'Video adicionado.<a href="%s">Ver</a>';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Alterando a URL apaga a descrição do video, nome e miniatura';
+$lang['The thumbnail was updated'] = 'A miniatura foi atualizada';
+$lang['Upload a new thumbnail'] = 'carregar nova miniatura';
+$lang['Video successfully updated'] = 'Video atualizado com sucesso';
 ?>
