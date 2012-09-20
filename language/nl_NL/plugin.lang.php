@@ -37,4 +37,8 @@ $lang['Use common setting'] = 'Gebruik algemene instelling';
 $lang['Video URL'] = 'Video URL';
 $lang['Video size'] = 'Video formaat';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Video succesvol toegevoegd. <a href="%s">Bekijk</a>';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Het veranderen van de url resulteert in een reset van de video-beschrijving, naam en miniatuur';
+$lang['The thumbnail was updated'] = 'De miniatuur werd bijgewerkt op';
+$lang['Upload a new thumbnail'] = 'Upload een nieuwe miniatuur';
+$lang['Video successfully updated'] = 'Video succesvol bijgewerkt';
 ?>
