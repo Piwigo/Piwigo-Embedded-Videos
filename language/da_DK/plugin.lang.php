@@ -23,8 +23,8 @@
 $lang['Video successfully updated'] = 'Videoen blevet opdateret';
 $lang['Add a video'] = 'Tilføj en video';
 $lang['Add film effect'] = 'Tilføj filmeffekt';
-$lang['Author name'] = 'Forfatter navn';
-$lang['Author portrait'] = 'Forfatters portræt';
+$lang['Author name'] = 'Forfatternavn';
+$lang['Author portrait'] = 'Forfatterportræt';
 $lang['Autoplay'] = 'Automatisk afspilning';
 $lang['Change'] = 'Ændr';
 $lang['Changing the url will reset video description, name and thumbnail'] = 'Ændring af url vil nulstille videobeskrivelse, navn og miniaturebilledet';
