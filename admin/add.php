@@ -19,7 +19,7 @@ if (isset($_POST['add_video']))
   if (count($page['errors']) == 0)
   {
     // download thumbnail
-    $thumb_name = $video['type'].'-'.$video['id'].'-'.uniqid().'.'.get_extension($video['thumbnail']);
+    $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.get_extension($video['thumbnail']);
     $thumb_source = $conf['data_location'].$thumb_name;
     if (download_remote_file($video['thumbnail'], $thumb_source) !== true)
     {
@@ -37,10 +37,18 @@ if (isset($_POST['add_video']))
     
     $updates = array(
       'name' => pwg_db_real_escape_string($video['title']),
-      'comment' => pwg_db_real_escape_string($video['description']),
       'author' => pwg_db_real_escape_string($video['author']),
       'is_gvideo' => 1,
       );
+      
+    if ( $_POST['sync_description'] and !empty($video['description']) )
+    {
+      $updates['comment'] = pwg_db_real_escape_string($video['description']);
+    }
+    if ( $_POST['sync_tags'] and !empty($video['tags']) )
+    {
+      set_tags(get_tag_ids(implode(',', $video['tags'])), $image_id);
+    }
     
     single_update(
       IMAGES_TABLE,
@@ -54,6 +62,11 @@ if (isset($_POST['add_video']))
     {
       $_POST['width'] = $_POST['height'] = '';
     }
+    else if ( !preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']) )
+    {
+      array_push($page['errors'], l10n('Width and height must be integers'));
+      $_POST['width'] = $_POST['height'] = '';
+    }
     if ($_POST['autoplay_common'] == 'true')
     {
       $_POST['autoplay'] = '';
@@ -63,7 +76,7 @@ if (isset($_POST['add_video']))
       'picture_id' => $image_id,
       'url' => $video['url'],
       'type' => $video['type'],
-      'video_id' => $video['id'],
+      'video_id' => $video['video_id'],
       'width' => $_POST['width'],
       'height' => $_POST['height'],
       'autoplay' => $_POST['autoplay'],

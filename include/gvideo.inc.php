@@ -40,7 +40,10 @@ function gvideo_element_content($content, $element_info)
   
   global $page, $picture, $template, $conf;
   
-  $conf['gvideo'] = unserialize($conf['gvideo']);
+  if (is_string($conf['gvideo']))
+  {
+    $conf['gvideo'] = unserialize($conf['gvideo']);
+  }
   
   
   $query = '

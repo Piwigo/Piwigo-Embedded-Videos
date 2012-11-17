@@ -8,7 +8,7 @@ div.right {
 }
 
 FORM.properties SPAN.property {
-  width:150px;
+  width:180px;
 }
 
 img.icon {
@@ -57,7 +57,10 @@ ul.services li {
   margin-left:20px;
 }
 
-#change_warning {
+.video_update {
+  display:none;
+}
+.video_update.warning {
   display:block;
   color:#c00;
   font-weight:bold;

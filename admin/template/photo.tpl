@@ -16,10 +16,10 @@ var border = jQuery("input[name='url']").css('border');
 jQuery("input[name='url']").keyup(function() {ldelim}
   if ($(this).val() != "{$GVIDEO.url}") {ldelim}
     $(this).css('border', '1px solid #c00');
-    $("#change_warning").show();
+    $(".video_update").show();
   } else {ldelim}
     $(this).css('border', border);
-    $("#change_warning").hide();
+    $(".video_update").hide();
   }
 });
 {/footer_script}
@@ -59,9 +59,21 @@ jQuery("input[name='url']").keyup(function() {ldelim}
     <p>
       <b>{'Video URL'|@translate}</b>
       <input type="text" name="url" value="{$GVIDEO.url}" style="width:400px;">
-      <span id="change_warning" style="display:none;">{'Changing the url will reset video description, name and thumbnail'|@translate}</span>
+      <span class="video_update warning" style="display:none;"> {'Changing the url will reset video description, name and thumbnail'|@translate}</span>
     </p>
-
+    
+    <p class="video_update">
+      <b>{'Get video description'|@translate}</b>
+      <label><input type="radio" name="sync_description" value="1" {if $GVIDEO.sync_description}checked="checked"{/if}> {'Yes'|@translate}</label>
+      <label><input type="radio" name="sync_description" value="0" {if not $GVIDEO.sync_description}checked="checked"{/if}> {'No'|@translate}</label>
+    </p>
+    
+    <p class="video_update">
+      <b>{'Get video tags'|@translate}</b>
+      <label><input type="radio" name="sync_tags" value="1" {if $GVIDEO.sync_tags}checked="checked"{/if}> {'Yes'|@translate}</label>
+      <label><input type="radio" name="sync_tags" value="0" {if not $GVIDEO.sync_tags}checked="checked"{/if}> {'No'|@translate}</label>
+    </p>
+    
     <p>
       <b>{'Video size'|@translate}</b>
       <label><input type="radio" name="size_common" value="true" {if $GVIDEO.size_common == 'true'}checked="checked"{/if} data-toggle="size"> {'Use common setting'|@translate}</label>

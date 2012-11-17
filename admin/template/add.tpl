@@ -73,6 +73,16 @@ jQuery(".showInfo").tipTip({
       <label><input type="radio" name="autoplay" value="0" {if $POST.autoplay == '0'}checked="checked"{/if}> {'No'|@translate}</label>
       <label><input type="radio" name="autoplay" value="1" {if $POST.autoplay == '1'}checked="checked"{/if}> {'Yes'|@translate}</label>
     </li>
+    <li>
+      <span class="property">{'Get video description'|@translate}</span>
+      <label><input type="radio" name="sync_description" value="1" {if $gvideo.sync_description}checked="checked"{/if}> {'Yes'|@translate}</label>
+      <label><input type="radio" name="sync_description" value="0" {if not $gvideo.sync_description}checked="checked"{/if}> {'No'|@translate}</label>
+    </li>
+    <li>
+      <span class="property">{'Get video tags'|@translate}</span>
+      <label><input type="radio" name="sync_tags" value="1" {if $gvideo.sync_tags}checked="checked"{/if}> {'Yes'|@translate}</label>
+      <label><input type="radio" name="sync_tags" value="0" {if not $gvideo.sync_tags}checked="checked"{/if}> {'No'|@translate}</label>
+    </li>
   </ul>  
 </fieldset>
 
@@ -102,10 +112,6 @@ jQuery(".showInfo").tipTip({
     <li>
       <img class="icon" src="{$GVIDEO_PATH}admin/template/icons/wideo.png">
       <a href="http://www.wideo.fr" target="_blank">Wideo</a>
-    </li>
-    <li>
-      <img class="icon" src="{$GVIDEO_PATH}admin/template/icons/videobb.png">
-      <a href="http://www.videobb.com" target="_blank">videobb</a>
     </li>
   </ul>
 </fieldset>

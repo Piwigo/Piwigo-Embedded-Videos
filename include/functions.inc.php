@@ -20,7 +20,7 @@ function parse_video_url($source_url)
       parse_str($url['query'], $url['query']);
       if (empty($url['query']['v'])) return false;
       
-      $video['id'] = $url['query']['v'];
+      $video['video_id'] = $url['query']['v'];
     }
     
     case 'youtu': // youtu.be (short-url service)
@@ -30,20 +30,21 @@ function parse_video_url($source_url)
         $video['type'] = 'youtube';
         
         $url['path'] = explode('/', $url['path']);
-        $video['id'] = $url['path'][1];
+        $video['video_id'] = $url['path'][1];
       }
       
-      $api_url = 'http://gdata.youtube.com/feeds/api/videos/'.$video['id'].'?v=2&alt=json';
+      $api_url = 'http://gdata.youtube.com/feeds/api/videos/'.$video['video_id'].'?v=2&alt=json';
       $json = download_remote_file($api_url, true);
       if ($json === false or $json == 'file_error') return false;
       
       $json = json_decode($json, true);
       $video = array_merge($video, array(
-        'url' => 'http://youtube.com/watch?v='.$video['id'],
+        'url' => 'http://youtube.com/watch?v='.$video['video_id'],
         'title' => $json['entry']['title']['$t'],
         'description' => $json['entry']['media$group']['media$description']['$t'],
         'thumbnail' => $json['entry']['media$group']['media$thumbnail'][2]['url'],
         'author' => $json['entry']['author'][0]['name']['$t'],
+        'tags' => null,
         ));
       break;
     }
@@ -54,19 +55,20 @@ function parse_video_url($source_url)
       $video['type'] = 'vimeo';
       
       $url['path'] = explode('/', $url['path']);
-      $video['id'] = $url['path'][1];
+      $video['video_id'] = $url['path'][1];
       
-      $api_url = 'http://vimeo.com/api/v2/video/'.$video['id'].'.json';
+      $api_url = 'http://vimeo.com/api/v2/video/'.$video['video_id'].'.json';
       $json = download_remote_file($api_url, true);
       if ($json === false or $json == 'file_error') return false;
       
       $json = json_decode($json, true);
       $video = array_merge($video, array(
-        'url' => 'http://vimeo.com/'.$video['id'],
+        'url' => 'http://vimeo.com/'.$video['video_id'],
         'title' => $json[0]['title'],
         'description' => $json[0]['description'],
         'thumbnail' => $json[0]['thumbnail_large'],
         'author' => $json[0]['user_name'],
+        'tags' => array_map('trim', explode(',', $json[0]['tags'])),
         ));
       break;
     }
@@ -78,9 +80,9 @@ function parse_video_url($source_url)
       
       $url['path'] = explode('/', $url['path']);
       if ($url['path'][1] != 'video') return false;
-      $video['id'] = $url['path'][2];
+      $video['video_id'] = $url['path'][2];
       
-      $api_url = 'https://api.dailymotion.com/video/'.$video['id'].'?fields=description,id,thumbnail_large_url,title,owner.username'; // DM doesn't accept non secure connection
+      $api_url = 'https://api.dailymotion.com/video/'.$video['video_id'].'?fields=description,thumbnail_large_url,title,owner.username,tags'; // DM doesn't accept non secure connection
       $json = download_remote_file($api_url, true);
       if ($json === false or $json == 'file_error') return false;
       
@@ -88,12 +90,12 @@ function parse_video_url($source_url)
       $json['thumbnail_large_url'] = preg_replace('#\?([0-9]+)$#', null, $json['thumbnail_large_url']);
       
       $video = array_merge($video, array(
-        'id' => $json['id'],
-        'url' => 'http://dailymotion.com/video/'.$json['id'],
+        'url' => 'http://dailymotion.com/video/'.$video['video_id'],
         'title' => $json['title'],
         'description' => $json['description'],
         'thumbnail' => $json['thumbnail_large_url'],
         'author' => $json['owner.username'],
+        'tags' => $json['tags'],
         ));
       break;
     }
@@ -108,20 +110,23 @@ function parse_video_url($source_url)
       
       preg_match('#<meta property="og:video" content="http://www.wat.tv/swf2/([^"/>]+)" />#', $html, $matches);
       if (empty($matches[1])) return false;
-      $video['id'] = $matches[1];
+      $video['video_id'] = $matches[1];
       
       $video['url'] = $source_url;
       
       preg_match('#<meta name="name" content="([^">]*)" />#', $html, $matches);
       $video['title'] = $matches[1];
       
-      preg_match('#<p class="description"([^>]*)>(.*?)</p>#s', $html, $matches);
-      $video['description'] = $matches[2];
+      preg_match('#<p class="description"(?:[^>]*)>(.*?)</p>#s', $html, $matches);
+      $video['description'] = $matches[1];
       
       preg_match('#<meta property="og:image" content="([^">]+)" />#', $html, $matches);
       $video['thumbnail'] = $matches[1];
       
       $video['author'] = null;
+      
+      preg_match_all('#<meta property="video:tag" content="([^">]+)" />#', $html, $matches);
+      $video['tags'] = $matches[1];
       break;
     }
       
@@ -131,12 +136,12 @@ function parse_video_url($source_url)
       $video['type'] = 'wideo';
       
       $url['path'] = explode('/', $url['path']);
-      $video['id'] = rtrim($url['path'][2], '.html');
+      $video['video_id'] = rtrim($url['path'][2], '.html');
       
       $html = download_remote_file($source_url, true);
       if ($html === false or $html == 'file_error') return false;
       
-      $video['url'] = 'http://wideo.fr/video/'.$video['id'].'.html';
+      $video['url'] = 'http://wideo.fr/video/'.$video['video_id'].'.html';
       
       preg_match('#<meta property="og:title" content="([^">]*)" />#', $html, $matches);
       $video['title'] = $matches[1];
@@ -147,43 +152,11 @@ function parse_video_url($source_url)
       preg_match('#<meta property="og:image" content="([^">]+)" />#', $html, $matches);
       $video['thumbnail'] = $matches[1];
       
-      preg_match('#<li id="li_author">Auteur :  <a href="\#"([^>]*)><span>(.*?)</span></a>#', $html, $matches);
-      $video['author'] = $matches[2];
-      break;
-    }
+      preg_match('#<li id="li_author">Auteur :  <a href=(?:[^>]*)><span>(.*?)</span></a>#', $html, $matches);
+      $video['author'] = $matches[1];
       
-    /* videobb */
-    case 'videobb':
-    {
-      $video['type'] = 'videobb';
-      
-      if (!empty($url['query']))
-      {
-        parse_str($url['query'], $url['query']);
-        if (empty($url['query']['v'])) return false;
-        $video['id'] = $url['query']['v'];
-      }
-      else
-      {
-        $url['path'] = explode('/', $url['path']);
-        if ($url['path'][1] != 'video') return false;
-        $video['id'] = $url['path'][2];
-      }
-      
-      $html = download_remote_file($source_url, true);
-      if ($html === false or $html == 'file_error') return false;
-      
-      $video['url'] = 'http://www.videobb.com/video/'.$video['id'];
-      
-      preg_match('#<meta content="videobb - ([^">]*)"  name="title" property="" />#', $html, $matches);
-      $video['title'] = $matches[1];
-      
-      $video['description'] = null;
-      
-      preg_match('#<link rel="image_src" href="([^">]+)" type="image/jpeg" />#', $html, $matches);
-      $video['thumbnail'] = $matches[1];
-      
-      $video['author'] = null;
+      preg_match('#<meta name="keywords" content="([^">]+)" />#', $html, $matches);
+      $video['tags'] = array_map('trim', explode(',', $matches[1]));
       break;
     }
       

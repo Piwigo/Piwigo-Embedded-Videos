@@ -21,6 +21,8 @@ function gvideo_install()
       'autoplay' => 0,
       'width' => 640,
       'height' => 360,
+      'sync_description' => 1,
+      'sync_tags' => 1,
       'vimeo' => array(
         'title' => 1,
         'portrait' => 1,
@@ -35,11 +37,25 @@ function gvideo_install()
       'youtube' => array(),
       'wat' => array(),
       'wideo' => array(),
-      'videobb' => array(),
       ));
     
     conf_update_param('gvideo', $gvideo_default_config);
     $conf['gvideo'] = $gvideo_default_config;
+  }
+  else
+  {
+    if (is_string($conf['gvideo']))
+    {
+      $conf['gvideo'] = unserialize($conf['gvideo']);
+    }
+    
+    if (!isset($conf['gvideo']['sync_description']))
+    {
+      $conf['gvideo']['sync_description'] = 1;
+      $conf['gvideo']['sync_tags'] = 1;
+      
+      conf_update_param('gvideo', serialize($conf['gvideo']));
+    }
   }
   
   // create table

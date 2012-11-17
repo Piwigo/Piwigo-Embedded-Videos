@@ -69,9 +69,16 @@ if (isset($_POST['save_properties']))
   {
     array_push($page['errors'], l10n('Please fill the video URL'));
   }
-  if ( !empty($_POST['url']) and ($video = parse_video_url($_POST['url'])) === false )
+  else if ($gvideo['url']!=$_POST['url'])
   {
-    array_push($page['errors'], l10n('Unable to contact host server'));
+    if( ($video = parse_video_url($_POST['url'])) === false )
+    {
+      array_push($page['errors'], l10n('Unable to contact host server'));
+    }
+  }
+  else
+  {
+    $video = $gvideo;
   }
   
   if (count($page['errors']) == 0)
@@ -81,7 +88,7 @@ if (isset($_POST['save_properties']))
     if ( $gvideo['url'] != $video['url'] )
     {
       // download thumbnail
-      $thumb_name = $video['type'].'-'.$video['id'].'-'.uniqid().'.'.get_extension($video['thumbnail']);
+      $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.get_extension($video['thumbnail']);
       $thumb_source = $conf['data_location'].$thumb_name;
       if (download_remote_file($video['thumbnail'], $thumb_source) !== true)
       {
@@ -94,10 +101,22 @@ if (isset($_POST['save_properties']))
       
       $updates = array(
         'name' => pwg_db_real_escape_string($video['title']),
-        'comment' => pwg_db_real_escape_string($video['description']),
         'author' => pwg_db_real_escape_string($video['author']),
         'is_gvideo' => 1,
         );
+        
+      if ( $_POST['sync_description'] and !empty($video['description']) )
+      {
+        $updates['comment'] = pwg_db_real_escape_string($video['description']);
+      }
+      else
+      {
+        $updates['comment'] = null;
+      }
+      if ( $_POST['sync_tags'] and !empty($video['tags']) )
+      {
+        set_tags(get_tag_ids(implode(',', $video['tags'])), $image_id);
+      }
       
       single_update(
         IMAGES_TABLE,
@@ -125,7 +144,7 @@ if (isset($_POST['save_properties']))
     $updates = array(
       'url' => $video['url'],
       'type' => $video['type'],
-      'video_id' => $video['id'],
+      'video_id' => $video['video_id'],
       'width' => $_POST['width'],
       'height' => $_POST['height'],
       'autoplay' => $_POST['autoplay'],
@@ -198,6 +217,8 @@ if (empty($gvideo['autoplay']))
 {
   $gvideo['autoplay_common'] = 'true';
 }
+$gvideo['sync_description'] = $conf['gvideo']['sync_description'];
+$gvideo['sync_tags'] = $conf['gvideo']['sync_tags'];
 
 if (function_exists('imagecreatetruecolor'))
 {

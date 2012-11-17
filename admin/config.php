@@ -4,9 +4,11 @@ if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
 if (isset($_POST['save_config']))
 {
   $conf['gvideo'] = array(
-    'autoplay' => $_POST['autoplay'],
-    'width' => $_POST['width'],
-    'height' => $_POST['height'],
+    'autoplay' => (int)$_POST['autoplay'],
+    'width' => (int)$_POST['width'],
+    'height' => (int)$_POST['height'],
+    'sync_description' => (int)$_POST['sync_description'],
+    'sync_tags' => (int)$_POST['sync_tags'],
     'vimeo' => array(
       'title' => (int)isset($_POST['vimeo']['title']),
       'portrait' => (int)isset($_POST['vimeo']['portrait']),
@@ -23,7 +25,7 @@ if (isset($_POST['save_config']))
     'wideo' => array(),
     'videobb' => array(),
     );
-      
+  
   conf_update_param('gvideo', serialize($conf['gvideo']));
   array_push($page['infos'], l10n('Information data registered in database'));
 }

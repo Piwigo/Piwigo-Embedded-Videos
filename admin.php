@@ -3,7 +3,10 @@ if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
 
 global $template, $page, $conf;
 
-$conf['gvideo'] = unserialize($conf['gvideo']);
+if (is_string($conf['gvideo']))
+{
+  $conf['gvideo'] = unserialize($conf['gvideo']);
+}
 
 $page['tab'] = (isset($_GET['tab'])) ? $_GET['tab'] : $page['tab'] = 'add';
 

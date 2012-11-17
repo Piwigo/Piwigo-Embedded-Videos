@@ -15,7 +15,7 @@ global $prefixeTable;
 define('GVIDEO_PATH',    PHPWG_PLUGINS_PATH . 'gvideo/');
 define('GVIDEO_ADMIN',   get_root_url() . 'admin.php?page=plugin-gvideo');
 define('GVIDEO_TABLE',   $prefixeTable.'image_video');
-define('GVIDEO_VERSION', '2.4.e');
+define('GVIDEO_VERSION', 'auto');
 
 
 add_event_handler('init', 'gvideo_init');
@@ -40,6 +40,7 @@ function gvideo_init()
   global $pwg_loaded_plugins;
   
   if (
+    GVIDEO_VERSION == 'auto' or
     $pwg_loaded_plugins['gvideo']['version'] == 'auto' or
     version_compare($pwg_loaded_plugins['gvideo']['version'], GVIDEO_VERSION, '<')
   )
@@ -47,7 +48,7 @@ function gvideo_init()
     include_once(GVIDEO_PATH . 'include/install.inc.php');
     gvideo_install();
     
-    if ($pwg_loaded_plugins['gvideo']['version'] != 'auto')
+    if ( $pwg_loaded_plugins['gvideo']['version'] != 'auto' and GVIDEO_VERSION !='auto' )
     {
       $query = '
 UPDATE '. PLUGINS_TABLE .'

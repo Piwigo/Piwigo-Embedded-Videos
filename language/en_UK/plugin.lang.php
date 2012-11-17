@@ -21,5 +21,9 @@ $lang['Upload a new thumbnail'] = 'Upload a new thumbnail';
 $lang['The thumbnail was updated'] = 'The thumbnail was updated';
 $lang['Video successfully updated'] = 'Video successfully updated';
 $lang['Changing the url will reset video description, name and thumbnail'] = 'Changing the url will reset video description, name and thumbnail';
+$lang['Get video description'] = 'Get video description';
+$lang['Get video tags'] = 'Get video tags';
+$lang['Vimeo player'] = 'Vimeo player';
+$lang['Dailymotion player'] = 'Dailymotion player';
 
 ?>
