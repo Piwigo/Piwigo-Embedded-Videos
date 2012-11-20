@@ -34,11 +34,15 @@ $lang['Please fill the video URL'] = 'Por favor preencha a URL do Vídeo';
 $lang['Supported services'] = 'Serviços suportados';
 $lang['This element is a video added with "Embedded Video"'] = 'Esse elemento é um vídeo adicionado com "Embedded Vídeo"';
 $lang['Unable to contact host server'] = 'Não foi possível acessar o servidor';
-$lang['Video URL'] = 'URL do Vídeo';
+$lang['Video URL'] = 'Endereço do Vídeo';
 $lang['Video size'] = 'Tamanho do Vídeo';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Vídeo adicionado com sucesso. <a href="%s">Ver</a>';
 $lang['Changing the url will reset video description, name and thumbnail'] = 'Mudando a URL vai apagar a descrição, o nome e o ícone do vídeo.';
 $lang['The thumbnail was updated'] = 'O ícone do vídeo foi atualizado';
 $lang['Upload a new thumbnail'] = 'Envie um novo ícone';
 $lang['Video successfully updated'] = 'Vídeo enviado com sucesso.';
+$lang['Vimeo player'] = 'Tocador do Vimeo';
+$lang['Dailymotion player'] = 'Tocador do Dailymotion';
+$lang['Get video tags'] = 'Obtenha as marcações de vídeo';
+$lang['Get video description'] = 'Obtenha a descrição do Vídeo';
 ?>
