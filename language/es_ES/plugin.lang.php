@@ -41,4 +41,8 @@ $lang['Changing the url will reset video description, name and thumbnail'] = 'Ca
 $lang['The thumbnail was updated'] = 'Se ha actualizado la miniatura';
 $lang['Upload a new thumbnail'] = 'Subir una nueva miniatura';
 $lang['Video successfully updated'] = 'La vídeo se actualizo con exito';
+$lang['Dailymotion player'] = 'Dailymotion reproductor';
+$lang['Get video description'] = 'Obtener la descripción del video';
+$lang['Get video tags'] = 'Obtener etiquetas video';
+$lang['Vimeo player'] = 'Vimeo reproductor';
 ?>
