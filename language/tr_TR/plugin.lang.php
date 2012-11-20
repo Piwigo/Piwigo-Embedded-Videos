@@ -41,4 +41,8 @@ $lang['Video successfully updated'] = 'Video başarılı biçimde güncellendi';
 $lang['Changing the url will reset video description, name and thumbnail'] = 'URL \'nin değiştirilmesi video açıklamasını, ismini ve küçük resmi sıfırlayacaktır';
 $lang['The thumbnail was updated'] = 'Küçük resim güncellendi';
 $lang['Upload a new thumbnail'] = 'Yeni bir küçük resim yükleyin';
+$lang['Dailymotion player'] = 'Dailymotion player';
+$lang['Get video description'] = 'Video açıklamasını al';
+$lang['Get video tags'] = 'Video etiketlerini al';
+$lang['Vimeo player'] = 'Vimeo player';
 ?>
