@@ -41,4 +41,8 @@ $lang['The thumbnail was updated'] = 'A bélyegkép frissítve';
 $lang['Upload a new thumbnail'] = 'Új bélyegkép hozzáadása';
 $lang['Video URL'] = 'Video URL';
 $lang['Video size'] = 'Video mérete';
+$lang['Dailymotion player'] = 'Dailymotion lejátszó';
+$lang['Get video description'] = 'Video leírás';
+$lang['Get video tags'] = 'Video címkék';
+$lang['Vimeo player'] = 'Vimeo lejátszó';
 ?>
