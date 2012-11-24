@@ -41,4 +41,8 @@ $lang['Video successfully updated'] = 'Video bolo úspešne aktualizované';
 $lang['Upload a new thumbnail'] = 'Nahrať nový náhľad';
 $lang['The thumbnail was updated'] = 'Náhľad bol aktualizovaný';
 $lang['Changing the url will reset video description, name and thumbnail'] = 'Zmena URL resetuje popis videa, meno a náhľad';
+$lang['Vimeo player'] = 'Vimeo prehrávač';
+$lang['Get video tags'] = 'Vložiť kľúčové slová videa';
+$lang['Get video description'] = 'Vložiť popis videa';
+$lang['Dailymotion player'] = 'Dailymotion prehrávač';
 ?>
