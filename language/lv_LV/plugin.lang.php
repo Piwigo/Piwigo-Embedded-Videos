@@ -41,4 +41,8 @@ $lang['Changing the url will reset video description, name and thumbnail'] = 'Iz
 $lang['Video successfully updated'] = 'Video sekmīgi atjaunināts';
 $lang['Upload a new thumbnail'] = 'Augšupielādēt jaunu sīkbildi';
 $lang['The thumbnail was updated'] = 'Sīkbilde ir atjaunināta';
+$lang['Dailymotion player'] = 'Dailymotion atskaņotājs';
+$lang['Vimeo player'] = 'Vimeo atskaņotājs';
+$lang['Get video tags'] = 'Iegūt video tagus (iezīmes)';
+$lang['Get video description'] = 'Iegūt video aprakstu';
 ?>
