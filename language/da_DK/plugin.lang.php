@@ -41,4 +41,8 @@ $lang['Use common setting'] = 'Brug fælles opsætning';
 $lang['Video URL'] = 'Video-URL';
 $lang['Video size'] = 'Videostørrelse';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Videoen blevet tilføjet. <a href="%s">Se</a>';
+$lang['Dailymotion player'] = 'Dailymotion-afspiller';
+$lang['Get video description'] = 'Hent videobeskrivelse';
+$lang['Get video tags'] = 'Hent videotags';
+$lang['Vimeo player'] = 'Vimeo-afspiller';
 ?>
