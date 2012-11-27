@@ -41,4 +41,8 @@ $lang['Video successfully updated'] = '视频更新成功';
 $lang['Upload a new thumbnail'] = '上传新的缩略图';
 $lang['The thumbnail was updated'] = '缩略图已更新';
 $lang['Changing the url will reset video description, name and thumbnail'] = '改变 url 将重置视频的描述、名称和缩略图';
+$lang['Dailymotion player'] = 'Dailymotion 播放器';
+$lang['Get video description'] = '获取视频描述';
+$lang['Get video tags'] = '获取视频标签';
+$lang['Vimeo player'] = 'Vimeo 播放器';
 ?>
