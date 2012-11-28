@@ -71,9 +71,17 @@ if (isset($_POST['save_properties']))
   }
   else if ($gvideo['url']!=$_POST['url'])
   {
-    if( ($video = parse_video_url($_POST['url'])) === false )
+    if( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
     {
-      array_push($page['errors'], l10n('Unable to contact host server'));
+      if (isset($_POST['safe_mode']))
+      {
+        array_push($page['errors'], l10n('an error happened'));
+      }
+      else
+      {
+        array_push($page['errors'], l10n('Unable to contact host server'));
+        array_push($page['errors'], l10n('Try in safe-mode'));
+      }
     }
   }
   else
@@ -88,9 +96,10 @@ if (isset($_POST['save_properties']))
     if ( $gvideo['url'] != $video['url'] )
     {
       // download thumbnail
-      $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.get_extension($video['thumbnail']);
+      $thumb_ext = empty($video['thumbnail']) ? 'jpg' : get_extension($video['thumbnail']);
+      $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
       $thumb_source = $conf['data_location'].$thumb_name;
-      if (download_remote_file($video['thumbnail'], $thumb_source) !== true)
+      if ( empty($video['thumbnail']) or download_remote_file($video['thumbnail'], $thumb_source) !== true )
       {
         $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
         copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);

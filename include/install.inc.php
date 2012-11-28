@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `'.gvideo_table.'` (
   `picture_id` mediumint(8) NOT NULL,
   `url` varchar(255) DEFAULT NULL,
   `type` varchar(64) NOT NULL,
-  `video_id` varchar(64) NOT NULL,
+  `video_id` varchar(128) NOT NULL,
   `width` smallint(9) DEFAULT NULL,
   `height` smallint(9) DEFAULT NULL,
   `autoplay` tinyint(1) DEFAULT NULL
@@ -72,10 +72,14 @@ CREATE TABLE IF NOT EXISTS `'.gvideo_table.'` (
 ;';
   pwg_query($query);
   
+  // update video_id lenght
+  $query = 'ALTER TABLE `'.gvideo_table.'` CHANGE `video_id` `video_id` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;';
+  pwg_query($query);
+  
   // new collumn in images table
   $result = pwg_query('SHOW COLUMNS FROM '.IMAGES_TABLE.' LIKE "is_gvideo";');
   if (!pwg_db_num_rows($result))
-  {      
+  {
     pwg_query('ALTER TABLE `' . IMAGES_TABLE . '` ADD `is_gvideo` TINYINT(1) NOT NULL DEFAULT 0;');
     
     $query = '

@@ -97,6 +97,8 @@ jQuery("input[name='url']").keyup(function() {ldelim}
     </p>
 
     <p style="margin:0;">
+      <label style="font-weight:bold;"><input type="checkbox" name="safe_mode"> {'Safe-mode'|@translate}</label>
+      <br>
       <input class="submit" type="submit" value="{'Save Settings'|@translate}" name="save_properties">
     </p>
   </fieldset>

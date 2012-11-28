@@ -87,7 +87,12 @@ jQuery(".showInfo").tipTip({
 </fieldset>
 
 
-<p style="text-align:left;"><input type="submit" name="add_video" value="{'Add'|@translate}"></p>
+<p style="text-align:left;">
+  <label style="font-weight:bold;"><input type="checkbox" name="safe_mode" {if $POST.safe_mode}checked="checked"{/if}> {'Safe-mode'|@translate}</label>
+  <a class="showInfo" title="{'In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'|@translate}">i</a>
+  <br>
+  <input type="submit" name="add_video" value="{'Add'|@translate}">
+</p>
 
 <fieldset>
   <legend>{'Supported services'|@translate}</legend>
