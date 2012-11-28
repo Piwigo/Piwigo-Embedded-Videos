@@ -45,4 +45,8 @@ $lang['Dailymotion player'] = 'Dailymotion-afspiller';
 $lang['Get video description'] = 'Hent videobeskrivelse';
 $lang['Get video tags'] = 'Hent videotags';
 $lang['Vimeo player'] = 'Vimeo-afspiller';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'I sikker tilstand forsøger plugin\'en ikke at kontakte videovært; nyttigt på nogle websteder hvor der er blokeret for fjernforbindelser.';
+$lang['Safe-mode'] = 'Sikker tilstand';
+$lang['Try in safe-mode'] = 'Prøv i sikker tilstand';
+$lang['Video properties'] = 'Videoegenskaber';
 ?>
