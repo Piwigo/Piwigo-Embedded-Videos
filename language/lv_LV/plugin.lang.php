@@ -45,4 +45,6 @@ $lang['Dailymotion player'] = 'Dailymotion atskaņotājs';
 $lang['Vimeo player'] = 'Vimeo atskaņotājs';
 $lang['Get video tags'] = 'Iegūt video tagus (iezīmes)';
 $lang['Get video description'] = 'Iegūt video aprakstu';
+$lang['Try in safe-mode'] = 'Mēģināt drošajā režīmā';
+$lang['Safe-mode'] = 'Drošais režīms';
 ?>
