@@ -47,4 +47,6 @@ $lang['Get video tags'] = 'Iegūt video tagus (iezīmes)';
 $lang['Get video description'] = 'Iegūt video aprakstu';
 $lang['Try in safe-mode'] = 'Mēģināt drošajā režīmā';
 $lang['Safe-mode'] = 'Drošais režīms';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Drošajā režīmā, spraudnis nemēģina sazināties ar video hostu, noderīgs dažās vietnēs, kur attālinātie savienojumi tiek bloķēti.';
+$lang['Video properties'] = 'Video rekvizīti';
 ?>
