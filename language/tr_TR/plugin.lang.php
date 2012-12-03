@@ -45,4 +45,8 @@ $lang['Dailymotion player'] = 'Dailymotion player';
 $lang['Get video description'] = 'Video açıklamasını al';
 $lang['Get video tags'] = 'Video etiketlerini al';
 $lang['Vimeo player'] = 'Vimeo player';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Bu eklenti güvenli kipte video sunucusuna bağlanmayı denemez. Bu özellik, uzak bağlantıların bloke edildiği bazı web siteleri için  kullanışlıdır.';
+$lang['Safe-mode'] = 'Güvenli kip';
+$lang['Try in safe-mode'] = 'Güvenli kipte dene';
+$lang['Video properties'] = 'Video özellikleri';
 ?>
