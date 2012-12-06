@@ -45,4 +45,8 @@ $lang['Dailymotion player'] = 'Dailymotion 播放器';
 $lang['Get video description'] = '获取视频描述';
 $lang['Get video tags'] = '获取视频标签';
 $lang['Vimeo player'] = 'Vimeo 播放器';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = '在安全模式下，此插件不会尝试连接视频主机，这对那些屏蔽了远程连接的站点非常有用。';
+$lang['Safe-mode'] = '安全模式';
+$lang['Try in safe-mode'] = '尝试用安全模式';
+$lang['Video properties'] = '视频属性';
 ?>
