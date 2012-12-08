@@ -45,4 +45,8 @@ $lang['Vimeo player'] = 'Vimeo prehrávač';
 $lang['Get video tags'] = 'Vložiť kľúčové slová videa';
 $lang['Get video description'] = 'Vložiť popis videa';
 $lang['Dailymotion player'] = 'Dailymotion prehrávač';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'V bezpečnom móde doplnok sa nebude pokúšať spojiť s video hostom, to je užitočné pre niektoré webstránky kde vzdialený prístup je blokovaný.';
+$lang['Safe-mode'] = 'Bezpečný mód';
+$lang['Try in safe-mode'] = 'Skúsiť v bezpečnom móde';
+$lang['Video properties'] = 'Nastavenia videa';
 ?>
