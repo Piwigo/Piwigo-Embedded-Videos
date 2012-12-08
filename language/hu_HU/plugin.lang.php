@@ -45,4 +45,8 @@ $lang['Dailymotion player'] = 'Dailymotion lejátszó';
 $lang['Get video description'] = 'Video leírás';
 $lang['Get video tags'] = 'Video címkék';
 $lang['Vimeo player'] = 'Vimeo lejátszó';
+$lang['Video properties'] = 'Videó tulajdonságok';
+$lang['Try in safe-mode'] = 'Próbáld csökkentett módban';
+$lang['Safe-mode'] = 'Csökkentett-mód';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'A csökkentett-módban a plugin nem próbálja felvenni a kapcsolatot a vidó host-al, hasznos egyes honlapoknál, ahol a távoli kapcsolatok le vannak tiltva';
 ?>
