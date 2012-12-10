@@ -46,4 +46,8 @@ $lang['This element is a video added with "Embedded Video"'] = 'Този еле�
 $lang['Unable to contact host server'] = 'Не може да се свържете с хост сървъра';
 $lang['Upload a new thumbnail'] = 'Качване на нова умалена снимка';
 $lang['Use common setting'] = 'Използвайте настройката';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'В защитен режим добавката не се свързва с видео хоста. Удобно за сайтове със блокиран отдалечен достъп.';
+$lang['Safe-mode'] = 'Защитен режим';
+$lang['Try in safe-mode'] = 'Опитай в защитен режим';
+$lang['Video properties'] = 'Видео настройки';
 ?>
