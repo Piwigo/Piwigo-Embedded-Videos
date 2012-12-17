@@ -41,4 +41,12 @@ $lang['Use common setting'] = 'Bruk vanlig konfigurasjon';
 $lang['Video URL'] = 'Video URL';
 $lang['Video size'] = 'Video størrelse';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Video lagt til. <a href="%s">Se</a>';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Dette tillegget vil ikke kontakte videoens tjener i sikkerhetsmodus. Dette kan være nytting på noen websider der ekstern tilkobling er blokkert.';
+$lang['Dailymotion player'] = 'Dailymotion spiller';
+$lang['Get video description'] = 'Få video beskrivelse';
+$lang['Get video tags'] = 'Få video tagger';
+$lang['Safe-mode'] = 'Sikkerhetsmodus';
+$lang['Try in safe-mode'] = 'Prøv i sikkerhetsmodus';
+$lang['Video properties'] = 'Egenskaper til video';
+$lang['Vimeo player'] = 'Vimeo spiller';
 ?>
