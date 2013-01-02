@@ -41,4 +41,12 @@ $lang['Changing the url will reset video description, name and thumbnail'] = 'He
 $lang['The thumbnail was updated'] = 'De miniatuur werd bijgewerkt op';
 $lang['Upload a new thumbnail'] = 'Upload een nieuwe miniatuur';
 $lang['Video successfully updated'] = 'Video succesvol bijgewerkt';
+$lang['Dailymotion player'] = 'Dailymotion speler';
+$lang['Get video description'] = 'Haal videobeschrijving op';
+$lang['Get video tags'] = 'Haal videolabels op';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'In veilige mode maakt de plug-in geen contact met de video host, dit is nuttig voor sommige websites waar verbindingen op afstand zijn geblokkeerd.';
+$lang['Safe-mode'] = 'Veilige mode';
+$lang['Try in safe-mode'] = 'Probeer in veilige mode';
+$lang['Video properties'] = 'Video eigenschappen';
+$lang['Vimeo player'] = 'Vimeo speler';
 ?>
