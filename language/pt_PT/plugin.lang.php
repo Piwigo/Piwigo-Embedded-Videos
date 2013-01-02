@@ -41,4 +41,12 @@ $lang['Changing the url will reset video description, name and thumbnail'] = 'Al
 $lang['The thumbnail was updated'] = 'A miniatura foi atualizada';
 $lang['Upload a new thumbnail'] = 'carregar nova miniatura';
 $lang['Video successfully updated'] = 'Video atualizado com sucesso';
+$lang['Dailymotion player'] = 'Execução diária';
+$lang['Get video description'] = 'Obter descrição do video';
+$lang['Get video tags'] = 'Obter etiquetas do video';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Em modo seguro, a extenção não tentou contactar o alojador do video, ocorrência caracteristica quando as ligações estão bloqueadas';
+$lang['Safe-mode'] = 'Modo seguro';
+$lang['Try in safe-mode'] = 'Tentar em modo seguro';
+$lang['Video properties'] = 'Propriedades video';
+$lang['Vimeo player'] = 'Executar Vimeo';
 ?>
