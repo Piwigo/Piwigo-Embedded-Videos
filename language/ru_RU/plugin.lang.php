@@ -41,4 +41,12 @@ $lang['Changing the url will reset video description, name and thumbnail'] = 'И
 $lang['The thumbnail was updated'] = 'Миниатюра была обновлена';
 $lang['Upload a new thumbnail'] = 'Загрузить новую миниатюру';
 $lang['Video successfully updated'] = 'Видео успешно обновлено';
+$lang['Dailymotion player'] = 'Проигрыватель Dailymotion';
+$lang['Get video description'] = 'Получить описание видео';
+$lang['Get video tags'] = 'Получите теги';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'В безопасном режиме, плагин не пытается связаться с видео хостом, это может быть полезно на некоторых веб-сайтах, где удаленные соединения блокируются.';
+$lang['Safe-mode'] = 'Безопасный режим';
+$lang['Try in safe-mode'] = 'Попробовать';
+$lang['Video properties'] = 'Свойства видео';
+$lang['Vimeo player'] = 'Проигрыватель Vimeo ';
 ?>
