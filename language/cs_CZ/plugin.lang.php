@@ -41,4 +41,12 @@ $lang['Changing the url will reset video description, name and thumbnail'] = 'Zm
 $lang['The thumbnail was updated'] = 'Náhled byl aktualizován';
 $lang['Upload a new thumbnail'] = 'Nahrát nový náhled';
 $lang['Video successfully updated'] = 'Video bylo uspešně aktualizováno';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'V bezpečném módu se plugin nepokouší kontaktovat poskytovatele videa. Může být užitečné na hostingu, kde jsou blokována vzdálená spojení.';
+$lang['Safe-mode'] = 'Bezpečný mód';
+$lang['Try in safe-mode'] = 'Zkusit v bezpečném módu';
+$lang['Video properties'] = 'Vlastnosti videa';
+$lang['Vimeo player'] = 'Video přehrávač';
+$lang['Get video tags'] = 'Tagy videa';
+$lang['Get video description'] = 'Popis videa';
+$lang['Dailymotion player'] = 'Dailymotion přehrávač';
 ?>
