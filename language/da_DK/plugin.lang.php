@@ -49,4 +49,9 @@ $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull o
 $lang['Safe-mode'] = 'Sikker tilstand';
 $lang['Try in safe-mode'] = 'Prøv i sikker tilstand';
 $lang['Video properties'] = 'Videoegenskaber';
+$lang['No privacy option.'] = 'Ingen privatlivsvalgmulighed.';
+$lang['Show privacy details'] = 'Vis privatlivsdetaljer';
+$lang['Videos can be private if you use the private permalink.'] = 'Videoer kan være private, hvis du benytter det private permalink.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Videoer kan være ulistede og private, hvis galleriwebstedet er inden for de autoriserede domæner (PRO).';
+$lang['Videos can be unlisted but not private.'] = 'Videoer kan være ulistede men ikke private.';
 ?>
