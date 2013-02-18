@@ -99,7 +99,7 @@ if (isset($_POST['save_properties']))
       $thumb_ext = empty($video['thumbnail']) ? 'jpg' : get_extension($video['thumbnail']);
       $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
       $thumb_source = $conf['data_location'].$thumb_name;
-      if ( empty($video['thumbnail']) or download_remote_file($video['thumbnail'], $thumb_source) !== true )
+      if ( empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb_source) !== true )
       {
         $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
         copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);

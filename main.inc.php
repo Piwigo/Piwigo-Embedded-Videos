@@ -2,7 +2,7 @@
 /*
 Plugin Name: Embedded Videos
 Version: auto
-Description: Add videos from Dailymotion, Youtube, Vimeo, Wideo, videobb and Wat.
+Description: Add videos from Dailymotion, Youtube, Vimeo, Wideo and Wat.
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=136
 Author: Mistic & P@t
 Author URI: http://www.strangeplanet.fr
@@ -12,8 +12,9 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
 global $prefixeTable;
 
-define('GVIDEO_PATH',    PHPWG_PLUGINS_PATH . 'gvideo/');
-define('GVIDEO_ADMIN',   get_root_url() . 'admin.php?page=plugin-gvideo');
+defined('GVIDEO_ID') or define('GVIDEO_ID', basename(dirname(__FILE__)));
+define('GVIDEO_PATH',    PHPWG_PLUGINS_PATH . GVIDEO_ID . '/');
+define('GVIDEO_ADMIN',   get_root_url() . 'admin.php?page=plugin-' . GVIDEO_ID);
 define('GVIDEO_TABLE',   $prefixeTable.'image_video');
 define('GVIDEO_VERSION', 'auto');
 
@@ -41,22 +42,22 @@ function gvideo_init()
   
   if (
     GVIDEO_VERSION == 'auto' or
-    $pwg_loaded_plugins['gvideo']['version'] == 'auto' or
-    version_compare($pwg_loaded_plugins['gvideo']['version'], GVIDEO_VERSION, '<')
+    $pwg_loaded_plugins[GVIDEO_ID]['version'] == 'auto' or
+    version_compare($pwg_loaded_plugins[GVIDEO_ID]['version'], GVIDEO_VERSION, '<')
   )
   {
     include_once(GVIDEO_PATH . 'include/install.inc.php');
     gvideo_install();
     
-    if ( $pwg_loaded_plugins['gvideo']['version'] != 'auto' and GVIDEO_VERSION !='auto' )
+    if ( $pwg_loaded_plugins[GVIDEO_ID]['version'] != 'auto' and GVIDEO_VERSION !='auto' )
     {
       $query = '
 UPDATE '. PLUGINS_TABLE .'
 SET version = "'. GVIDEO_VERSION .'"
-WHERE id = "gvideo"';
+WHERE id = "'. GVIDEO_ID .'"';
       pwg_query($query);
       
-      $pwg_loaded_plugins['gvideo']['version'] = GVIDEO_VERSION;
+      $pwg_loaded_plugins[GVIDEO_ID]['version'] = GVIDEO_VERSION;
       
       if (defined('IN_ADMIN'))
       {

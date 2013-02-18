@@ -4,7 +4,7 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 global $prefixeTable;
 
 // defined here only because it's more convenient
-define('gvideo_path', PHPWG_PLUGINS_PATH . 'gvideo/');
+define('gvideo_path', PHPWG_PLUGINS_PATH . GVIDEO_ID . '/');
 define('gvideo_table', $prefixeTable.'image_video');
 
 /**
@@ -92,14 +92,15 @@ UPDATE '.IMAGES_TABLE.'
     pwg_query($query);
   }
   
-  // remove old configuration and upgrade video files
+  // remove old configuration
   if (isset($conf['PY_GVideo']))
   {
     pwg_query('DELETE FROM `'. CONFIG_TABLE .'` WHERE param = "PY_GVideo" LIMIT 1;');
     unset($conf['PY_GVideo']);
-  
-    gvideo_update_24();
   }
+  
+  // updade video files
+  gvideo_update_24();
 }
 
 
@@ -215,7 +216,7 @@ SELECT *
     
     // update path and rename the file
     $img['new_path'] = $real_path.$thumb_name;
-    rename($img['path'], $img['new_path']);
+    rename($img['path'], $img['new_path']); // why ? what's the purpose of this line ?
     array_push($images_updates, array(
       'id' => $img['id'],
       'path' => $img['new_path'],
@@ -256,3 +257,5 @@ SELECT *
     $images_updates
     );
 }
+
+?>

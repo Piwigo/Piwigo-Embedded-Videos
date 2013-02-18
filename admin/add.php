@@ -6,12 +6,13 @@ include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
 
 if (isset($_POST['add_video']))
 {
+  $_POST['url'] = trim($_POST['url']);
   // check inputs
   if (empty($_POST['url']))
   {
     array_push($page['errors'], l10n('Please fill the video URL'));
   }
-  if ( !empty($_POST['url']) and ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
+  else if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
   {
     if (isset($_POST['safe_mode']))
     {
@@ -27,47 +28,6 @@ if (isset($_POST['add_video']))
   
   if (count($page['errors']) == 0)
   {
-    // download thumbnail
-    $thumb_ext = empty($video['thumbnail']) ? 'jpg' : get_extension($video['thumbnail']);
-    $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
-    $thumb_source = $conf['data_location'].$thumb_name;
-    if ( empty($video['thumbnail']) or download_remote_file($video['thumbnail'], $thumb_source) !== true )
-    {
-      $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
-      copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
-    }
-    
-    if (isset($_POST['add_film_frame']))
-    {
-      add_film_frame($thumb_source);
-    }
-    
-    // add image and update infos
-    $image_id = add_uploaded_file($thumb_source, $thumb_name, array($_POST['category']));
-    
-    $updates = array(
-      'name' => pwg_db_real_escape_string($video['title']),
-      'author' => pwg_db_real_escape_string($video['author']),
-      'is_gvideo' => 1,
-      );
-      
-    if ( $_POST['sync_description'] and !empty($video['description']) )
-    {
-      $updates['comment'] = pwg_db_real_escape_string($video['description']);
-    }
-    if ( $_POST['sync_tags'] and !empty($video['tags']) )
-    {
-      set_tags(get_tag_ids(implode(',', $video['tags'])), $image_id);
-    }
-    
-    single_update(
-      IMAGES_TABLE,
-      $updates,
-      array('id' => $image_id),
-      true
-      );
-    
-    // register video
     if ($_POST['size_common'] == 'true')
     {
       $_POST['width'] = $_POST['height'] = '';
@@ -81,22 +41,12 @@ if (isset($_POST['add_video']))
     {
       $_POST['autoplay'] = '';
     }
+    $_POST['add_film_frame'] = isset($_POST['add_film_frame']);
     
-    $insert = array(
-      'picture_id' => $image_id,
-      'url' => $video['url'],
-      'type' => $video['type'],
-      'video_id' => $video['video_id'],
-      'width' => $_POST['width'],
-      'height' => $_POST['height'],
-      'autoplay' => $_POST['autoplay'],
-      );
-      
-    single_insert(
-      GVIDEO_TABLE,
-      $insert
-      );
-      
+    
+    $image_id = add_video($video, $_POST);
+    
+    
     $query = '
 SELECT id, name, permalink
   FROM '.CATEGORIES_TABLE.'
@@ -136,6 +86,11 @@ $upload_max_filesize_shorthand =
   get_ini_size('upload_max_filesize', false) :
   get_ini_size('post_max_filesize', false);
   
+if (!isset($_POST['safe_mode']))
+{
+  $_POST['safe_mode'] = !test_remote_download();
+}
+
 // template
 $template->assign(array(
   'upload_max_filesize' => $upload_max_filesize,

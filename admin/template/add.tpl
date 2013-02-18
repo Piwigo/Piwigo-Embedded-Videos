@@ -42,7 +42,7 @@ jQuery(".showInfo").tipTip({
   {if $gd_available}
     <li>
       <span class="property">{'Thumbnail'|@translate}</span>
-      <label><input type="checkbox" name="add_film_frame" value="true"> {'Add film effect'|@translate} </label>
+      <label><input type="checkbox" name="add_film_frame" value="true" {if $POST.add_film_frame}checked="checked"{/if}> {'Add film effect'|@translate} </label>
       <a class="showInfo" title="<img src='{$GVIDEO_PATH}admin/template/example-frame.jpg'>">i</a>
     </li>
   {/if}

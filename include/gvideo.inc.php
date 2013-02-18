@@ -12,16 +12,18 @@ function gvideo_prepare_picture($picture)
     remove_event_handler('render_element_content', 'default_picture_content', EVENT_HANDLER_PRIORITY_NEUTRAL);
   
     // remove autosize
-    global $pwg_loaded_plugins, $autosize_controler;
+    global $pwg_loaded_plugins, $autosize_ctrl;
     
-    if ( isset($pwg_loaded_plugins['Autosize']) and isset($autosize_controler) )
+    if ( isset($pwg_loaded_plugins['Autosize']) and isset($autosize_ctrl) )
     {
-      remove_event_handler('render_element_content', array(&$autosize_controler, 'init'), EVENT_HANDLER_PRIORITY_NEUTRAL);
-      remove_event_handler('render_element_content', array(&$autosize_controler, 'autosize_calcContent'), 40); 
-      remove_event_handler('loc_after_page_header', array(&$autosize_controler, 'cl_autosize_script_1'), EVENT_HANDLER_PRIORITY_NEUTRAL);
-      remove_event_handler('loc_after_page_header', array(&$autosize_controler, 'cl_autosize_script_2'), EVENT_HANDLER_PRIORITY_NEUTRAL);
-      remove_event_handler('loc_after_page_header', array(&$autosize_controler, 'cl_autosize_script_3'), EVENT_HANDLER_PRIORITY_NEUTRAL);
-      remove_event_handler('loc_after_page_header', array(&$autosize_controler, 'cl_autosize_affiche'), EVENT_HANDLER_PRIORITY_NEUTRAL+21);
+      remove_event_handler('render_element_content', array(&$autosize_ctrl, 'autosize_calcContent'), EVENT_HANDLER_PRIORITY_NEUTRAL-11, 2); 
+      remove_event_handler('render_element_content', array(&$autosize_ctrl, 'init_1'), EVENT_HANDLER_PRIORITY_NEUTRAL-9, 2); 
+      remove_event_handler('render_element_content', array(&$autosize_ctrl, 'init'), EVENT_HANDLER_PRIORITY_NEUTRAL-1, 2);
+      remove_event_handler('render_element_content', array(&$autosize_ctrl, 'init2'), EVENT_HANDLER_PRIORITY_NEUTRAL+1, 2);
+      remove_event_handler('loc_after_page_header', array(&$autosize_ctrl, 'cl_autosize_script_1'));
+      remove_event_handler('loc_after_page_header', array(&$autosize_ctrl, 'cl_autosize_script_2'));
+      remove_event_handler('loc_after_page_header', array(&$autosize_ctrl, 'cl_autosize_script_3'));
+      remove_event_handler('loc_after_page_header', array(&$autosize_ctrl, 'cl_autosize_affiche'), EVENT_HANDLER_PRIORITY_NEUTRAL+21);
     }
   }
   
@@ -45,6 +47,10 @@ function gvideo_element_content($content, $element_info)
     $conf['gvideo'] = unserialize($conf['gvideo']);
   }
   
+  // remove some actions
+  $template->assign('U_SLIDESHOW_START', null);
+  $template->assign('U_METADATA', null);
+  $template->append('current', array('U_DOWNLOAD' => null), true);
   
   $query = '
 SELECT *
@@ -87,7 +93,7 @@ SELECT *
     $template->append('head_elements', '<style type="text/css">.hideTabs{display:none;}</style>');
   }
 
-  $template->set_filename('gvideo_content', dirname(__FILE__).'/../template/video_'.$video['type'].'.tpl');
+  $template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'template/video_'.$video['type'].'.tpl'));
   return $template->parse('gvideo_content', true);
 }
 
