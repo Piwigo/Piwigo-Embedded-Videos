@@ -29,10 +29,10 @@ $lang['Try in safe-mode'] = 'Try in safe-mode';
 $lang['Safe-mode'] = 'Safe-mode';
 $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.';
 $lang['Video properties'] = 'Video properties';
-$lang['Show privacy details' = 'Show privacy details';
-$lang['Videos can be unlisted but not private.' = 'Videos can be unlisted but not private.';
-$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).' = 'Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).';
-$lang['Videos can be private if you use the private permalink.' = 'Videos can be private if you use the private permalink.';
-$lang['No privacy option.' = 'No privacy option.';
+$lang['Show privacy details'] = 'Show privacy details';
+$lang['Videos can be unlisted but not private.'] = 'Videos can be unlisted but not private.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).';
+$lang['Videos can be private if you use the private permalink.'] = 'Videos can be private if you use the private permalink.';
+$lang['No privacy option.'] = 'No privacy option.';
 
 ?>
