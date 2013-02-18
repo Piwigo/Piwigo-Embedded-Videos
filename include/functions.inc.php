@@ -42,30 +42,28 @@ function parse_video_url($source_url, $safe_mode=false)
       }
       
       $video['url'] = 'http://youtube.com/watch?v='.$video['video_id'];
+      $video['title'] = 'YouTube #'.$video['video_id'];
       
       if (!$safe_mode)
       {
-        $fields = 'entry(id,author,media:group(media:title(text()),media:description(text()),media:thumbnail(@url),media:keywords))';
-        $api_url = 'http://gdata.youtube.com/feeds/api/videos/'.$video['video_id'].'?v=2&alt=json&fields='.$fields;
+        $api_url = 'http://gdata.youtube.com/feeds/api/videos/'.$video['video_id'].'?v=2&alt=json';
         $json = gvideo_download_remote_file($api_url, true);
         
         if ($json===false || $json=='file_error') return false;
+        if (strip_tags($json) == 'GDataInvalidRequestUriExceptionInvalid id') return false; // unknown video
+        if (strip_tags($json) == 'GDataServiceForbiddenExceptionPrivate video') return false; // private video
         
         $json = json_decode($json, true);
         $video = array_merge($video, array(
           'title' => $json['entry']['media$group']['media$title']['$t'],
           'description' => $json['entry']['media$group']['media$description']['$t'],
-          'thumbnail' => $json['entry']['media$group']['media$thumbnail'][0]['url'],
+          'thumbnail' => $json['entry']['media$group']['media$thumbnail'][2]['url'],
           'author' => $json['entry']['author'][0]['name']['$t'],
           ));
         if (!empty($json['entry']['media$group']['media$keywords']['$t']))
         {
           $video['tags'] = $json['entry']['media$group']['media$keywords']['$t'];
         }
-      }
-      else
-      {
-        $video['title'] = 'YouTube #'.$video['video_id'];
       }
       
       break;
@@ -80,6 +78,7 @@ function parse_video_url($source_url, $safe_mode=false)
       $video['video_id'] = $url['path'][1];
       
       $video['url'] = 'http://vimeo.com/'.$video['video_id'];
+      $video['title'] = 'Vimeo #'.$video['video_id'];
       
       if (!$safe_mode)
       {
@@ -115,10 +114,6 @@ function parse_video_url($source_url, $safe_mode=false)
             ));
         }
       }
-      else
-      {
-        $video['title'] = 'Vimeo #'.$video['video_id'];
-      }
       
       break;
     }
@@ -133,6 +128,7 @@ function parse_video_url($source_url, $safe_mode=false)
       $video['video_id'] = $url['path'][2];
       
       $video['url'] = 'http://dailymotion.com/video/'.$video['video_id'];
+      $video['title'] = $video['video_id'];
       
       if (!$safe_mode)
       {
@@ -142,6 +138,7 @@ function parse_video_url($source_url, $safe_mode=false)
         if ($json===false || $json=='file_error') return false;
         
         $json = json_decode($json, true);
+        if (@$json['error']['type'] == 'access_forbidden') return false; // private video
         $json['thumbnail_large_url'] = preg_replace('#\?([0-9]+)$#', null, $json['thumbnail_large_url']);
         
         $video = array_merge($video, array(
@@ -152,10 +149,6 @@ function parse_video_url($source_url, $safe_mode=false)
           'tags' => implode(',', $json['tags']),
           ));
       }
-      else
-      {
-        $video['title'] = $video['video_id'];
-      }
       
       break;
     }
@@ -163,9 +156,10 @@ function parse_video_url($source_url, $safe_mode=false)
     /* wat */
     case 'wat':
     {
+      if (!$safe_mode) return false; // no safe_mode for wat.tv, must connect to get the video id
+      
       $video['type'] = 'wat';
       
-      // no safe_mode for wat.tv
       $html = gvideo_download_remote_file($source_url, true);
       
       if ($html===false || $html=='file_error') return false;
@@ -201,6 +195,7 @@ function parse_video_url($source_url, $safe_mode=false)
       $video['video_id'] = rtrim($url['path'][2], '.html');
       
       $video['url'] = 'http://wideo.fr/video/'.$video['video_id'].'.html';
+      $video['title'] = $video['video_id'];
       
       if (!$safe_mode)
       {
@@ -222,10 +217,6 @@ function parse_video_url($source_url, $safe_mode=false)
         
         preg_match('#<meta name="keywords" content="([^">]+)" />#', $html, $matches);
         $video['tags'] = $matches[1];
-      }
-      else
-      {
-        $video['title'] = $video['video_id'];
       }
       
       break;

@@ -13,6 +13,9 @@ jQuery(".showInfo").tipTip({
   maxWidth: '300px',
   defaultPosition: 'right'
 });
+jQuery(".showProvidersInfo").click(function() {
+  $(".providersInfo").toggle();
+});
 {/literal}{/footer_script}
 
 <div class="titrePage">
@@ -100,22 +103,30 @@ jQuery(".showInfo").tipTip({
     <li>
       <img class="icon" src="{$GVIDEO_PATH}admin/template/icons/youtube.png">
       <a href="http://www.youtube.com" target="_blank">YouTube</a>
+      <span class="providersInfo">{'Videos can be unlisted but not private.'|@translate}<br></span>
     </li>
     <li>
       <img class="icon" src="{$GVIDEO_PATH}admin/template/icons/vimeo.png">
       <a href="http://www.vimeo.com" target="_blank">Vimeo</a>
+      <span class="providersInfo">{'Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'|@translate}<br></span>
     </li>
     <li>
       <img class="icon" src="{$GVIDEO_PATH}admin/template/icons/dailymotion.png">
       <a href="http://www.dailymotion.com" target="_blank">Dailymotion</a>
+      <span class="providersInfo">{'Videos can be private if you use the private permalink.'|@translate}<br></span>
     </li>
     <li>
       <img class="icon" src="{$GVIDEO_PATH}admin/template/icons/wat.png">
       <a href="http://www.wat.tv" target="_blank">Wat</a>
+      <span class="providersInfo" style="font-style:italic;">{'No privacy option.'|@translate}<br></span>
     </li>
     <li>
       <img class="icon" src="{$GVIDEO_PATH}admin/template/icons/wideo.png">
       <a href="http://www.wideo.fr" target="_blank">Wideo</a>
+      <span class="providersInfo" style="font-style:italic;">{'No privacy option.'|@translate}<br></span>
+    </li>
+    <li>
+      <a class="showProvidersInfo">{'Show privacy details'|@translate}</a>
     </li>
   </ul>
 </fieldset>
