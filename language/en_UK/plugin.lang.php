@@ -34,6 +34,5 @@ $lang['Videos can be unlisted but not private.' = 'Videos can be unlisted but no
 $lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).' = 'Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).';
 $lang['Videos can be private if you use the private permalink.' = 'Videos can be private if you use the private permalink.';
 $lang['No privacy option.' = 'No privacy option.';
-$lang[''] = '';
 
 ?>
