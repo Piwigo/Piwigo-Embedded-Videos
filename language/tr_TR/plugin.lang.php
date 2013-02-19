@@ -49,4 +49,9 @@ $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull o
 $lang['Safe-mode'] = 'Güvenli kip';
 $lang['Try in safe-mode'] = 'Güvenli kipte dene';
 $lang['Video properties'] = 'Video özellikleri';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Eğer galeri web siteniz yetkilendirilmiş alanlarda ise (PRO) Videolar listelenmeyebilir ve gizli olabilirler.';
+$lang['Videos can be unlisted but not private.'] = 'Videolar listelenmeyebilir ancak gizli değiller.';
+$lang['Show privacy details'] = 'Gizlilik detaylarını göster';
+$lang['No privacy option.'] = 'Gizlilik seçeneği bulunmuyor.';
+$lang['Videos can be private if you use the private permalink.'] = 'Eğer kişisel kalıcı bağlantıları kullanıyorsanız Videolar kişisel olabilir.';
 ?>
