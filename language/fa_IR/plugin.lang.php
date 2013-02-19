@@ -50,4 +50,8 @@ $lang['Video successfully added. <a href="%s">View</a>'] = 'ویدیو به در
 $lang['Video successfully updated'] = 'ویدیو به درستی آپلود شد';
 $lang['Vimeo player'] = 'پخش کننده‌ی Vimeo';
 $lang['Videos can be private if you use the private permalink.'] = 'با استفاده از لینک ثابت شخصی ویدیوها می‌توانند شخصی شوند.';
+$lang['No privacy option.'] = 'بدون تنظیمات پوشیدگی.';
+$lang['Show privacy details'] = 'نشان دادن جزئیات پوشیدگی';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'ویدیوها می‌توانند هم شخصی باشند و هم در فهرست قرار نگیرند اگر وبسایت جز دامنه‌های مجاز باشد(حرفه‌ای).';
+$lang['Videos can be unlisted but not private.'] = 'ویدیوها می‌توانند همگانی باشند ولی در فهرست قرار نگیرند.';
 ?>
