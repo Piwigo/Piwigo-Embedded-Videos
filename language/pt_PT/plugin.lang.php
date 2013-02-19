@@ -49,4 +49,9 @@ $lang['Safe-mode'] = 'Modo seguro';
 $lang['Try in safe-mode'] = 'Tentar em modo seguro';
 $lang['Video properties'] = 'Propriedades video';
 $lang['Vimeo player'] = 'Executar Vimeo';
+$lang['No privacy option.'] = 'Sem opção privada';
+$lang['Show privacy details'] = 'Mostrar detalhes de privacidade';
+$lang['Videos can be private if you use the private permalink.'] = 'Os videos poderão ser privados se usar o permalink privado';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Os vídeos podem  ser nãolistados e privados, se o site da galeria estiver inserido nos domínios autorizados (PRO).';
+$lang['Videos can be unlisted but not private.'] = 'Os videos podem ser não listados mas não privados.';
 ?>
