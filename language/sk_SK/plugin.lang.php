@@ -49,4 +49,9 @@ $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull o
 $lang['Safe-mode'] = 'Bezpečný mód';
 $lang['Try in safe-mode'] = 'Skúsiť v bezpečnom móde';
 $lang['Video properties'] = 'Nastavenia videa';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Videá môžu byť neuvedené a súkromné, ak stránka galérie je bez autorizovaných domén (PRO).';
+$lang['Videos can be unlisted but not private.'] = 'Videá môžu byť neuvedené, ale nie privátne.';
+$lang['Videos can be private if you use the private permalink.'] = 'Videá môžu byť súkromné, ak použijete súkromný trvalý link.';
+$lang['Show privacy details'] = 'Zobraziť súkromné detaily.';
+$lang['No privacy option.'] = 'Bez súkromných volieb.';
 ?>
