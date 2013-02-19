@@ -49,4 +49,9 @@ $lang['Try in safe-mode'] = 'Mēģināt drošajā režīmā';
 $lang['Safe-mode'] = 'Drošais režīms';
 $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Drošajā režīmā, spraudnis nemēģina sazināties ar video hostu, noderīgs dažās vietnēs, kur attālinātie savienojumi tiek bloķēti.';
 $lang['Video properties'] = 'Video rekvizīti';
+$lang['No privacy option.'] = 'Nav privātuma (konfidencialitātes) opcijas';
+$lang['Videos can be private if you use the private permalink.'] = 'Video var būt privāti, ja lietojat privātuma permalinku.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Video var būt neiekļauti sarakstā un privāti, ja web galerija atrodas uz autorizēta domēna (PRO).';
+$lang['Videos can be unlisted but not private.'] = 'Video var būt neiekļauti sarakstā, bet ne privāti.';
+$lang['Show privacy details'] = 'Rādīt privātuma detaļas';
 ?>
