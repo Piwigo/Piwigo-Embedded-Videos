@@ -49,4 +49,5 @@ $lang['Video size'] = 'سایز ویدیو';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'ویدیو به درستی افزوده شد. <a href="%s">نمایش</a>';
 $lang['Video successfully updated'] = 'ویدیو به درستی آپلود شد';
 $lang['Vimeo player'] = 'پخش کننده‌ی Vimeo';
+$lang['Videos can be private if you use the private permalink.'] = 'با استفاده از لینک ثابت شخصی ویدیوها می‌توانند شخصی شوند.';
 ?>
