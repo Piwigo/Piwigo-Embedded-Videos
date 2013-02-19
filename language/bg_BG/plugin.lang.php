@@ -50,4 +50,9 @@ $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull o
 $lang['Safe-mode'] = 'Защитен режим';
 $lang['Try in safe-mode'] = 'Опитай в защитен режим';
 $lang['Video properties'] = 'Видео настройки';
+$lang['Videos can be unlisted but not private.'] = 'Видеото може да бъде скрито но не и частно.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Видео линковете могат да бъдат частни или скрити ако съответния домеин има такива права.';
+$lang['Videos can be private if you use the private permalink.'] = 'Видеото може и да е "private" ако ползвате съответния линк.';
+$lang['Show privacy details'] = 'Показване на подробности за поверителността';
+$lang['No privacy option.'] = 'Няма опция за поверителност.';
 ?>
