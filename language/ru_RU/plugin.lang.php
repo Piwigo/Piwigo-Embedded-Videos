@@ -49,4 +49,9 @@ $lang['Safe-mode'] = 'Безопасный режим';
 $lang['Try in safe-mode'] = 'Попробовать';
 $lang['Video properties'] = 'Свойства видео';
 $lang['Vimeo player'] = 'Проигрыватель Vimeo ';
+$lang['No privacy option.'] = 'Конфиденциальность отсутствует.';
+$lang['Show privacy details'] = 'Показать конфиденциальную информацию';
+$lang['Videos can be private if you use the private permalink.'] = 'Видео-ролик может быть конфиденциальным, если Вы используете персональную постоянную ссылку.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Видео-ролик может быть скрытым и конфиденциальным, если вэб-сайт галереи находится в пределах авторизованного домена (PRO).';
+$lang['Videos can be unlisted but not private.'] = 'Видео-ролик может быть скрытым, но не конфиденциальным.';
 ?>
