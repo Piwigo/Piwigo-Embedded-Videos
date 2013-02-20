@@ -49,4 +49,9 @@ $lang['Video properties'] = 'Ιδιότητες Βίντεο';
 $lang['Try in safe-mode'] = 'Δοκιμάστε τη λειτουργία ασφαλείας';
 $lang['Safe-mode'] = 'Λειτουργία ασφαλείας';
 $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Σε λειτουργία ασφαλείας, το πρόσθετο δεν προσπαθήσει να επικοινωνήσει με τον κεντρικό υπολογιστή για το βίντεο, χρήσιμο σε ορισμένες ιστοσελίδες όπου έχουν απομακρυσμένες συνδέσεις αποκλεισμένες.';
+$lang['Videos can be unlisted but not private.'] = 'Τα Βίντεο μπορεί να είναι μη εισηγμένα αλλά όχι ιδιωτικά.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Τα Βίντεο μπορεί να είναι μη εισηγμένα και ιδιωτικά εάν η ιστοσελίδα της γκαλερί είναι εντός των επιτρεπόμενων περιοχών (PRO).';
+$lang['Videos can be private if you use the private permalink.'] = 'Τα βίντεο μπορούν να είναι ιδιωτικά, αν χρησιμοποιείτε το ιδιωτικό permalink.';
+$lang['Show privacy details'] = 'Δείξτε λεπτομέρειες ιδιωτικού χώρου';
+$lang['No privacy option.'] = 'Χωρίς επιλογή ιδιωτικού χώρου';
 ?>
