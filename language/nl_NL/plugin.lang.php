@@ -49,4 +49,6 @@ $lang['Safe-mode'] = 'Veilige mode';
 $lang['Try in safe-mode'] = 'Probeer in veilige mode';
 $lang['Video properties'] = 'Video eigenschappen';
 $lang['Vimeo player'] = 'Vimeo speler';
+$lang['Show privacy details'] = 'Toon vertrouwelijkheid details';
+$lang['Videos can be unlisted but not private.'] = 'Video\'s kunnen niet vermeld zijn maar niet vertrouwelijk.';
 ?>
