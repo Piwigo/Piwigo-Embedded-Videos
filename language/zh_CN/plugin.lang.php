@@ -49,4 +49,9 @@ $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull o
 $lang['Safe-mode'] = '安全模式';
 $lang['Try in safe-mode'] = '尝试用安全模式';
 $lang['Video properties'] = '视频属性';
+$lang['No privacy option.'] = '没有隐私选项';
+$lang['Show privacy details'] = '显示隐私详情';
+$lang['Videos can be private if you use the private permalink.'] = '如果你使用私有固定链接视频可成为私有的';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = '如果相册网站是在授权域名(PRO)内，视频可成为未发布和私有的';
+$lang['Videos can be unlisted but not private.'] = '视频可成为未发布但并不私有';
 ?>
