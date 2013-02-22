@@ -45,7 +45,7 @@ $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull o
 $lang['Safe-mode'] = 'Bezpečný mód';
 $lang['Try in safe-mode'] = 'Zkusit v bezpečném módu';
 $lang['Video properties'] = 'Vlastnosti videa';
-$lang['Vimeo player'] = 'Video přehrávač';
+$lang['Vimeo player'] = 'Vimeo přehrávač';
 $lang['Get video tags'] = 'Tagy videa';
 $lang['Get video description'] = 'Popis videa';
 $lang['Dailymotion player'] = 'Dailymotion přehrávač';
