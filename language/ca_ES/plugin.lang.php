@@ -49,4 +49,8 @@ $lang['Supported services'] = 'Serveis soportats';
 $lang['The thumbnail was updated'] = 'S\'ha actualitzat la miniatura';
 $lang['This element is a video added with "Embedded Video"'] = 'Aquest element és un vídeo afegit amb "Embedded Video"';
 $lang['Try in safe-mode'] = 'Intenta-ho en mode segur';
+$lang['No privacy option.'] = 'Opció no privada';
+$lang['Show privacy details'] = 'Mostra els detalls privats';
+$lang['Videos can be private if you use the private permalink.'] = 'Els vídeos poden ser privats si utilitzeu l\'enllaç permanent privat';
+$lang['Videos can be unlisted but not private.'] = 'Els vídeos poden no llistar-se però no poden ser privats.';
 ?>
