@@ -51,4 +51,7 @@ $lang['Video properties'] = 'Video eigenschappen';
 $lang['Vimeo player'] = 'Vimeo speler';
 $lang['Show privacy details'] = 'Toon vertrouwelijkheid details';
 $lang['Videos can be unlisted but not private.'] = 'Video\'s kunnen niet vermeld zijn maar niet vertrouwelijk.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Video\'s kunnen niet vermeld en privé zijn als de gallery website binnen de toegestane domeinen is (PRO).';
+$lang['No privacy option.'] = 'Geen privacy optie.';
+$lang['Videos can be private if you use the private permalink.'] = 'Video\'s zijn privé als je de private permalink gebruikt.';
 ?>
