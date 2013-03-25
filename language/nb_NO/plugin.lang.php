@@ -22,7 +22,7 @@
 // +-----------------------------------------------------------------------+
 $lang['Video successfully updated'] = 'Video oppdatert';
 $lang['Add a video'] = 'Legg til en video';
-$lang['Add film effect'] = 'Legg til fileffekt';
+$lang['Add film effect'] = 'Legg til filmeffekt';
 $lang['Author name'] = 'Eiers navn';
 $lang['Author portrait'] = 'Eiers portrett';
 $lang['Autoplay'] = 'Spill automatisk';
@@ -43,10 +43,15 @@ $lang['Video size'] = 'Video størrelse';
 $lang['Video successfully added. <a href="%s">View</a>'] = 'Video lagt til. <a href="%s">Se</a>';
 $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Dette tillegget vil ikke kontakte videoens tjener i sikkerhetsmodus. Dette kan være nytting på noen websider der ekstern tilkobling er blokkert.';
 $lang['Dailymotion player'] = 'Dailymotion spiller';
-$lang['Get video description'] = 'Få video beskrivelse';
-$lang['Get video tags'] = 'Få video tagger';
+$lang['Get video description'] = 'Hent video beskrivelse';
+$lang['Get video tags'] = 'Hent video tagger';
 $lang['Safe-mode'] = 'Sikkerhetsmodus';
 $lang['Try in safe-mode'] = 'Prøv i sikkerhetsmodus';
 $lang['Video properties'] = 'Egenskaper til video';
 $lang['Vimeo player'] = 'Vimeo spiller';
+$lang['Videos can be unlisted but not private.'] = 'Videoer kan være skjult, men ikke private.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Videoer kan være skjult og private dersom nettsiden til galleriet hører til godkjente domener (PRO).';
+$lang['Videos can be private if you use the private permalink.'] = 'Videoer kan være private dersom du bruker den private permalinken.';
+$lang['Show privacy details'] = 'Vis personverndetaljer';
+$lang['No privacy option.'] = 'Ingen personverninnstillinger';
 ?>
