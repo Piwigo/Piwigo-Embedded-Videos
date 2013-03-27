@@ -50,4 +50,8 @@ $lang['Try in safe-mode'] = 'Próbálja csökkentett módban';
 $lang['Safe-mode'] = 'Csökkentett-mód';
 $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'A csökkentett-módban a plugin nem próbálja felvenni a kapcsolatot a vidó host-al, hasznos egyes honlapoknál, ahol a távoli kapcsolatok le vannak tiltva';
 $lang['Show privacy details'] = 'Részletek megjelenítése';
+$lang['No privacy option.'] = 'Nincs titoktartási opció.';
+$lang['Videos can be private if you use the private permalink.'] = 'A videók lehetnek magán jellegűek, ha a privát permalink-et használod.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'A videók lehetnek titkosak és magán jellegűek, ha a galéria weboldal benne van a hivatalosan jóváhagyott domainek (PRO) között.';
+$lang['Videos can be unlisted but not private.'] = 'A videók lehetnek titkosak, de nem magán jellegűek.';
 ?>
