@@ -53,4 +53,5 @@ $lang['No privacy option.'] = 'Opció no privada';
 $lang['Show privacy details'] = 'Mostra els detalls privats';
 $lang['Videos can be private if you use the private permalink.'] = 'Els vídeos poden ser privats si utilitzeu l\'enllaç permanent privat';
 $lang['Videos can be unlisted but not private.'] = 'Els vídeos poden no llistar-se però no poden ser privats.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Els videos poden estar fora de la llista i ser privats si el domini de la galeria pertany als dominis autoritzats (PRO).';
 ?>
