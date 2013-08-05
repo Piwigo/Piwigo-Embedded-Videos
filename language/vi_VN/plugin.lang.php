@@ -53,4 +53,5 @@ $lang['Safe-mode'] = 'Safe-mode (chế độ an toàn)';
 $lang['Show privacy details'] = 'Chi tiết về chính sách bảo vệ';
 $lang['Supported services'] = 'Dịch vụ có hỗ trợ';
 $lang['The thumbnail was updated'] = 'Đã cập nhật bản demo';
+$lang['Dailymotion player'] = 'Trình chiếu Dailymotion';
 ?>
