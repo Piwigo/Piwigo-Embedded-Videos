@@ -90,7 +90,7 @@ SELECT *
   global $user;
   if (strpos('stripped', $user['theme']) !== false)
   {
-    $template->append('head_elements', '<style type="text/css">.hideTabs{display:none;}</style>');
+    $template->append('head_elements', '<style type="text/css">.hideTabs{display:none !important;}</style>');
   }
 
   $template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'template/video_'.$video['type'].'.tpl'));
