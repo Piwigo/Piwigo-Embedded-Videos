@@ -8,5 +8,5 @@
   <param name="SeamlessTabbing" value="false"/>
   <video poster="http://api.kewego.com/video/getHTML5Thumbnail/?playerKey=0df9b773a15b&sig={$GVIDEO.video_id}" height="{$GVIDEO.width}" width="{$GVIDEO.height}" preload="none" controls="controls"></video>
   <script src="http://sa.kewego.com/embed/assets/kplayer-standalone.js"></script>
-  <script defer="defer">kitd.html5loader("flash_kplayer_{$GVIDEO.video_id}");</script>
+  <script defer="defer">kitd.html5loader("flash_kplayer_{$GVIDEO.video_id}","http://api.kewego.com/video/getHTML5Thumbnail/?playerKey=0df9b773a15b&sig={$GVIDEO.video_id}");</script>
 </object>

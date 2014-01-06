@@ -1,9 +1,9 @@
 <?php
-if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
+defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
 function parse_video_url($source_url, $safe_mode=false)
 {
-  $source_url = 'http://'.preg_replace('#^http(s?)://#', null, $source_url);
+  $source_url = 'http://'.preg_replace('#^http(s?)://#', null, trim($source_url));
   
   $url = parse_url($source_url);
   $url['host'] = str_replace('www.', null, $url['host']);
@@ -37,6 +37,7 @@ function parse_video_url($source_url, $safe_mode=false)
       
       if (empty($video['video_id']))
       {
+        if ($url['host'][1] != 'be') return false;
         $url['path'] = explode('/', $url['path']);
         $video['video_id'] = $url['path'][1];
       }
@@ -121,14 +122,23 @@ function parse_video_url($source_url, $safe_mode=false)
     /* dailymotion */
     case 'dailymotion':
     {
-      $video['type'] = 'dailymotion';
-      
       $url['path'] = explode('/', $url['path']);
       if ($url['path'][1] != 'video') return false;
       $video['video_id'] = $url['path'][2];
+    }
+    
+    case 'dai':  // dai.ly (short-url service)
+    {
+      $video['type'] = 'dailymotion';
+      
+      if (empty($video['video_id']))
+      {
+        if ($url['host'][1] != 'ly') return false;
+        $video['video_id'] = ltrim($url['path'], '/');
+      }
       
       $video['url'] = 'http://dailymotion.com/video/'.$video['video_id'];
-      $video['title'] = $video['video_id'];
+      $video['title'] = 'Dailymotion #'.$video['video_id'];
       
       if (!$safe_mode)
       {
@@ -156,33 +166,34 @@ function parse_video_url($source_url, $safe_mode=false)
     /* wat */
     case 'wat':
     {
-      if (!$safe_mode) return false; // no safe_mode for wat.tv, must connect to get the video id
-      
-      $video['type'] = 'wat';
+      if ($safe_mode) return false;
       
       $html = gvideo_download_remote_file($source_url, true);
-      
+
       if ($html===false || $html=='file_error') return false;
       
-      preg_match('#<meta property="og:video" content="http://www.wat.tv/swf2/([^"/>]+)" />#', $html, $matches);
-      if (empty($matches[1])) return false;
-      $video['video_id'] = $matches[1];
-      
+      $video['type'] = 'wat';
       $video['url'] = $source_url;
       
-      preg_match('#<meta name="name" content="([^">]*)" />#', $html, $matches);
+      preg_match('#<meta name="twitter:player" content="https://www.wat.tv/embedframe/([^">]+)">#', $html, $matches);
+      if (empty($matches[1])) return false;
+      $video['video_id'] = $matches[1];
+
+      preg_match('#<meta property="og:title" content="([^">]*)">#', $html, $matches);
       $video['title'] = $matches[1];
       
-      preg_match('#<p class="description"(?:[^>]*)>(.*?)</p>#s', $html, $matches);
+      preg_match('#<meta property="og:description" content="([^">]*)">#s', $html, $matches);
       $video['description'] = $matches[1];
       
-      preg_match('#<meta property="og:image" content="([^">]+)" />#', $html, $matches);
+      preg_match('#<meta property="og:image" content="([^">]+)">#', $html, $matches);
       $video['thumbnail'] = $matches[1];
       
-      $video['author'] = null;
+      preg_match('#<meta property="video:director" content="http://www.wat.tv/([^">]+)">#', $html, $matches);
+      $video['author'] = $matches[1];
       
-      preg_match_all('#<meta property="video:tag" content="([^">]+)" />#', $html, $matches);
+      preg_match_all('#<meta property="video:tag" content="([^">]+)">#', $html, $matches);
       $video['tags'] = implode(',',  $matches[1]);
+      
       break;
     }
       
@@ -195,7 +206,7 @@ function parse_video_url($source_url, $safe_mode=false)
       $video['video_id'] = rtrim($url['path'][2], '.html');
       
       $video['url'] = 'http://wideo.fr/video/'.$video['video_id'].'.html';
-      $video['title'] = $video['video_id'];
+      $video['title'] = 'Wideo #'.$video['video_id'];
       
       if (!$safe_mode)
       {
@@ -206,7 +217,7 @@ function parse_video_url($source_url, $safe_mode=false)
         preg_match('#<meta property="og:title" content="([^">]*)" />#', $html, $matches);
         $video['title'] = $matches[1];
         
-        preg_match('#<meta property="og:description" content="([^">]*)" />#', $html, $matches);
+        preg_match('#<meta property="og:description" content="([^">]*)" />#s', $html, $matches);
         $video['description'] = $matches[1];
         
         preg_match('#<meta property="og:image" content="([^">]+)" />#', $html, $matches);
@@ -221,7 +232,7 @@ function parse_video_url($source_url, $safe_mode=false)
       
       break;
     }
-      
+
     default:
       return false;   
   }
@@ -266,7 +277,8 @@ SELECT picture_id
   $thumb_ext = empty($video['thumbnail']) ? 'jpg' : get_extension($video['thumbnail']);
   $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
   $thumb_source = $conf['data_location'].$thumb_name;
-  if ( empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb_source) !== true )
+  
+  if (empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb_source) !== true)
   {
     $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
     copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
@@ -286,12 +298,12 @@ SELECT picture_id
     'is_gvideo' => 1,
     );
     
-  if ( $config['sync_description'] and !empty($video['description']) )
+  if ($config['sync_description'] and !empty($video['description']))
   {
     $updates['comment'] = pwg_db_real_escape_string($video['description']);
   }
   
-  if ( $config['sync_tags'] and !empty($video['tags']) )
+  if ($config['sync_tags'] and !empty($video['tags']))
   {
     $tags = pwg_db_real_escape_string($video['tags']);
     set_tags(get_tag_ids($tags), $image_id);
@@ -305,11 +317,11 @@ SELECT picture_id
     );
   
   // register video
-  if ( !preg_match('#^([0-9]*)$#', $config['width']) or !preg_match('#^([0-9]*)$#', $config['height']) )
+  if (!preg_match('#^([0-9]*)$#', $config['width']) or !preg_match('#^([0-9]*)$#', $config['height']))
   {
     $config['width'] = $config['height'] = '';
   }
-  if ( $config['autoplay']!='0' and $config['autoplay']!='1' )
+  if ($config['autoplay']!='0' and $config['autoplay']!='1')
   {
     $config['autoplay'] = '';
   }
@@ -361,7 +373,7 @@ function gvideo_download_remote_file($src, $dest, $headers=array())
   
   $return = ($dest === true) ? true : false;
   
-  array_push($headers, 'Accept-language: en');
+  $headers[] = 'Accept-language: en';
   
   /* curl */
   if (function_exists('curl_init'))
@@ -384,8 +396,8 @@ function gvideo_download_remote_file($src, $dest, $headers=array())
     }
     if (strpos($src, 'https://') !== false)
     {
-      curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     }
     if (!$return)
     {
@@ -393,7 +405,7 @@ function gvideo_download_remote_file($src, $dest, $headers=array())
     }
     else
     {
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     }
     
     $out = curl_exec($ch);
@@ -453,7 +465,7 @@ function gvideo_download_remote_file($src, $dest, $headers=array())
 /**
  * and film frame to an image (need GD library)
  * @param: string source
- * @param: string destination (if null, the source si modified)
+ * @param: string destination (if null, the source is modified)
  * @return: void
  */
 function add_film_frame($src, $dest=null)
@@ -552,5 +564,3 @@ function imagefilledroundrectangle(&$img, $x1, $y1, $x2, $y2, $color, $radius)
     imagefilledellipse($img, $x2-$radius, $y2-$radius, $radius*2, $radius*2, $color);
   }
 }
-
-?>
