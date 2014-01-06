@@ -1,15 +1,9 @@
 <?php
-if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
+defined('GVIDEO_PATH') or die('Hacking attempt!');
 
 global $template, $page, $conf;
 
-if (is_string($conf['gvideo']))
-{
-  $conf['gvideo'] = unserialize($conf['gvideo']);
-}
-
 $page['tab'] = (isset($_GET['tab'])) ? $_GET['tab'] : $page['tab'] = 'add';
-
 
 if ($page['tab'] != 'photo')
 {
@@ -33,5 +27,3 @@ $template->assign(array(
   ));
   
 $template->assign_var_from_handle('ADMIN_CONTENT', 'gvideo_content');
-
-?>

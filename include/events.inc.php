@@ -1,5 +1,5 @@
 <?php
-if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
+defined('GVIDEO_PATH') or die('Hacking attempt!');
 
 /**
  * some stuff at the begining of picture.php
@@ -10,21 +10,9 @@ function gvideo_prepare_picture($picture)
   {
     // remove default parser
     remove_event_handler('render_element_content', 'default_picture_content', EVENT_HANDLER_PRIORITY_NEUTRAL);
-  
-    // remove autosize
-    global $pwg_loaded_plugins, $autosize_ctrl;
     
-    if ( isset($pwg_loaded_plugins['Autosize']) and isset($autosize_ctrl) )
-    {
-      remove_event_handler('render_element_content', array(&$autosize_ctrl, 'autosize_calcContent'), EVENT_HANDLER_PRIORITY_NEUTRAL-11, 2); 
-      remove_event_handler('render_element_content', array(&$autosize_ctrl, 'init_1'), EVENT_HANDLER_PRIORITY_NEUTRAL-9, 2); 
-      remove_event_handler('render_element_content', array(&$autosize_ctrl, 'init'), EVENT_HANDLER_PRIORITY_NEUTRAL-1, 2);
-      remove_event_handler('render_element_content', array(&$autosize_ctrl, 'init2'), EVENT_HANDLER_PRIORITY_NEUTRAL+1, 2);
-      remove_event_handler('loc_after_page_header', array(&$autosize_ctrl, 'cl_autosize_script_1'));
-      remove_event_handler('loc_after_page_header', array(&$autosize_ctrl, 'cl_autosize_script_2'));
-      remove_event_handler('loc_after_page_header', array(&$autosize_ctrl, 'cl_autosize_script_3'));
-      remove_event_handler('loc_after_page_header', array(&$autosize_ctrl, 'cl_autosize_affiche'), EVENT_HANDLER_PRIORITY_NEUTRAL+21);
-    }
+    // add custom parser
+    add_event_handler('render_element_content', 'gvideo_element_content', EVENT_HANDLER_PRIORITY_NEUTRAL-10, 2);
   }
   
   return $picture;
@@ -41,11 +29,6 @@ function gvideo_element_content($content, $element_info)
   }
   
   global $page, $picture, $template, $conf;
-  
-  if (is_string($conf['gvideo']))
-  {
-    $conf['gvideo'] = unserialize($conf['gvideo']);
-  }
   
   // remove some actions
   $template->assign('U_SLIDESHOW_START', null);
@@ -88,9 +71,10 @@ SELECT *
   $template->assign('GVIDEO', $video);
   
   global $user;
+  // hide stripped overlay preventing to click on video object
   if (strpos('stripped', $user['theme']) !== false)
   {
-    $template->append('head_elements', '<style type="text/css">.hideTabs{display:none !important;}</style>');
+    $template->block_html_style(null, '.hideTabs{ display:none !important; }');
   }
 
   $template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'template/video_'.$video['type'].'.tpl'));
@@ -108,5 +92,3 @@ DELETE FROM '.GVIDEO_TABLE.'
 ;';
   pwg_query($query);
 }
-
-?>

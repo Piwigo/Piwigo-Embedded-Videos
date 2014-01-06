@@ -3,16 +3,16 @@
 Plugin Name: Embedded Videos
 Version: auto
 Description: Add videos from Dailymotion, Youtube, Vimeo, Wideo and Wat.
-Plugin URI: http://piwigo.org/ext/extension_view.php?eid=136
-Author: Mistic & P@t
+Plugin URI: auto
+Author: Mistic
 Author URI: http://www.strangeplanet.fr
 */
 
-if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
+defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
 global $prefixeTable;
 
-defined('GVIDEO_ID') or define('GVIDEO_ID', basename(dirname(__FILE__)));
+define('GVIDEO_ID',      basename(dirname(__FILE__)));
 define('GVIDEO_PATH',    PHPWG_PLUGINS_PATH . GVIDEO_ID . '/');
 define('GVIDEO_ADMIN',   get_root_url() . 'admin.php?page=plugin-' . GVIDEO_ID);
 define('GVIDEO_TABLE',   $prefixeTable.'image_video');
@@ -21,52 +21,32 @@ define('GVIDEO_VERSION', 'auto');
 
 add_event_handler('init', 'gvideo_init');
 add_event_handler('picture_pictures_data', 'gvideo_prepare_picture');
-add_event_handler('render_element_content', 'gvideo_element_content', EVENT_HANDLER_PRIORITY_NEUTRAL-10, 2);
 
 if (defined('IN_ADMIN'))
 {
-  add_event_handler('delete_elements', 'gvideo_delete_elements');
   add_event_handler('get_admin_plugin_menu_links', 'gvideo_admin_menu');
   add_event_handler('tabsheet_before_select','gvideo_tab', EVENT_HANDLER_PRIORITY_NEUTRAL+10, 2); 
 }
 
-include_once(GVIDEO_PATH . 'include/gvideo.inc.php');
+add_event_handler('delete_elements', 'gvideo_delete_elements');
+
+include_once(GVIDEO_PATH . 'include/events.inc.php');
 
 
 /**
- * update & load language
+ * init
  */
 function gvideo_init()
 {
-  global $pwg_loaded_plugins;
+  global $conf;
   
-  if (
-    GVIDEO_VERSION == 'auto' or
-    $pwg_loaded_plugins[GVIDEO_ID]['version'] == 'auto' or
-    version_compare($pwg_loaded_plugins[GVIDEO_ID]['version'], GVIDEO_VERSION, '<')
-  )
-  {
-    include_once(GVIDEO_PATH . 'include/install.inc.php');
-    gvideo_install();
-    
-    if ( $pwg_loaded_plugins[GVIDEO_ID]['version'] != 'auto' and GVIDEO_VERSION !='auto' )
-    {
-      $query = '
-UPDATE '. PLUGINS_TABLE .'
-SET version = "'. GVIDEO_VERSION .'"
-WHERE id = "'. GVIDEO_ID .'"';
-      pwg_query($query);
-      
-      $pwg_loaded_plugins[GVIDEO_ID]['version'] = GVIDEO_VERSION;
-      
-      if (defined('IN_ADMIN'))
-      {
-        $_SESSION['page_infos'][] = 'Embedded Videos updated to version '. GVIDEO_VERSION;
-      }
-    }
-  }
+  include_once(GVIDEO_PATH . 'maintain.inc.php');
+  $maintain = new gvideo_maintain(GVIDEO_ID);
+  $maintain->autoUpdate(GVIDEO_VERSION, 'install');
   
   load_language('plugin.lang', GVIDEO_PATH);
+  
+  $conf['gvideo'] = unserialize($conf['gvideo']);
 }
 
 /**
@@ -74,10 +54,10 @@ WHERE id = "'. GVIDEO_ID .'"';
  */
 function gvideo_admin_menu($menu) 
 {
-  array_push($menu, array(
+  $menu[] = array(
     'NAME' => 'Embedded Videos',
     'URL' => GVIDEO_ADMIN,
-  ));
+    );
   return $menu;
 }
 
@@ -108,5 +88,3 @@ SELECT *
   
   return $sheets;
 }
-
-?>

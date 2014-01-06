@@ -1,35 +1,13 @@
 <?php
-// +-----------------------------------------------------------------------+
-// | Piwigo - a PHP based photo gallery                                    |
-// +-----------------------------------------------------------------------+
-// | Copyright(C) 2008-2012 Piwigo Team                  http://piwigo.org |
-// | Copyright(C) 2003-2008 PhpWebGallery Team    http://phpwebgallery.net |
-// | Copyright(C) 2002-2003 Pierrick LE GALL   http://le-gall.net/pierrick |
-// +-----------------------------------------------------------------------+
-// | This program is free software; you can redistribute it and/or modify  |
-// | it under the terms of the GNU General Public License as published by  |
-// | the Free Software Foundation                                          |
-// |                                                                       |
-// | This program is distributed in the hope that it will be useful, but   |
-// | WITHOUT ANY WARRANTY; without even the implied warranty of            |
-// | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU      |
-// | General Public License for more details.                              |
-// |                                                                       |
-// | You should have received a copy of the GNU General Public License     |
-// | along with this program; if not, write to the Free Software           |
-// | Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, |
-// | USA.                                                                  |
-// +-----------------------------------------------------------------------+
-
-if(!defined("PHPWG_ROOT_PATH")) die ("Hacking attempt!");
+defined('GVIDEO_PATH') or die ("Hacking attempt!");
 
 include_once(GVIDEO_PATH.'include/functions.inc.php');
+include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
 
 
 // +-----------------------------------------------------------------------+
 // | Basic checks                                                          |
 // +-----------------------------------------------------------------------+
-
 check_status(ACCESS_ADMINISTRATOR);
 
 check_input_parameter('image_id', $_GET, false, PATTERN_ID);
@@ -46,10 +24,12 @@ $tabsheet->set_id('photo');
 $tabsheet->select('gvideo');
 $tabsheet->assign();
 
+$page['active_menu'] = get_active_menu('photo');
+
 // +-----------------------------------------------------------------------+
 // | Picture infos                                                         |
 // +-----------------------------------------------------------------------+
-global $gvideo;
+global $gvideo; // request from GVIDEO_TABLE done when building tabsheet
 
 $query = '
 SELECT *
@@ -67,20 +47,20 @@ if (isset($_POST['save_properties']))
   // check inputs
   if (empty($_POST['url']))
   {
-    array_push($page['errors'], l10n('Please fill the video URL'));
+    $page['errors'][] = l10n('Please fill the video URL');
   }
   else if ($gvideo['url']!=$_POST['url'])
   {
-    if( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
+    if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
     {
       if (isset($_POST['safe_mode']))
       {
-        array_push($page['errors'], l10n('an error happened'));
+        $page['errors'][] = l10n('an error happened');
       }
       else
       {
-        array_push($page['errors'], l10n('Unable to contact host server'));
-        array_push($page['errors'], l10n('Try in safe-mode'));
+        $page['errors'][] = l10n('Unable to contact host server');
+        $page['errors'][] = l10n('Try in safe-mode');
       }
     }
   }
@@ -91,7 +71,6 @@ if (isset($_POST['save_properties']))
   
   if (count($page['errors']) == 0)
   {
-    include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
 
     if ( $gvideo['url'] != $video['url'] )
     {
@@ -99,7 +78,8 @@ if (isset($_POST['save_properties']))
       $thumb_ext = empty($video['thumbnail']) ? 'jpg' : get_extension($video['thumbnail']);
       $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
       $thumb_source = $conf['data_location'].$thumb_name;
-      if ( empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb_source) !== true )
+      
+      if (empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb_source) !== true)
       {
         $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
         copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
@@ -114,7 +94,7 @@ if (isset($_POST['save_properties']))
         'is_gvideo' => 1,
         );
         
-      if ( $_POST['sync_description'] and !empty($video['description']) )
+      if ($_POST['sync_description'] and !empty($video['description']))
       {
         $updates['comment'] = pwg_db_real_escape_string($video['description']);
       }
@@ -122,7 +102,7 @@ if (isset($_POST['save_properties']))
       {
         $updates['comment'] = null;
       }
-      if ( $_POST['sync_tags'] and !empty($video['tags']) )
+      if ($_POST['sync_tags'] and !empty($video['tags']))
       {
         set_tags(get_tag_ids(implode(',', $video['tags'])), $image_id);
       }
@@ -140,9 +120,9 @@ if (isset($_POST['save_properties']))
     {
       $_POST['width'] = $_POST['height'] = '';
     }
-    else if ( !preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']) )
+    else if (!preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']))
     {
-      array_push($page['errors'], l10n('Width and height must be integers'));
+      $page['errors'][] = l10n('Width and height must be integers');
       $_POST['width'] = $_POST['height'] = '';
     }
     if ($_POST['autoplay_common'] == 'true')
@@ -166,7 +146,7 @@ if (isset($_POST['save_properties']))
       true
       );
       
-    array_push($page['infos'], l10n('Video successfully updated'));
+    $page['infos'][] = l10n('Video successfully updated');
     $gvideo = array_merge($gvideo, $updates);
   }
 }
@@ -176,13 +156,9 @@ if (isset($_POST['save_properties']))
 // +-----------------------------------------------------------------------+
 if (isset($_FILES['photo_update']))
 {
-  include_once(PHPWG_ROOT_PATH.'admin/include/functions_upload.inc.php');
-  
   if ($_FILES['photo_update']['error'] !== UPLOAD_ERR_OK)
   {
-    array_push($page['errors'],
-      file_upload_error_message($_FILES['photo_update']['error'])
-      );
+    $page['errors'][] = file_upload_error_message($_FILES['photo_update']['error']);
   }
   else
   {
@@ -194,18 +170,15 @@ if (isset($_FILES['photo_update']))
       $_GET['image_id']
       );
 
-    array_push($page['infos'], l10n('The thumbnail was updated'));
+    $page['infos'][] = l10n('The thumbnail was updated');
   }
 }
 
 // +-----------------------------------------------------------------------+
 // | Add film frame                                                        |
 // +-----------------------------------------------------------------------+
-if ( function_exists('imagecreatetruecolor') and isset($_GET['add_film_frame']) )
+if (function_exists('imagecreatetruecolor') and isset($_GET['add_film_frame']))
 {
-  include_once(GVIDEO_PATH . '/include/functions.inc.php');
-  include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
-  
   $thumb_source = $conf['data_location'].$picture['file'];
   
   add_film_frame($picture['path'], $thumb_source);
@@ -241,6 +214,4 @@ $template->assign(array(
   'TITLE' => render_element_name($picture),
 ));
 
-$template->set_filename('gvideo_content', dirname(__FILE__).'/template/photo.tpl');
-
-?>
+$template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'admin/template/photo.tpl'));

@@ -1,5 +1,5 @@
 <?php
-if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
+defined('GVIDEO_PATH') or die('Hacking attempt!');
 
 if (isset($_POST['save_config']))
 {
@@ -27,7 +27,7 @@ if (isset($_POST['save_config']))
     );
   
   conf_update_param('gvideo', serialize($conf['gvideo']));
-  array_push($page['infos'], l10n('Information data registered in database'));
+  $page['infos'][] = l10n('Information data registered in database');
 }
 
 
@@ -38,6 +38,4 @@ $template->assign(array(
   ));
 
 
-$template->set_filename('gvideo_content', dirname(__FILE__) . '/template/config.tpl');
-
-?>
+$template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'admin/template/config.tpl'));

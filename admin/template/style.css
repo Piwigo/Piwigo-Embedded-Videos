@@ -41,16 +41,6 @@ label.color {
   label.color input {
     visibility:hidden;
   }
-  
-.showInfo {
-  position:static;
-  display:inline-block;
-  padding:1px 7px;
-  width:4px;
-  height:16px;
-  line-height:16px;
-  font-size:0.8em;
-}
 
 ul.services li {
   display:inline;

@@ -1,8 +1,9 @@
 <?php
-if (!defined('GVIDEO_PATH')) die('Hacking attempt!');
+defined('GVIDEO_PATH') or die('Hacking attempt!');
 
 include_once(GVIDEO_PATH.'include/functions.inc.php');
 include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
+
 
 if (isset($_POST['add_video']))
 {
@@ -10,31 +11,31 @@ if (isset($_POST['add_video']))
   // check inputs
   if (empty($_POST['url']))
   {
-    array_push($page['errors'], l10n('Please fill the video URL'));
+    $page['errors'][] = l10n('Please fill the video URL');
   }
   else if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
   {
     if (isset($_POST['safe_mode']))
     {
-      array_push($page['errors'], l10n('an error happened'));
+      $page['errors'][] = l10n('an error happened');
     }
     else
     {
-      array_push($page['errors'], l10n('Unable to contact host server'));
-      array_push($page['errors'], l10n('Try in safe-mode'));
+      $page['errors'][] = l10n('Unable to contact host server');
+      $page['errors'][] = l10n('Try in safe-mode');
     }
     $_POST['safe_mode'] = true;
   }
-  
+
   if (count($page['errors']) == 0)
   {
     if ($_POST['size_common'] == 'true')
     {
       $_POST['width'] = $_POST['height'] = '';
     }
-    else if ( !preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']) )
+    else if (!preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']))
     {
-      array_push($page['errors'], l10n('Width and height must be integers'));
+      $page['errors'][] = l10n('Width and height must be integers');
       $_POST['width'] = $_POST['height'] = '';
     }
     if ($_POST['autoplay_common'] == 'true')
@@ -54,8 +55,8 @@ SELECT id, name, permalink
 ;';
     $category = pwg_db_fetch_assoc(pwg_query($query));
       
-    array_push($page['infos'], sprintf(
-      l10n('Video successfully added. <a href="%s">View</a>'), 
+    $page['infos'][] = l10n(
+      'Video successfully added. <a href="%s">View</a>', 
       make_picture_url(array(
         'image_id' => $image_id,
         'category' => array(
@@ -64,14 +65,14 @@ SELECT id, name, permalink
           'permalink' => $category['permalink'],
           ),
         ))
-      ));
+      );
     unset($_POST);
   }
 }
 
 // categories
 $query = '
-SELECT id,name,uppercats,global_rank
+SELECT id, name, uppercats, global_rank
   FROM '.CATEGORIES_TABLE.'
 ;';
 display_select_cat_wrapper($query, array(), 'category_parent_options');
@@ -100,6 +101,4 @@ $template->assign(array(
   'POST' => @$_POST,
   ));
 
-$template->set_filename('gvideo_content', dirname(__FILE__) . '/template/add.tpl');
-
-?>
+$template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'admin/template/add.tpl'));
