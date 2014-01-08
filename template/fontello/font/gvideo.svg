@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2014 by original authors @ fontello.com</metadata>
+<defs>
+<font id="gvideo" horiz-adv-x="1000" >
+<font-face font-family="gvideo" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="movie" unicode="&#xe800;" d="m0-31v761q0 37 26 62t62 26h117v-175h528v175h117q36 0 61-26t26-62v-761q0-36-26-62t-61-26h-117v176h-528v-176h-117q-36 0-62 26t-26 62z m74 44v-59h58v59h-58z m0 88h58v59h-58v-59z m0 146h58v59h-58v-59z m0 147h58v59h-58v-59z m0 146h58v59h-58v-59z m0 147h58v59h-58v-59z m131-484h528v293h-528v-293z m600-190v-59h58v59h-58z m0 88h58v59h-58v-59z m0 146h58v59h-58v-59z m0 147h58v59h-58v-59z m0 146h58v59h-58v-59z m0 147h58v59h-58v-59z" horiz-adv-x="937.5" />
+</font>
+</defs>
+</svg>

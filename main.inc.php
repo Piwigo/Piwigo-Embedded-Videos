@@ -44,8 +44,6 @@ function gvideo_init()
   $maintain = new gvideo_maintain(GVIDEO_ID);
   $maintain->autoUpdate(GVIDEO_VERSION, 'install');
   
-  load_language('plugin.lang', GVIDEO_PATH);
-  
   $conf['gvideo'] = unserialize($conf['gvideo']);
 }
 

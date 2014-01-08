@@ -13,9 +13,36 @@ function gvideo_prepare_picture($picture)
     
     // add custom parser
     add_event_handler('render_element_content', 'gvideo_element_content', EVENT_HANDLER_PRIORITY_NEUTRAL-10, 2);
+
+    if (defined('ADMINTOOLS_ID'))
+    {
+      global $template;
+
+      load_language('plugin.lang', GVIDEO_PATH);
+
+      $template->assign(array(
+        'GVIDEO_PATH' => GVIDEO_PATH,
+        'U_GVIDEO_EDIT' => GVIDEO_ADMIN.'-photo&amp;image_id='.$picture['current']['id'],
+        ));
+
+      $template->set_prefilter('ato_public_controller', 'gvideo_admintools');
+    }
   }
   
   return $picture;
+}
+
+function gvideo_admintools($content)
+{
+  $search = '{if isset($ato.U_DELETE)}';
+  $replace = '
+{if isset($U_GVIDEO_EDIT)}
+  {combine_css path=$GVIDEO_PATH|cat:\'template/fontello/css/gvideo.css\'}
+  <li><a class="icon-gvideo-movie" href="{$U_GVIDEO_EDIT}">{\'Video properties\'|translate}</a></li>
+{/if}
+{if isset($ato.U_DELETE)}';
+
+  return str_replace($search, $replace, $content);
 }
 
 /**

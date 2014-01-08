@@ -1,0 +1,16 @@
+{
+  "name": "gvideo",
+  "css_prefix_text": "icon-gvideo-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "eea613bc40c77b7eab137b29dba0c62f",
+      "css": "movie",
+      "code": 59392,
+      "src": "mfglabs"
+    }
+  ]
+}
