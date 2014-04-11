@@ -26,3 +26,5 @@ $lang['Author name'] = 'Aŭtora nomo';
 $lang['Change'] = 'Ŝanĝi';
 $lang['Color'] = 'Koloro';
 $lang['Dailymotion player'] = 'Dailymotion videospektilo';
+$lang['Logo'] = 'Insigno';
+$lang['The thumbnail was updated'] = 'La miniaturo ĝisdatiĝis';
