@@ -44,101 +44,125 @@ $picture = pwg_db_fetch_assoc(pwg_query($query));
 // +-----------------------------------------------------------------------+
 if (isset($_POST['save_properties']))
 {
-  // check inputs
-  if (empty($_POST['url']))
+  $_POST['url'] = trim($_POST['url']);
+  
+  if ($gvideo['type'] != 'embed')
   {
-    $page['errors'][] = l10n('Please fill the video URL');
-  }
-  else if ($gvideo['url']!=$_POST['url'])
-  {
-    if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
+    // check inputs
+    if (empty($_POST['url']))
     {
-      if (isset($_POST['safe_mode']))
+      $page['errors'][] = l10n('Please fill the video URL');
+    }
+    else if ($gvideo['url']!=$_POST['url'])
+    {
+      if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
       {
-        $page['errors'][] = l10n('an error happened');
+        if (isset($_POST['safe_mode']))
+        {
+          $page['errors'][] = l10n('an error happened');
+        }
+        else
+        {
+          $page['errors'][] = l10n('Unable to contact host server');
+          $page['errors'][] = l10n('Try in safe-mode');
+        }
       }
-      else
+    }
+    else
+    {
+      $video = $gvideo;
+    }
+    
+    if (count($page['errors']) == 0)
+    {
+
+      if ($gvideo['url'] != $video['url'])
       {
-        $page['errors'][] = l10n('Unable to contact host server');
-        $page['errors'][] = l10n('Try in safe-mode');
+        // download thumbnail
+        $thumb_ext = empty($video['thumbnail']) ? 'jpg' : get_extension($video['thumbnail']);
+        $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
+        $thumb_source = $conf['data_location'].$thumb_name;
+        
+        if (empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb_source) !== true)
+        {
+          $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
+          copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
+        }
+        
+        // add image and update infos
+        $image_id = add_uploaded_file($thumb_source, $thumb_name, null, null, $_GET['image_id']);
+        
+        $updates = array(
+          'name' => pwg_db_real_escape_string($video['title']),
+          'author' => pwg_db_real_escape_string($video['author']),
+          'is_gvideo' => 1,
+          );
+          
+        if ($_POST['sync_description'] and !empty($video['description']))
+        {
+          $updates['comment'] = pwg_db_real_escape_string($video['description']);
+        }
+        else
+        {
+          $updates['comment'] = null;
+        }
+        if ($_POST['sync_tags'] and !empty($video['tags']))
+        {
+          set_tags(get_tag_ids(implode(',', $video['tags'])), $image_id);
+        }
+        
+        single_update(
+          IMAGES_TABLE,
+          $updates,
+          array('id' => $_GET['image_id']),
+          true
+          );
       }
+      
+      // register video
+      if ($_POST['size_common'] == 'true')
+      {
+        $_POST['width'] = $_POST['height'] = '';
+      }
+      else if (!preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']))
+      {
+        $page['errors'][] = l10n('Width and height must be integers');
+        $_POST['width'] = $_POST['height'] = '';
+      }
+      if ($_POST['autoplay_common'] == 'true')
+      {
+        $_POST['autoplay'] = '';
+      }
+      
+      $updates = array(
+        'url' => $video['url'],
+        'type' => $video['type'],
+        'video_id' => $video['video_id'],
+        'width' => $_POST['width'],
+        'height' => $_POST['height'],
+        'autoplay' => $_POST['autoplay'],
+        );
     }
   }
   else
   {
-    $video = $gvideo;
+    $_POST['embed_code'] = trim($_POST['embed_code']);
+    
+    if (empty($_POST['embed_code']))
+    {
+      $page['errors'][] = l10n('Please fill the embed code');
+    }
+    else
+    {
+      $updates = array(
+        'url' => $_POST['url'],
+        'embed' => stripslashes($_POST['embed_code']),
+        );
+    }
   }
   
-  if (count($page['errors']) == 0)
+  if (isset($updates))
   {
-
-    if ( $gvideo['url'] != $video['url'] )
-    {
-      // download thumbnail
-      $thumb_ext = empty($video['thumbnail']) ? 'jpg' : get_extension($video['thumbnail']);
-      $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
-      $thumb_source = $conf['data_location'].$thumb_name;
-      
-      if (empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb_source) !== true)
-      {
-        $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
-        copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
-      }
-      
-      // add image and update infos
-      $image_id = add_uploaded_file($thumb_source, $thumb_name, null, null, $_GET['image_id']);
-      
-      $updates = array(
-        'name' => pwg_db_real_escape_string($video['title']),
-        'author' => pwg_db_real_escape_string($video['author']),
-        'is_gvideo' => 1,
-        );
-        
-      if ($_POST['sync_description'] and !empty($video['description']))
-      {
-        $updates['comment'] = pwg_db_real_escape_string($video['description']);
-      }
-      else
-      {
-        $updates['comment'] = null;
-      }
-      if ($_POST['sync_tags'] and !empty($video['tags']))
-      {
-        set_tags(get_tag_ids(implode(',', $video['tags'])), $image_id);
-      }
-      
-      single_update(
-        IMAGES_TABLE,
-        $updates,
-        array('id' => $_GET['image_id']),
-        true
-        );
-    }
-    
-    // register video
-    if ($_POST['size_common'] == 'true')
-    {
-      $_POST['width'] = $_POST['height'] = '';
-    }
-    else if (!preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']))
-    {
-      $page['errors'][] = l10n('Width and height must be integers');
-      $_POST['width'] = $_POST['height'] = '';
-    }
-    if ($_POST['autoplay_common'] == 'true')
-    {
-      $_POST['autoplay'] = '';
-    }
-    
-    $updates = array(
-      'url' => $video['url'],
-      'type' => $video['type'],
-      'video_id' => $video['video_id'],
-      'width' => $_POST['width'],
-      'height' => $_POST['height'],
-      'autoplay' => $_POST['autoplay'],
-      );
-      
     single_update(
       GVIDEO_TABLE,
       $updates,

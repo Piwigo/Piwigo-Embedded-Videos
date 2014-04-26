@@ -1,5 +1,6 @@
 {combine_css path=$GVIDEO_PATH|cat:'admin/template/style.css'}
 
+{if $GVIDEO.type != 'embed'}
 {footer_script}
 jQuery("input[data-toggle]").change(function() {
   $block = $('#'+ $(this).data('toggle'));
@@ -23,6 +24,7 @@ jQuery("input[name='url']").keyup(function() {
   }
 });
 {/footer_script}
+{/if}
 
 
 <h2>{$TITLE} &#8250; {'Edit photo'|translate} {$TABSHEET_TITLE}</h2>
@@ -63,6 +65,7 @@ jQuery("input[name='url']").keyup(function() {
       <span class="video_update warning" style="display:none;"> {'Changing the url will reset video description, name and thumbnail'|translate}</span>
     </p>
     
+    {if $GVIDEO.type != 'embed'}
     <p class="video_update">
       <b>{'Get video description'|translate}</b>
       <label><input type="radio" name="sync_description" value="1" {if $GVIDEO.sync_description}checked="checked"{/if}> {'Yes'|translate}</label>
@@ -96,10 +99,16 @@ jQuery("input[name='url']").keyup(function() {
         <label><input type="radio" name="autoplay" value="1" {if $GVIDEO.autoplay == '1'}checked="checked"{/if}> {'Yes'|translate}</label>
       </span>
     </p>
-
+    {else}
+    <p>
+      <b>{'Embed code'|translate}</b><br>
+      <textarea name="embed_code" style="width:400px;height:80px;">{$GVIDEO.embed}</textarea>
+    </p>
+    {/if}
+    
     <p style="margin:0;">
-      <label style="font-weight:bold;"><input type="checkbox" name="safe_mode"> {'Safe-mode'|translate}</label>
-      <br>
+      {if $GVIDEO.type != 'embed'}<label style="font-weight:bold;"><input type="checkbox" name="safe_mode"> {'Safe-mode'|translate}</label>
+      <br>{/if}
       <input class="submit" type="submit" value="{'Save Settings'|translate}" name="save_properties">
     </p>
   </fieldset>

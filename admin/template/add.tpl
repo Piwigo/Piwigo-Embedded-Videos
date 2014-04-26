@@ -16,6 +16,14 @@ jQuery(".showInfo").tipTip({
 jQuery(".showProvidersInfo").click(function() {
   $(".providersInfo").toggle();
 });
+jQuery(".radio input").on('change', function() {
+  if (jQuery(this).is(':checked')) {
+    var mode = jQuery(this).val();
+    
+    jQuery('.'+mode+'-hide').hide();
+    jQuery('.'+mode+'-show').show();
+  }
+}).trigger('change');
 {/footer_script}
 
 
@@ -23,7 +31,16 @@ jQuery(".showProvidersInfo").click(function() {
 	<h2>Embedded Videos</h2>
 </div>
 
-<form method="post" action="" class="properties">
+<form method="post" action="" class="properties" enctype="multipart/form-data">
+  <div class="radio">
+    <input type="radio" name="mode" value="provider" id="mode_provider" {if $POST.mode!="embed"}checked{/if}><label for="mode_provider">{'Add video from hosting platform'|translate}</label><!--
+    --><input type="radio" name="mode" value="embed" id="mode_embed" {if $POST.mode=="embed"}checked{/if}><label for="mode_embed">{'Add video from embed code'|translate}</label>
+  </div>
+  
+  <div class="warnings custom-warn embed-show provider-hide">
+    <ul><li>{'Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'|translate}</li></ul>
+  </div>
+
 <fieldset>
   <legend>{'Properties'|translate}</legend>
   
@@ -37,23 +54,36 @@ jQuery(".showProvidersInfo").click(function() {
       </label>
       {'... or '|translate}<a href="#" class="addAlbumOpen" title="{'create a new album'|translate}">{'create a new album'|translate}</a>
     </li>
+    <li class="embed-show provider-hide">
+      <label>
+        <span class="property">{'Title'|translate}</span>
+        <input type="text"name="title" value="{$POST.title}" style="width:400px;">
+      </label>
+    </li>
     <li>
       <label>
-        <span class="property">{'Video URL'|translate}</span>
+        <span class="property">{'Video URL'|translate} <small class="embed-show provider-hide">({'optional'|translate})</small></span>
         <input type="text" name="url" value="{$POST.url}" style="width:400px;">
       </label>
     </li>
-  {if $gd_available}
-    <li>
-      <span class="property">{'Thumbnail'|translate}</span>
+    <li class="embed-show provider-hide">
+      <label>
+        <span class="property">{'Embed code'|translate}</span>
+        <textarea name="embed_code" style="width:400px;height:80px;">{$POST.embed_code}</textarea>
+      </label>
+    </li>
+    <li class="embed-show {if $gd_available}provider-show{else}provider-hide{/if}">
+      <span class="property">{'Thumbnail'|translate} <small class="embed-show provider-hide">({'optional'|translate})</small></span>
+      <input type="file" size="20" name="thumbnail_file" class="embed-show provider-hide">
+    {if $gd_available}
       <label><input type="checkbox" name="add_film_frame" value="true" {if $POST.add_film_frame}checked="checked"{/if}> {'Add film effect'|translate} </label>
       <a class="icon-info-circled-1 showInfo" title="<img src='{$GVIDEO_PATH}admin/template/example-frame.jpg'>"></a>
+    {/if}
     </li>
-  {/if}
   </ul>  
 </fieldset>
 
-<fieldset>
+<fieldset class="embed-hide provider-show">
   <legend>{'Configuration'|translate}</legend>
   
   <ul>
@@ -93,11 +123,14 @@ jQuery(".showProvidersInfo").click(function() {
 
 <p style="text-align:left;">
   <input type="submit" name="add_video" value="{'Add'|translate}">
-  <label style="font-weight:bold;"><input type="checkbox" name="safe_mode" {if $POST.safe_mode}checked="checked"{/if}> {'Safe-mode'|translate}</label>
-  <a class="icon-info-circled-1 showInfo" title="{'In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'|translate|escape:html}"></a>
+  
+  <span class="embed-hide provider-show">
+    <label style="font-weight:bold;"><input type="checkbox" name="safe_mode" {if $POST.safe_mode}checked="checked"{/if}> {'Safe-mode'|translate}</label>
+    <a class="icon-info-circled-1 showInfo" title="{'In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'|translate|escape:html}"></a>
+  </span>
 </p>
 
-<fieldset style="margin-top:40px;">
+<fieldset style="margin-top:40px;" class="embed-hide provider-show">
   <legend>{'Supported services'|translate}</legend>
   
   <ul class="services">

@@ -63,3 +63,44 @@ ul.services li {
   font-style:italic;
   font-size:0.9em;
 }
+
+.radio {
+  margin-left:2em;
+}
+.radio input {
+  display:none;
+}
+.radio label {
+  display:inline-block;
+  background:#fff;
+  border:1px solid #ddd;
+  border-left-width:0;
+  padding:5px 10px;
+}
+  .radio label:first-of-type {
+    border-left-width:1px;
+    border-radius:5px 0 0 5px;
+  }
+  .radio label:last-of-type {
+    border-radius:0 5px 5px 0;
+  }
+  .radio input:checked + label {
+    background:#C6FF91;
+    background:linear-gradient(to bottom, #C6FF91, #A5E06D);
+    border-color:#A5E06D;
+    text-shadow:1px 1px 0 white;
+  }
+
+.custom-warn {
+  background-image:none;
+  padding:2px 5px;
+  margin-left:2em;
+  border-radius:5px;
+  min-height:0;
+  display:inline-block;
+}
+  .custom-warn ul li {
+    clear:none;
+    list-style:none;
+    margin:0 !important;
+  }

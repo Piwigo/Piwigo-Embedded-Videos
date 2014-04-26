@@ -25,7 +25,10 @@ add_event_handler('picture_pictures_data', 'gvideo_prepare_picture');
 if (defined('IN_ADMIN'))
 {
   add_event_handler('get_admin_plugin_menu_links', 'gvideo_admin_menu');
-  add_event_handler('tabsheet_before_select','gvideo_tab', EVENT_HANDLER_PRIORITY_NEUTRAL+10, 2); 
+  add_event_handler('tabsheet_before_select','gvideo_tab', EVENT_HANDLER_PRIORITY_NEUTRAL+10, 2);
+  
+  add_event_handler('get_batch_manager_prefilters', 'gvideo_add_prefilter');
+  add_event_handler('perform_batch_manager_prefilters', 'gvideo_apply_prefilter');
 }
 
 add_event_handler('delete_elements', 'gvideo_delete_elements');
@@ -75,7 +78,13 @@ SELECT *
 
   if (!pwg_db_num_rows($result)) return $sheets;
   
-  global $gvideo;
+  global $gvideo, $page;
+
+  if ($page['tab'] == 'properties')
+  {
+    $page['infos'][] = 'This element is a video added with "Embedded Video"';
+  }
+  
   $gvideo = pwg_db_fetch_assoc($result);
   
   $sheets['gvideo'] = array(

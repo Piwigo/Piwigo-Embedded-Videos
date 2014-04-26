@@ -34,5 +34,14 @@ $lang['Videos can be unlisted but not private.'] = 'Les vidéos peuvent être ho
 $lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Les vidéos peuvent être hors-listing et privées si le domaine de la galerie fait partie des domaines autorisés (PRO).';
 $lang['Videos can be private if you use the private permalink.'] = 'Les videos peuvent être privées si vous utilisez le permalink privé.';
 $lang['No privacy option.'] = 'Pas d\'option de privacité.';
+$lang['Add video from embed code'] = 'Ajouter un code d\'intégration';
+$lang['Add video from hosting platform'] = 'Ajouter depuis une plateforme d\'hébergement';
+$lang['Embed code'] = 'Code d\'intégration';
+$lang['optional'] = 'optionel';
+$lang['Please fill the embed code'] = 'Veuilles renseigner le code d\'intégration';
+$lang['This video was already registered'] = 'Cette vidéo existe déjà';
+$lang['Videos'] = 'Vidéos';
+$lang['Width and height must be integers'] = 'Hauteur et largeur doivent être des entiers';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'N\'utilisez pas ce formulaire pour les vidéos hébergées par Youtube, Dailymotion, Vimeo, Wat or Wideo.';
 
 ?>

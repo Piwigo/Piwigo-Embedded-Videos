@@ -8,46 +8,64 @@ include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
 if (isset($_POST['add_video']))
 {
   $_POST['url'] = trim($_POST['url']);
-  // check inputs
-  if (empty($_POST['url']))
+  $_POST['add_film_frame'] = isset($_POST['add_film_frame']);
+  
+  if ($_POST['mode'] == 'provider')
   {
-    $page['errors'][] = l10n('Please fill the video URL');
-  }
-  else if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
-  {
-    if (isset($_POST['safe_mode']))
+    // check inputs
+    if (empty($_POST['url']))
     {
-      $page['errors'][] = l10n('an error happened');
+      $page['errors'][] = l10n('Please fill the video URL');
+    }
+    else if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
+    {
+      if (isset($_POST['safe_mode']))
+      {
+        $page['errors'][] = l10n('an error happened');
+      }
+      else
+      {
+        $page['errors'][] = l10n('Unable to contact host server');
+        $page['errors'][] = l10n('Try in safe-mode');
+      }
+      $_POST['safe_mode'] = true;
+    }
+
+    if (count($page['errors']) == 0)
+    {
+      if ($_POST['size_common'] == 'true')
+      {
+        $_POST['width'] = $_POST['height'] = '';
+      }
+      else if (!preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']))
+      {
+        $page['errors'][] = l10n('Width and height must be integers');
+        $_POST['width'] = $_POST['height'] = '';
+      }
+      if ($_POST['autoplay_common'] == 'true')
+      {
+        $_POST['autoplay'] = '';
+      }
+      
+      $image_id = add_video($video, $_POST);
+    }
+  }
+  else
+  {
+    $_POST['embed_code'] = trim($_POST['embed_code']);
+    
+    if (empty($_POST['embed_code']))
+    {
+      $page['errors'][] = l10n('Please fill the embed code');
     }
     else
     {
-      $page['errors'][] = l10n('Unable to contact host server');
-      $page['errors'][] = l10n('Try in safe-mode');
+      $image_id = add_video_embed($_POST);
     }
-    $_POST['safe_mode'] = true;
   }
-
-  if (count($page['errors']) == 0)
+  
+  if (isset($image_id))
   {
-    if ($_POST['size_common'] == 'true')
-    {
-      $_POST['width'] = $_POST['height'] = '';
-    }
-    else if (!preg_match('#^([0-9]+)$#', $_POST['width']) or !preg_match('#^([0-9]+)$#', $_POST['height']))
-    {
-      $page['errors'][] = l10n('Width and height must be integers');
-      $_POST['width'] = $_POST['height'] = '';
-    }
-    if ($_POST['autoplay_common'] == 'true')
-    {
-      $_POST['autoplay'] = '';
-    }
-    $_POST['add_film_frame'] = isset($_POST['add_film_frame']);
-    
-    
-    $image_id = add_video($video, $_POST);
-    
-    
     $query = '
 SELECT id, name, permalink
   FROM '.CATEGORIES_TABLE.'

@@ -71,14 +71,14 @@ CREATE TABLE IF NOT EXISTS `' . $this->table . '` (
   `video_id` varchar(128) NOT NULL,
   `width` smallint(9) DEFAULT NULL,
   `height` smallint(9) DEFAULT NULL,
-  `autoplay` tinyint(1) DEFAULT NULL
+  `autoplay` tinyint(1) DEFAULT NULL,
+  `embed` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8
 ;';
     pwg_query($query);
     
     // update video_id lenght
-    $query = 'ALTER TABLE `' . $this->table . '` CHANGE `video_id` `video_id` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;';
-    pwg_query($query);
+    pwg_query('ALTER TABLE `' . $this->table . '` CHANGE `video_id` `video_id` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
     
     // new collumn in images table
     $result = pwg_query('SHOW COLUMNS FROM `' . IMAGES_TABLE . '` LIKE "is_gvideo";');
@@ -94,6 +94,13 @@ UPDATE `' . IMAGES_TABLE . '`
     )
 ;';
       pwg_query($query);
+    }
+    
+    // new column "embed"
+    $result = pwg_query('SHOW COLUMNS FROM `' . $this->table . '` LIKE "embed";');
+    if (!pwg_db_num_rows($result))
+    {
+      pwg_query('ALTER TABLE `' . $this->table . '` ADD `embed` text DEFAULT NULL;');
     }
     
     // remove old configuration

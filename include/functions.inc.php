@@ -345,6 +345,100 @@ SELECT picture_id
 }
 
 /**
+ * @params:
+ *  $config :
+ *    - url, string
+ *    - category, integer
+ *    - add_film_frame, boolean
+ *    - title, string
+ *    - embed_code, string
+ */
+function add_video_embed($config)
+{
+  global $page, $conf;
+  
+  $query = '
+SELECT picture_id
+  FROM '.GVIDEO_TABLE.'
+  WHERE url = "'.$config['url'].'"
+;';
+  $result = pwg_query($query);
+  
+  if (pwg_db_num_rows($result))
+  {
+    $page['warnings'][] = l10n('This video was already registered');
+    list($image_id) = pwg_db_fetch_row($result);
+    return $image_id;
+  }
+  
+  include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
+  
+  // upload thumbnail
+  if (isset($_FILES['thumbnail_file']) && $_FILES['thumbnail_file']['error'] === UPLOAD_ERR_OK)
+  {
+    $source_filepath = $_FILES['thumbnail_file']['tmp_name'];
+    list(,, $type) = getimagesize($source_filepath);
+    
+    if (IMAGETYPE_PNG == $type || IMAGETYPE_GIF == $type || IMAGETYPE_JPEG == $type)
+    {
+      $thumb_name = $_FILES['thumbnail_file']['name'];
+      $thumb_source = $conf['data_location'].$thumb_name;
+      move_uploaded_file($source_filepath, $thumb_source);
+    }
+  }
+  
+  if (!isset($thumb_source))
+  {
+    $thumb_name = 'embed-'.uniqid().'.jpg';
+    $thumb_source = $conf['data_location'].$thumb_name;
+    copy(GVIDEO_PATH.'mimetypes/any.jpg', $thumb_source);
+  }
+  
+  if ($config['add_film_frame'])
+  {
+    add_film_frame($thumb_source);
+  }
+  
+  // add image and update infos
+  $image_id = add_uploaded_file($thumb_source, $thumb_name, array($config['category']));
+  
+  if (empty($config['title']))
+  {
+    $config['title'] = get_filename_wo_extension($thumb_name);
+  }
+  
+  $updates = array(
+    'name' => pwg_db_real_escape_string($config['title']),
+    'is_gvideo' => 1,
+    );
+  
+  single_update(
+    IMAGES_TABLE,
+    $updates,
+    array('id' => $image_id),
+    true
+    );
+
+  $insert = array(
+    'picture_id' => $image_id,
+    'url' => $config['url'],
+    'type' => 'embed',
+    'video_id' => 'embed',
+    'width' => '',
+    'height' => '',
+    'autoplay' => '',
+    'embed' => $config['embed_code']
+    );
+  var_dump($insert);
+  single_insert(
+    GVIDEO_TABLE,
+    $insert
+    );
+    
+  return $image_id;
+}
+
+/**
  * test if a download method is available
  * @return: bool
  */

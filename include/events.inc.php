@@ -22,7 +22,7 @@ function gvideo_prepare_picture($picture)
 
       $template->assign(array(
         'GVIDEO_PATH' => GVIDEO_PATH,
-        'U_GVIDEO_EDIT' => GVIDEO_ADMIN.'-photo&amp;image_id='.$picture['current']['id'],
+        'U_GVIDEO_EDIT' => get_root_url().GVIDEO_ADMIN.'-photo&amp;image_id='.$picture['current']['id'],
         ));
 
       $template->set_prefilter('ato_public_controller', 'gvideo_admintools');
@@ -104,8 +104,15 @@ SELECT *
     $template->block_html_style(null, '.hideTabs{ display:none !important; }');
   }
 
-  $template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'template/video_'.$video['type'].'.tpl'));
-  return $template->parse('gvideo_content', true);
+  if ($video['type'] == 'embed')
+  {
+    return $video['embed'];
+  }
+  else
+  {
+    $template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'template/video_'.$video['type'].'.tpl'));
+    return $template->parse('gvideo_content', true);
+  }
 }
 
 /**
@@ -118,4 +125,31 @@ DELETE FROM '.GVIDEO_TABLE.'
   WHERE picture_id IN ('.implode(',', $ids).')
 ;';
   pwg_query($query);
+}
+
+/**
+ * add a prefilter to the Batch Downloader
+ */
+function gvideo_add_prefilter($prefilters)
+{
+	$prefilters[] = array(
+    'ID' => 'gvideo',
+    'NAME' => l10n('Videos'),
+  );
+  
+	return $prefilters;
+}
+
+/**
+ * perform added prefilter
+ */
+function gvideo_apply_prefilter($filter_sets, $prefilter)
+{
+  if ($prefilter == 'gvideo')
+  {
+    $query = 'SELECT picture_id FROM '.GVIDEO_TABLE.';';
+    $filter_sets[] = query2array($query, null, 'picture_id');
+  }
+  
+	return $filter_sets;
 }
