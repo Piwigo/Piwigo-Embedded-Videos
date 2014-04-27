@@ -54,4 +54,12 @@ $lang['Safe-mode'] = 'Säkert-läge';
 $lang['Show privacy details'] = 'Visa sekretess information';
 $lang['Supported services'] = 'funktions stöd';
 $lang['The thumbnail was updated'] = 'miniatyr bilden (thumbnail) uppdaterad';
-?>
+$lang['Add video from embed code'] = 'Lägg till video från embed-kod';
+$lang['Add video from hosting platform'] = 'Lägg till video från leverantörsplattform';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Använd inte det här formuläret för videos som tillhandahålls av Youtube, Dailymotion, Vimeo, Wat or Wideo.';
+$lang['Embed code'] = 'Embed-kod';
+$lang['Please fill the embed code'] = 'Var vänlig fyll i embed-koden';
+$lang['This video was already registered'] = 'Den här videon är redan registrerad';
+$lang['Videos'] = 'Videos';
+$lang['Width and height must be integers'] = 'Höjd och bredd måste vara heltal';
+$lang['optional'] = 'valfritt';
