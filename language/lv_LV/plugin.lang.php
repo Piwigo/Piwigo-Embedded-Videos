@@ -54,4 +54,12 @@ $lang['Videos can be private if you use the private permalink.'] = 'Video var b�
 $lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Video var būt neiekļauti sarakstā un privāti, ja web galerija atrodas uz autorizēta domēna (PRO).';
 $lang['Videos can be unlisted but not private.'] = 'Video var būt neiekļauti sarakstā, bet ne privāti.';
 $lang['Show privacy details'] = 'Rādīt privātuma detaļas';
-?>
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Neizmantojiet šo formu priekš Youtube, Dailymotion, Vimeo, Wat vai Wideo.';
+$lang['Add video from hosting platform'] = 'Pievienot video no hosta platformas';
+$lang['Width and height must be integers'] = 'Platumam un augstumam jābūt veseliem skaitļiem';
+$lang['optional'] = 'Izvēles';
+$lang['Videos'] = 'Video';
+$lang['This video was already registered'] = 'Šis video jau ir reģistrēts';
+$lang['Please fill the embed code'] = 'Lūdzu aizpildiet iegulto kodu';
+$lang['Embed code'] = 'Iegult kodu';
+$lang['Add video from embed code'] = 'Pievienot video no iegulta koda';
