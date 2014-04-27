@@ -54,4 +54,12 @@ $lang['Show privacy details'] = 'Показать конфиденциальну
 $lang['Videos can be private if you use the private permalink.'] = 'Видео-ролик может быть конфиденциальным, если Вы используете персональную постоянную ссылку.';
 $lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Видео-ролик может быть скрытым и конфиденциальным, если вэб-сайт галереи находится в пределах авторизованного домена (PRO).';
 $lang['Videos can be unlisted but not private.'] = 'Видео-ролик может быть скрытым, но не конфиденциальным.';
-?>
+$lang['Add video from hosting platform'] = 'Добавить видео с хостинговой платформы';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Не пользуйтесь этой формой для видео с Youtube, Dailymotion, Vimeo, Уот или Wideo.';
+$lang['Embed code'] = 'Код для вставки';
+$lang['Please fill the embed code'] = 'Пожалуйста, введите код';
+$lang['This video was already registered'] = 'Это видео уже было зарегистрировано';
+$lang['Videos'] = 'Видео';
+$lang['Width and height must be integers'] = 'Ширина и высота должны быть целыми числами';
+$lang['optional'] = 'дополнительно';
+$lang['Add video from embed code'] = 'Добавить видео из встроенного кода';
