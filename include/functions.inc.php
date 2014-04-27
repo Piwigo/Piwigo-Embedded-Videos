@@ -429,7 +429,7 @@ SELECT picture_id
     'autoplay' => '',
     'embed' => $config['embed_code']
     );
-  var_dump($insert);
+
   single_insert(
     GVIDEO_TABLE,
     $insert
