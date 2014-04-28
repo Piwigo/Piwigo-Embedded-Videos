@@ -54,4 +54,12 @@ $lang['Videos can be unlisted but not private.'] = 'Videá môžu byť neuveden�
 $lang['Videos can be private if you use the private permalink.'] = 'Videá môžu byť súkromné, ak použijete súkromný trvalý link.';
 $lang['Show privacy details'] = 'Zobraziť súkromné detaily.';
 $lang['No privacy option.'] = 'Bez súkromných volieb.';
-?>
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Nepoužívajte tento formulár pre videá poskytované cez Youtube, Dailymotion, Vimeo, Wat alebo Wideo.';
+$lang['Width and height must be integers'] = 'Šírka a výška musia byť celé čísla';
+$lang['optional'] = 'voliteľné';
+$lang['Videos'] = 'Videá';
+$lang['This video was already registered'] = 'Toto video už bolo registrované';
+$lang['Please fill the embed code'] = 'Vyplňte prosím kód pre vloženie';
+$lang['Embed code'] = 'Kód pre vloženie';
+$lang['Add video from embed code'] = 'Pridať video z kódu pre vloženie';
+$lang['Add video from hosting platform'] = 'Pridať video z hostingovej platformy';
