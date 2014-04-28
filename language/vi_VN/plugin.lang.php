@@ -54,4 +54,12 @@ $lang['Show privacy details'] = 'Chi tiết về chính sách bảo vệ';
 $lang['Supported services'] = 'Dịch vụ có hỗ trợ';
 $lang['The thumbnail was updated'] = 'Đã cập nhật bản demo';
 $lang['Dailymotion player'] = 'Trình chiếu Dailymotion';
-?>
+$lang['Add video from embed code'] = 'Thêm video từ mã nhúng';
+$lang['Add video from hosting platform'] = 'Thêm video từ máy chủ';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Không dùng mẫu này cho các video từ Youtube, Dailymotion, Vimeo, Wat hay Wideo.';
+$lang['Embed code'] = 'Mã nhúng';
+$lang['Please fill the embed code'] = 'Vui lòng điền vào mã nhúng';
+$lang['This video was already registered'] = 'Video này đã được đăng ký';
+$lang['Videos'] = 'Video';
+$lang['Width and height must be integers'] = 'Chiều rộng và chiều cao phải là số nguyên';
+$lang['optional'] = 'tùy chọn';
