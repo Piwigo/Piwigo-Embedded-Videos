@@ -54,4 +54,12 @@ $lang['Show privacy details'] = 'Vis privatlivsdetaljer';
 $lang['Videos can be private if you use the private permalink.'] = 'Videoer kan være private, hvis du benytter det private permalink.';
 $lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Videoer kan være ulistede og private, hvis galleriwebstedet er inden for de autoriserede domæner (PRO).';
 $lang['Videos can be unlisted but not private.'] = 'Videoer kan være ulistede men ikke private.';
-?>
+$lang['Add video from embed code'] = 'Tilføj video fra indlejringskode';
+$lang['Add video from hosting platform'] = 'Tilføj video fra hostingplatform';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Benyt ikke denne formular til vidoer, som leveres af Youtube, Dailymotion, Vimeo, Wat or Wideo.';
+$lang['Embed code'] = 'Indlejringskode';
+$lang['Please fill the embed code'] = 'Udfyld indlejringskode';
+$lang['This video was already registered'] = 'Videoen var allerede registreret';
+$lang['Videos'] = 'Videoer';
+$lang['Width and height must be integers'] = 'Bredde og højde skal være heltal';
+$lang['optional'] = 'valgfri';
