@@ -54,4 +54,12 @@ $lang['Videos can be unlisted and private if the gallery website is within the a
 $lang['Videos can be private if you use the private permalink.'] = 'Τα βίντεο μπορούν να είναι ιδιωτικά, αν χρησιμοποιείτε το ιδιωτικό permalink.';
 $lang['Show privacy details'] = 'Δείξτε λεπτομέρειες ιδιωτικού χώρου';
 $lang['No privacy option.'] = 'Χωρίς επιλογή ιδιωτικού χώρου';
-?>
+$lang['optional'] = 'προαιρετικό';
+$lang['Width and height must be integers'] = 'Το πλάτος και το ύψος πρέπει να είναι ακέραιοι';
+$lang['Videos'] = 'Βίντεο';
+$lang['This video was already registered'] = 'Αυτό το βίντεο είχε ήδη καταχωρηθεί';
+$lang['Please fill the embed code'] = 'Παρακαλούμε συμπληρώστε τον ενσωματωμένο κώδικα';
+$lang['Embed code'] = 'Ενσωματωμένος κώδικας';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Μην χρησιμοποιήσετε τη φόρμα για βίντεο που παρέχονται από το YouTube, Dailymotion, Vimeo, Wat ή Wideo.';
+$lang['Add video from hosting platform'] = 'Προσθήκη βίντεο από την πλατφόρμα φιλοξενίας';
+$lang['Add video from embed code'] = 'Προσθήκη βίντεο από ενσωματωμένο κώδικα';
