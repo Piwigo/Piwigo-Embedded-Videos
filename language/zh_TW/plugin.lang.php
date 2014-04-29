@@ -54,4 +54,12 @@ $lang['Safe-mode'] = '安全模式';
 $lang['Show privacy details'] = '顯示隱私詳細資料';
 $lang['Supported services'] = '支持服務';
 $lang['The thumbnail was updated'] = '縮略圖已更新';
-?>
+$lang['Add video from embed code'] = '添加影片從嵌入代碼';
+$lang['Add video from hosting platform'] = '添加影片從主機平台';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = '提供的影片不要使用Youtube, Dailymotion, Vimeo, Wat 或 Wideo';
+$lang['Embed code'] = '嵌入代碼';
+$lang['Please fill the embed code'] = '請填寫嵌入代碼';
+$lang['This video was already registered'] = '該影片已經註冊';
+$lang['Videos'] = '影片';
+$lang['Width and height must be integers'] = '寬度和高度必須是整數';
+$lang['optional'] = '可選';
