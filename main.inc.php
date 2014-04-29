@@ -28,7 +28,7 @@ if (defined('IN_ADMIN'))
   add_event_handler('tabsheet_before_select','gvideo_tab', EVENT_HANDLER_PRIORITY_NEUTRAL+10, 2);
   
   add_event_handler('get_batch_manager_prefilters', 'gvideo_add_prefilter');
-  add_event_handler('perform_batch_manager_prefilters', 'gvideo_apply_prefilter');
+  add_event_handler('perform_batch_manager_prefilters', 'gvideo_apply_prefilter', EVENT_HANDLER_PRIORITY_NEUTRAL, 2);
 }
 
 add_event_handler('delete_elements', 'gvideo_delete_elements');
