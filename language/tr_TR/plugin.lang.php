@@ -54,4 +54,12 @@ $lang['Videos can be unlisted but not private.'] = 'Videolar listelenmeyebilir a
 $lang['Show privacy details'] = 'Gizlilik detaylarını göster';
 $lang['No privacy option.'] = 'Gizlilik seçeneği bulunmuyor.';
 $lang['Videos can be private if you use the private permalink.'] = 'Eğer kişisel kalıcı bağlantıları kullanıyorsanız Videolar kişisel olabilir.';
-?>
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Bu formu Youtube, Dailymotion, Vimeo, Wat yada Wideo videoları için kullanmayın.';
+$lang['Add video from hosting platform'] = 'Barındırıcı platformdan video ekle';
+$lang['Add video from embed code'] = 'Gömülü koddan video ekle';
+$lang['Embed code'] = 'Gömülü kod';
+$lang['Please fill the embed code'] = 'Lütfen gömülü kodu doldurun';
+$lang['This video was already registered'] = 'Bu video zaten kaydedilmişti';
+$lang['optional'] = 'opsiyonel';
+$lang['Width and height must be integers'] = 'Genişlik ve yükseklik tamsayı olmalı';
+$lang['Videos'] = 'Videolar';
