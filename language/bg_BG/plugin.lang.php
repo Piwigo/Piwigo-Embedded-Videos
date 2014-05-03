@@ -55,4 +55,12 @@ $lang['Videos can be unlisted and private if the gallery website is within the a
 $lang['Videos can be private if you use the private permalink.'] = 'Видеото може и да е "private" ако ползвате съответния линк.';
 $lang['Show privacy details'] = 'Показване на подробности за поверителността';
 $lang['No privacy option.'] = 'Няма опция за поверителност.';
-?>
+$lang['optional'] = 'незадължително';
+$lang['Width and height must be integers'] = 'Размерите трябва да са цели числа.';
+$lang['Videos'] = 'Видеа';
+$lang['This video was already registered'] = 'Това видео вече е регистрирано.';
+$lang['Please fill the embed code'] = 'Моля, попълнете кода за вграждане.';
+$lang['Embed code'] = 'Код за вграждане';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Не използвайте това поле за качване на видеа от Youtube, Dailymotion, Vimeo, Wat or Wideo.';
+$lang['Add video from hosting platform'] = 'Добави видео от отдалечен хостинг';
+$lang['Add video from embed code'] = 'Добави видео от кода за вграждане';
