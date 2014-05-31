@@ -21,7 +21,7 @@
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
 $lang['Add a video'] = '添加一个视频';
-$lang['Add film effect'] = '添加电影效果';
+$lang['Add film effect'] = '添加视频特效';
 $lang['Author name'] = '作者姓名';
 $lang['Author portrait'] = '作者头像';
 $lang['Autoplay'] = '自动播放';
@@ -47,11 +47,19 @@ $lang['Get video tags'] = '获取视频标签';
 $lang['Vimeo player'] = 'Vimeo 播放器';
 $lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = '在安全模式下，此插件不会尝试连接视频主机，这对那些屏蔽了远程连接的站点非常有用。';
 $lang['Safe-mode'] = '安全模式';
-$lang['Try in safe-mode'] = '尝试用安全模式';
+$lang['Try in safe-mode'] = '在安全模式下尝试';
 $lang['Video properties'] = '视频属性';
-$lang['No privacy option.'] = '没有隐私选项';
+$lang['No privacy option.'] = '无隐私选项。';
 $lang['Show privacy details'] = '显示隐私详情';
-$lang['Videos can be private if you use the private permalink.'] = '如果你使用私有固定链接视频可成为私有的';
-$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = '如果相册网站是在授权域名(PRO)内，视频可成为未发布和私有的';
-$lang['Videos can be unlisted but not private.'] = '视频可成为未发布但并不私有';
-?>
+$lang['Videos can be private if you use the private permalink.'] = '如果使用非公开固定链接，视频可能是私密的';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = '如果相册网站是在授权域名(PRO)内，视频可能是未发布和私密的';
+$lang['Videos can be unlisted but not private.'] = '视频可能是未发布但非私密的';
+$lang['Width and height must be integers'] = '宽度和高度必须是整数';
+$lang['optional'] = '可选';
+$lang['This video was already registered'] = '此视频已注册';
+$lang['Videos'] = '视频';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = '请勿以此形式使用Youtube, Dailymotion, Vimeo, Wat or Wideo提供的视频。';
+$lang['Embed code'] = '嵌入代码';
+$lang['Please fill the embed code'] = '请填写嵌入代码';
+$lang['Add video from hosting platform'] = '通过主机平台添加视频';
+$lang['Add video from embed code'] = '通过嵌入代码添加视频';
