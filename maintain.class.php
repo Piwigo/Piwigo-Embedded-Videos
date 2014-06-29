@@ -3,8 +3,6 @@ defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
 class gvideo_maintain extends PluginMaintain
 {
-  private $installed = false;
-  
   private $default_conf = array(
     'autoplay' => 0,
     'width' => 640,
@@ -34,7 +32,6 @@ class gvideo_maintain extends PluginMaintain
     global $prefixeTable;
     
     parent::__construct($plugin_id);
-    
     $this->table = $prefixeTable . 'image_video';
   }
 
@@ -45,19 +42,17 @@ class gvideo_maintain extends PluginMaintain
     // add config parameter
     if (empty($conf['gvideo']))
     {
-      $conf['gvideo'] = serialize($this->default_conf);
-      conf_update_param('gvideo', $conf['gvideo']);
+      conf_update_param('gvideo', $this->default_conf, true);
     }
     else
     {
-      $old_conf = is_string($conf['gvideo']) ? unserialize($conf['gvideo']) : $conf['gvideo'];
+      $conf['gvideo'] = safe_unserialize($conf['gvideo']);
 
-      if (!isset($old_conf['sync_description']))
+      if (!isset($conf['gvideo']['sync_description']))
       {
-        $old_conf['sync_description'] = 1;
-        $old_conf['sync_tags'] = 1;
+        $conf['gvideo']['sync_description'] = 1;
+        $conf['gvideo']['sync_tags'] = 1;
         
-        $conf['gvideo'] = serialize($old_conf);
         conf_update_param('gvideo', $conf['gvideo']);
       }
     }
@@ -111,20 +106,11 @@ UPDATE `' . IMAGES_TABLE . '`
     
     // updade video files
     $this->update_24();
-
-    $this->installed = true;
   }
 
-  function activate($plugin_version, &$errors=array())
+  function update($old_version, $new_version, &$errors=array())
   {
-    if (!$this->installed)
-    {
-      $this->install($plugin_version, $errors);
-    }
-  }
-
-  function deactivate()
-  {
+    $this->install($new_version, $errors);
   }
 
   function uninstall()

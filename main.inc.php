@@ -10,17 +10,22 @@ Author URI: http://www.strangeplanet.fr
 
 defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
-global $prefixeTable;
+global $prefixeTable, $conf;
 
 define('GVIDEO_ID',      basename(dirname(__FILE__)));
 define('GVIDEO_PATH',    PHPWG_PLUGINS_PATH . GVIDEO_ID . '/');
 define('GVIDEO_ADMIN',   get_root_url() . 'admin.php?page=plugin-' . GVIDEO_ID);
 define('GVIDEO_TABLE',   $prefixeTable.'image_video');
-define('GVIDEO_VERSION', 'auto');
+
+include_once(GVIDEO_PATH . 'include/events.inc.php');
 
 
-add_event_handler('init', 'gvideo_init');
+$conf['gvideo'] = safe_unserialize($conf['gvideo']);
+
+
 add_event_handler('picture_pictures_data', 'gvideo_prepare_picture');
+
+add_event_handler('delete_elements', 'gvideo_delete_elements');
 
 if (defined('IN_ADMIN'))
 {
@@ -31,24 +36,6 @@ if (defined('IN_ADMIN'))
   add_event_handler('perform_batch_manager_prefilters', 'gvideo_apply_prefilter', EVENT_HANDLER_PRIORITY_NEUTRAL, 2);
 }
 
-add_event_handler('delete_elements', 'gvideo_delete_elements');
-
-include_once(GVIDEO_PATH . 'include/events.inc.php');
-
-
-/**
- * init
- */
-function gvideo_init()
-{
-  global $conf;
-  
-  include_once(GVIDEO_PATH . 'maintain.inc.php');
-  $maintain = new gvideo_maintain(GVIDEO_ID);
-  $maintain->autoUpdate(GVIDEO_VERSION, 'install');
-  
-  $conf['gvideo'] = unserialize($conf['gvideo']);
-}
 
 /**
  * admin plugins menu

@@ -26,7 +26,7 @@ if (isset($_POST['save_config']))
     'videobb' => array(),
     );
   
-  conf_update_param('gvideo', serialize($conf['gvideo']));
+  conf_update_param('gvideo', $conf['gvideo']);
   $page['infos'][] = l10n('Information data registered in database');
 }
 
