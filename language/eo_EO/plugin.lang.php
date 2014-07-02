@@ -60,3 +60,6 @@ $lang['Please fill the embed code'] = 'Bonvolu plenigi la enkorpiga kodo';
 $lang['Supported services'] = 'Subtenataj servoj';
 $lang['This element is a video added with "Embedded Video"'] = 'Tiu ero estas videaĵon aldonitan per "Enkorpigita Videaĵo"';
 $lang['Videos'] = 'Videaĵoj';
+$lang['Changing the url will reset video description, name and thumbnail'] = 'Ŝanĝi la retadreson forviŝos la priskribon, nomon kaj miniaturon de la video';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Dum la sendanĝera reĝimo, la kromaĵo ne provas kontakti la video-gastiganto, kio montriĝas utila por iuj retejoj, kies deforaj atingoj estas blokitaj.';
+$lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'La videoj povas esti nelistigitaj kaj privataj se la galeri-retejo troviĝas ene de la permesitaj domajnoj (PRO).';
