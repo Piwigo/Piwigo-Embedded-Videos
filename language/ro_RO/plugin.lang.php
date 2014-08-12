@@ -60,3 +60,5 @@ $lang['Embed code'] = 'Cod incorporat';
 $lang['Change'] = 'Schimba';
 $lang['Autoplay'] = 'Porneste automat';
 $lang['Add video from embed code'] = 'Adauga video cu cod incorporat';
+$lang['No privacy option.'] = 'Nu exista optiunea pentru intimitate.';
+$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'In safe-mode pluginul nu va incerca sa contacteze gazda video-ului, acest lucru este util in cazul webiste-urilor unde conexiunile de tip "remote" sunt blocate';
