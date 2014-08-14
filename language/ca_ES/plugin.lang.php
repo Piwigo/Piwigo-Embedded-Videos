@@ -54,4 +54,12 @@ $lang['Show privacy details'] = 'Mostra els detalls privats';
 $lang['Videos can be private if you use the private permalink.'] = 'Els vídeos poden ser privats si utilitzeu l\'enllaç permanent privat';
 $lang['Videos can be unlisted but not private.'] = 'Els vídeos poden no llistar-se però no poden ser privats.';
 $lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'Els videos poden estar fora de la llista i ser privats si el domini de la galeria pertany als dominis autoritzats (PRO).';
-?>
+$lang['Add video from embed code'] = 'Afegiu vídeo des de codi embegut';
+$lang['Add video from hosting platform'] = 'Afegiu vídeo des de plataforma d\'allotjament';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'No utilitzeu aquest formulari per vídeos proporcionats per Youtube, Dailymotion, Vimeo, Wat o Wideo.';
+$lang['Embed code'] = 'Codi embegut';
+$lang['Please fill the embed code'] = 'Si us plau, completeu el codi embegut';
+$lang['This video was already registered'] = 'Aquest vídeo ja està registrat';
+$lang['Videos'] = 'Videos';
+$lang['Width and height must be integers'] = 'Amplada i alçada han de ser nombres sencers';
+$lang['optional'] = 'opcional';
