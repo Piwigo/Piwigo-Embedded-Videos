@@ -114,6 +114,11 @@ function parse_video_url($source_url, $safe_mode=false)
             'author' => $json['author_name'],
             ));
         }
+        
+        if ($video['thumbnail'] == 'http://i.vimeocdn.com/video/default_640')
+        {
+          $video['thumbnail'] = 'http://i.vimeocdn.com/video/default_640.jpg';
+        }
       }
       
       break;
