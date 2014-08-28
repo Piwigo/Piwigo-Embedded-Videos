@@ -54,4 +54,12 @@ $lang['Videos can be unlisted and private if the gallery website is within the a
 $lang['Videos can be unlisted but not private.'] = 'Videod võivad olla nimekirjavälised, aga mitte privaatsed.';
 $lang['This element is a video added with "Embedded Video"'] = 'Antud element on video, lisatud "Embedded Video" poolt.';
 $lang['Videos can be private if you use the private permalink.'] = 'Privaatset permalinki kasutades on videod privaatsed.';
-?>
+$lang['Add video from embed code'] = 'Lisa video embed koodist';
+$lang['Add video from hosting platform'] = 'Lisa video haldusplatvormist';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Ära kasuta seda vormi Youtube\'i, Dailimotion\'i, Vimeo, Wat or Wideo\'s jaoks.';
+$lang['Embed code'] = 'embed kood';
+$lang['Please fill the embed code'] = 'Palun täida embed kood';
+$lang['This video was already registered'] = 'See video on juba registreeritud';
+$lang['Videos'] = 'Videod';
+$lang['Width and height must be integers'] = 'Kõrgus ja laius peavad olema täisnumbrid';
+$lang['optional'] = 'valikuline';
