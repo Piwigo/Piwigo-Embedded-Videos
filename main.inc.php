@@ -66,10 +66,12 @@ SELECT *
   if (!pwg_db_num_rows($result)) return $sheets;
   
   global $gvideo, $page;
+  
+  load_language('plugin.lang', GVIDEO_PATH);
 
   if ($page['tab'] == 'properties')
   {
-    $page['infos'][] = 'This element is a video added with "Embedded Video"';
+    $page['infos'][] = l10n('This element is a video added with "Embedded Video"');
   }
   
   $gvideo = pwg_db_fetch_assoc($result);

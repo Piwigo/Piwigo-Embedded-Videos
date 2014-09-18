@@ -55,27 +55,25 @@ if (isset($_POST['save_properties']))
     }
     else if ($gvideo['url']!=$_POST['url'])
     {
-      if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
+      if ( ($video = parse_video_url($_POST['url'], $safe_mode)) === false )
       {
-        if (isset($_POST['safe_mode']))
-        {
-          $page['errors'][] = l10n('an error happened');
-        }
-        else
-        {
-          $page['errors'][] = l10n('Unable to contact host server');
-          $page['errors'][] = l10n('Try in safe-mode');
-        }
+        $page['errors'][] = l10n('an error happened');
       }
     }
     else
     {
+      $safe_mode = false;
       $video = $gvideo;
     }
     
     if (count($page['errors']) == 0)
     {
-
+      if ($safe_mode === true)
+      {
+        $page['warnings'][] = l10n('Unable to contact host server');
+        $page['warnings'][] = l10n('Video data like description and thumbnail might be missing');
+      }
+      
       if ($gvideo['url'] != $video['url'])
       {
         // download thumbnail

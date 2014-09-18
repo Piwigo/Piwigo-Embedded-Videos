@@ -3,12 +3,12 @@ defined('GVIDEO_PATH') or die('Hacking attempt!');
 
 global $template, $page, $conf;
 
-load_language('plugin.lang', GVIDEO_PATH);
-
 $page['tab'] = (isset($_GET['tab'])) ? $_GET['tab'] : $page['tab'] = 'add';
 
 if ($page['tab'] != 'photo')
 {
+  load_language('plugin.lang', GVIDEO_PATH);
+  
   // tabsheet
   include_once(PHPWG_ROOT_PATH.'admin/include/tabsheet.class.php');
   $tabsheet = new tabsheet();

@@ -25,9 +25,6 @@ $lang['Get video description'] = 'Get video description';
 $lang['Get video tags'] = 'Get video tags';
 $lang['Vimeo player'] = 'Vimeo player';
 $lang['Dailymotion player'] = 'Dailymotion player';
-$lang['Try in safe-mode'] = 'Try in safe-mode';
-$lang['Safe-mode'] = 'Safe-mode';
-$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.';
 $lang['Video properties'] = 'Video properties';
 $lang['Show privacy details'] = 'Show privacy details';
 $lang['Videos can be unlisted but not private.'] = 'Videos can be unlisted but not private.';
@@ -43,5 +40,5 @@ $lang['This video was already registered'] = 'This video was already registered'
 $lang['Videos'] = 'Videos';
 $lang['Width and height must be integers'] = 'Width and height must be integers';
 $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.';
-
+$lang['Video data like description and thumbnail might be missing'] = 'Video data like description and thumbnail might be missing';
 ?>

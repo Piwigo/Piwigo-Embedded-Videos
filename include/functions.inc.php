@@ -1,7 +1,7 @@
 <?php
 defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
-function parse_video_url($source_url, $safe_mode=false)
+function parse_video_url($source_url, &$safe_mode=false)
 {
   $source_url = 'http://'.preg_replace('#^http(s?)://#', null, trim($source_url));
   
@@ -45,12 +45,15 @@ function parse_video_url($source_url, $safe_mode=false)
       $video['url'] = 'http://youtube.com/watch?v='.$video['video_id'];
       $video['title'] = 'YouTube #'.$video['video_id'];
       
-      if (!$safe_mode)
+      $api_url = 'http://gdata.youtube.com/feeds/api/videos/'.$video['video_id'].'?v=2&alt=json';
+      $json = gvideo_download_remote_file($api_url, true);
+      
+      if ($json===false || $json=='file_error')
       {
-        $api_url = 'http://gdata.youtube.com/feeds/api/videos/'.$video['video_id'].'?v=2&alt=json';
-        $json = gvideo_download_remote_file($api_url, true);
-        
-        if ($json===false || $json=='file_error') return false;
+        $safe_mode = true;
+      }
+      else
+      {
         if (strip_tags($json) == 'GDataInvalidRequestUriExceptionInvalid id') return false; // unknown video
         if (strip_tags($json) == 'GDataServiceForbiddenExceptionPrivate video') return false; // private video
         
@@ -81,13 +84,17 @@ function parse_video_url($source_url, $safe_mode=false)
       $video['url'] = 'http://vimeo.com/'.$video['video_id'];
       $video['title'] = 'Vimeo #'.$video['video_id'];
       
-      if (!$safe_mode)
+      // simple API for public videos
+      $api_url_1 = 'http://vimeo.com/api/v2/video/'.$video['video_id'].'.json';
+      $json = gvideo_download_remote_file($api_url_1, true);
+      
+      if ($json===false || $json=='file_error')
       {
-        // simple API for public videos
-        $api_url_1 = 'http://vimeo.com/api/v2/video/'.$video['video_id'].'.json';
-        $json = gvideo_download_remote_file($api_url_1, true);
-        
-        if ($json!==false && $json!='file_error' && trim($json)!=$video['video_id'].' not found.')
+        $safe_mode = true;
+      }
+      else
+      {
+        if (trim($json)!=$video['video_id'].' not found.')
         {
           $json = json_decode($json, true);
           $video = array_merge($video, array(
@@ -104,17 +111,23 @@ function parse_video_url($source_url, $safe_mode=false)
           $api_url_2 = 'http://vimeo.com/api/oembed.json?url='.rawurlencode($video['url']);
           $json = gvideo_download_remote_file($api_url_2, true);
           
-          if ($json===false || $json=='file_error') return false;
-          
-          $json = json_decode($json, true);
-          $video = array_merge($video, array(
-            'title' => $json['title'],
-            'description' => $json['description'],
-            'thumbnail' => $json['thumbnail_url'],
-            'author' => $json['author_name'],
-            ));
+          if ($json===false || $json=='file_error')
+          {
+            $safe_mode = true;
+          }
+          else
+          {
+            $json = json_decode($json, true);
+            $video = array_merge($video, array(
+              'title' => $json['title'],
+              'description' => $json['description'],
+              'thumbnail' => $json['thumbnail_url'],
+              'author' => $json['author_name'],
+              ));
+          }
         }
         
+        // default thumbnail has no extension
         if ($video['thumbnail'] == 'http://i.vimeocdn.com/video/default_640')
         {
           $video['thumbnail'] = 'http://i.vimeocdn.com/video/default_640.jpg';
@@ -145,21 +158,23 @@ function parse_video_url($source_url, $safe_mode=false)
       $video['url'] = 'http://dailymotion.com/video/'.$video['video_id'];
       $video['title'] = 'Dailymotion #'.$video['video_id'];
       
-      if (!$safe_mode)
+      $api_url = 'https://api.dailymotion.com/video/'.$video['video_id'].'?fields=description,thumbnail_large_url,title,owner.username,tags'; // DM doesn't accept non secure connection
+      $json = gvideo_download_remote_file($api_url, true);
+        
+      if ($json===false || $json=='file_error')
       {
-        $api_url = 'https://api.dailymotion.com/video/'.$video['video_id'].'?fields=description,thumbnail_large_url,title,owner.username,tags'; // DM doesn't accept non secure connection
-        $json = gvideo_download_remote_file($api_url, true);
-        
-        if ($json===false || $json=='file_error') return false;
-        
+        $safe_mode = true;
+      }
+      else
+      {
         $json = json_decode($json, true);
+        
         if (@$json['error']['type'] == 'access_forbidden') return false; // private video
-        $json['thumbnail_large_url'] = preg_replace('#\?([0-9]+)$#', null, $json['thumbnail_large_url']);
         
         $video = array_merge($video, array(
           'title' => $json['title'],
           'description' => $json['description'],
-          'thumbnail' => $json['thumbnail_large_url'],
+          'thumbnail' => preg_replace('#\?([0-9]+)$#', null, $json['thumbnail_large_url']),
           'author' => $json['owner.username'],
           'tags' => implode(',', $json['tags']),
           ));
@@ -169,13 +184,15 @@ function parse_video_url($source_url, $safe_mode=false)
     }
       
     /* wat */
+    // URL doesn't contain ID... require to contact host
     case 'wat':
     {
-      if ($safe_mode) return false;
-      
       $html = gvideo_download_remote_file($source_url, true);
 
-      if ($html===false || $html=='file_error') return false;
+      if ($json===false || $json=='file_error')
+      {
+        return false;
+      }
       
       $video['type'] = 'wat';
       $video['url'] = $source_url;
@@ -213,12 +230,14 @@ function parse_video_url($source_url, $safe_mode=false)
       $video['url'] = 'http://wideo.fr/video/'.$video['video_id'].'.html';
       $video['title'] = 'Wideo #'.$video['video_id'];
       
-      if (!$safe_mode)
+      $html = gvideo_download_remote_file($source_url, true);
+        
+      if ($json===false || $json=='file_error')
       {
-        $html = gvideo_download_remote_file($source_url, true);
-        
-        if ($html===false || $html=='file_error') return false;
-        
+        $safe_mode = true;
+      }
+      else
+      {
         preg_match('#<meta property="og:title" content="([^">]*)" />#', $html, $matches);
         $video['title'] = $matches[1];
         

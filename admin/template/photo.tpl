@@ -107,8 +107,6 @@ jQuery("input[name='url']").keyup(function() {
     {/if}
     
     <p style="margin:0;">
-      {if $GVIDEO.type != 'embed'}<label style="font-weight:bold;"><input type="checkbox" name="safe_mode"> {'Safe-mode'|translate}</label>
-      <br>{/if}
       <input class="submit" type="submit" value="{'Save Settings'|translate}" name="save_properties">
     </p>
   </fieldset>

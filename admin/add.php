@@ -17,22 +17,18 @@ if (isset($_POST['add_video']))
     {
       $page['errors'][] = l10n('Please fill the video URL');
     }
-    else if ( ($video = parse_video_url($_POST['url'], isset($_POST['safe_mode']))) === false )
+    else if ( ($video = parse_video_url($_POST['url'], $safe_mode)) === false )
     {
-      if (isset($_POST['safe_mode']))
-      {
-        $page['errors'][] = l10n('an error happened');
-      }
-      else
-      {
-        $page['errors'][] = l10n('Unable to contact host server');
-        $page['errors'][] = l10n('Try in safe-mode');
-      }
-      $_POST['safe_mode'] = true;
+      $page['errors'][] = l10n('an error happened');
     }
-
-    if (count($page['errors']) == 0)
+    else
     {
+      if ($safe_mode === true)
+      {
+        $page['warnings'][] = l10n('Unable to contact host server');
+        $page['warnings'][] = l10n('Video data like description and thumbnail might be missing');
+      }
+      
       if ($_POST['size_common'] == 'true')
       {
         $_POST['width'] = $_POST['height'] = '';
