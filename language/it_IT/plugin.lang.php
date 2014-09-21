@@ -45,9 +45,6 @@ $lang['Dailymotion player'] = 'Player Dailymotion';
 $lang['Get video description'] = 'Preleva la descrizione del video';
 $lang['Get video tags'] = 'Preleva i tag del video';
 $lang['Vimeo player'] = 'Player Vimeo';
-$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'In safe-mode, il plugin non prova a contattare l\'host video, utile su alcuni siti dove le connessioni remote sono bloccate';
-$lang['Safe-mode'] = 'Safe-mode';
-$lang['Try in safe-mode'] = 'Prova in safe-mode';
 $lang['Video properties'] = 'Proprietà video';
 $lang['Videos can be unlisted but not private.'] = 'I video possono essere non elencati ma non privati.';
 $lang['Videos can be unlisted and private if the gallery website is within the authorized domains (PRO).'] = 'I video possono essere non elencati e privati se il sito galleria è all\'interno dei domini autorizzati (PRO).';
@@ -63,3 +60,4 @@ $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, 
 $lang['Add video from hosting platform'] = 'Aggiungi video da piattaforma di hosting';
 $lang['Videos'] = 'Video';
 $lang['optional'] = 'opzionale';
+$lang['Video data like description and thumbnail might be missing'] = 'I dati video come descrizione e miniatura potrebbero mancare';
