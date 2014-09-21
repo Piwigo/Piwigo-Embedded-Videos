@@ -21,7 +21,6 @@
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
 $lang['This element is a video added with "Embedded Video"'] = 'Dette elementet er ein video lagt til med tilleggsprogrammet "Embedded Video"';
-$lang['Try in safe-mode'] = 'Prøv i sikkermodus';
 $lang['Unable to contact host server'] = 'Greier ikkje å få kontakt med videoserver';
 $lang['Upload a new thumbnail'] = 'Last opp eit nytt miniatyrbilete';
 $lang['Use common setting'] = 'Bruk felles innstillingar';
@@ -46,12 +45,19 @@ $lang['Common configuration'] = 'Felles konfigurering';
 $lang['Dailymotion player'] = 'Daylymotion spelar';
 $lang['Get video description'] = 'Hent video opplysningar';
 $lang['Get video tags'] = 'Hent stikkord';
-$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'I sikkermodus, vil ikkje tilleggsprogrammet ta kontakt med videoserveren - dette er nyttig på nettstader der tilkoplingar til andre serverar er blokkera.';
 $lang['Logo'] = 'Logo';
 $lang['No privacy option.'] = 'Ingen personverninnstillingar';
 $lang['Please fill the video URL'] = 'Skriv inn URL til video';
-$lang['Safe-mode'] = 'Sikkermodus';
 $lang['Show privacy details'] = 'Vis personverninnstillingar';
 $lang['Supported services'] = 'Støtta tenestar';
 $lang['The thumbnail was updated'] = 'Miniatyrbilete er oppdatera';
-?>
+$lang['Add video from embed code'] = 'Legg til video frå innbaka kode (embedded code)';
+$lang['Add video from hosting platform'] = 'Legg til video frå ein server';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Ikkje bruk dette skjema for videoar frå Youtube, Dailymotion, Vimeo, Wat eller Wideo.';
+$lang['Embed code'] = 'Bak inn kode (embed code)';
+$lang['Please fill the embed code'] = 'Fyll inn innbaka kode (embedded code)';
+$lang['This video was already registered'] = 'Denne videoen er allereie registrera';
+$lang['Video data like description and thumbnail might be missing'] = 'Videoinformasjon som skildring eller miniatyrbilete kan mangle';
+$lang['Videos'] = 'Videoar';
+$lang['Width and height must be integers'] = 'Breidde og høgde må vera heiltal';
+$lang['optional'] = 'ekstra';
