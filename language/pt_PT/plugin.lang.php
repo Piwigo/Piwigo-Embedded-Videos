@@ -44,9 +44,6 @@ $lang['Video successfully updated'] = 'Video atualizado com sucesso';
 $lang['Dailymotion player'] = 'Execução diária';
 $lang['Get video description'] = 'Obter descrição do video';
 $lang['Get video tags'] = 'Obter etiquetas do video';
-$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Em modo seguro, a extenção não tentou contactar o alojador do video, ocorrência caracteristica quando as ligações estão bloqueadas';
-$lang['Safe-mode'] = 'Modo seguro';
-$lang['Try in safe-mode'] = 'Tentar em modo seguro';
 $lang['Video properties'] = 'Propriedades video';
 $lang['Vimeo player'] = 'Executar Vimeo';
 $lang['No privacy option.'] = 'Sem opção privada';
@@ -63,3 +60,4 @@ $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, 
 $lang['Embed code'] = 'Código embutido';
 $lang['Add video from hosting platform'] = 'Adicionar vídeo desde uma plataforma de hosting';
 $lang['Add video from embed code'] = 'Adicionar video desde um código embutido';
+$lang['Video data like description and thumbnail might be missing'] = 'Dados de video, como a descrição e miniatura foram esquecidos.';
