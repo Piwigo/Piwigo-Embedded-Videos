@@ -10,11 +10,21 @@ Author URI: http://www.strangeplanet.fr
 
 defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
+if (basename(dirname(__FILE__)) != 'gvideo')
+{
+  add_event_handler('init', 'gvideo_error');
+  function gvideo_error()
+  {
+    global $page;
+    $page['errors'][] = 'Embedded Videos folder name is incorrect, uninstall the plugin and rename it to "gvideo"';
+  }
+  return;
+}
+
 global $prefixeTable, $conf;
 
-define('GVIDEO_ID',      basename(dirname(__FILE__)));
-define('GVIDEO_PATH',    PHPWG_PLUGINS_PATH . GVIDEO_ID . '/');
-define('GVIDEO_ADMIN',   get_root_url() . 'admin.php?page=plugin-' . GVIDEO_ID);
+define('GVIDEO_PATH',    PHPWG_PLUGINS_PATH . 'gvideo/');
+define('GVIDEO_ADMIN',   get_root_url() . 'admin.php?page=plugin-gvideo');
 define('GVIDEO_TABLE',   $prefixeTable.'image_video');
 
 include_once(GVIDEO_PATH . 'include/events.inc.php');
