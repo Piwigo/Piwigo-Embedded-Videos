@@ -21,7 +21,6 @@
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
 $lang['This element is a video added with "Embedded Video"'] = 'Video này là để nhúng vào các bài viết';
-$lang['Try in safe-mode'] = 'Thử với safe-mode (chế độ an toàn)';
 $lang['Unable to contact host server'] = 'Không thể kết nối tới máy lưu trữ video';
 $lang['Upload a new thumbnail'] = 'Tải lên hình đại diện mới';
 $lang['Use common setting'] = 'Dùng thiết lập chung';
@@ -45,11 +44,9 @@ $lang['Color'] = 'Màu';
 $lang['Common configuration'] = 'Thiết lập chung';
 $lang['Get video description'] = 'Lấy mô tả của video';
 $lang['Get video tags'] = 'Lấy thẻ mô tả video';
-$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Ở safe-mode sẽ không có tuơng tác với máy lưu trữ video (có ích khi một số máy chủ chặn kết nối)';
 $lang['Logo'] = 'Logo';
 $lang['No privacy option.'] = 'Không có chính sách bảo vệ';
 $lang['Please fill the video URL'] = 'Hãy cho biết địa chỉ video';
-$lang['Safe-mode'] = 'Safe-mode (chế độ an toàn)';
 $lang['Show privacy details'] = 'Chi tiết về chính sách bảo vệ';
 $lang['Supported services'] = 'Dịch vụ có hỗ trợ';
 $lang['The thumbnail was updated'] = 'Đã cập nhật bản demo';
@@ -63,3 +60,4 @@ $lang['This video was already registered'] = 'Video này đã được đăng k�
 $lang['Videos'] = 'Video';
 $lang['Width and height must be integers'] = 'Chiều rộng và chiều cao phải là số nguyên';
 $lang['optional'] = 'tùy chọn';
+$lang['Video data like description and thumbnail might be missing'] = 'Các dữ liệu của video như ảnh đại diện và mô tả có thể bị thiếu';
