@@ -154,7 +154,7 @@ if (isset($_POST['save_properties']))
     {
       $updates = array(
         'url' => $_POST['url'],
-        'embed' => stripslashes($_POST['embed_code']),
+        'embed' => $_POST['embed_code'],
         );
     }
   }
@@ -231,7 +231,7 @@ if (function_exists('imagecreatetruecolor'))
 
 $template->assign(array(
   'F_ACTION' => $self_url,
-  'GVIDEO' => $gvideo,
+  'GVIDEO' => array_map('stripslashes', $gvideo),
   'TN_SRC' => DerivativeImage::thumb_url($picture).'?'.time(),
   'TITLE' => render_element_name($picture),
 ));

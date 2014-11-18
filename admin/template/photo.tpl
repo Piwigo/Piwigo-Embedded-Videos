@@ -102,7 +102,7 @@ jQuery("input[name='url']").keyup(function() {
     {else}
     <p>
       <b>{'Embed code'|translate}</b><br>
-      <textarea name="embed_code" style="width:400px;height:80px;">{$GVIDEO.embed}</textarea>
+      <textarea name="embed_code" style="width:600px;height:160px;">{$GVIDEO.embed}</textarea>
     </p>
     {/if}
     

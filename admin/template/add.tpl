@@ -69,7 +69,7 @@ jQuery(".radio input").on('change', function() {
     <li class="embed-show provider-hide">
       <label>
         <span class="property">{'Embed code'|translate}</span>
-        <textarea name="embed_code" style="width:400px;height:80px;">{$POST.embed_code}</textarea>
+        <textarea name="embed_code" style="width:600px;height:160px;">{$POST.embed_code}</textarea>
       </label>
     </li>
     <li class="embed-show {if $gd_available}provider-show{else}provider-hide{/if}">
