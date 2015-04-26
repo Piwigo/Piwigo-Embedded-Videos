@@ -21,7 +21,6 @@
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
 $lang['This element is a video added with "Embedded Video"'] = 'Det här elementet är en video tillagd med "Embedded Video"';
-$lang['Try in safe-mode'] = 'Försök i säkert läge';
 $lang['Unable to contact host server'] = 'Servern kunde inte nås';
 $lang['Upload a new thumbnail'] = 'Ladda upp en ny miniatyr (thumbnail)';
 $lang['Use common setting'] = 'Använd standard inställningar';
@@ -46,11 +45,9 @@ $lang['Common configuration'] = 'Allmän inställning';
 $lang['Dailymotion player'] = 'Uppspelare av dagens film';
 $lang['Get video description'] = 'Inhämta filmbeskrivning';
 $lang['Get video tags'] = 'Inhämta filmtaggar';
-$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'Plugginen försöker inte kontakta video källan i safe-mode, detta är användbart på vissa websidor som inte tillåter anslutningar utifrån (från andra URL).';
 $lang['Logo'] = 'Logotyp';
 $lang['No privacy option.'] = 'Ingen sekretess vald.';
 $lang['Please fill the video URL'] = 'Vänligen fyll i filmens URL';
-$lang['Safe-mode'] = 'Säkert-läge';
 $lang['Show privacy details'] = 'Visa sekretess information';
 $lang['Supported services'] = 'funktions stöd';
 $lang['The thumbnail was updated'] = 'miniatyr bilden (thumbnail) uppdaterad';
@@ -63,3 +60,4 @@ $lang['This video was already registered'] = 'Den här videon är redan registre
 $lang['Videos'] = 'Videos';
 $lang['Width and height must be integers'] = 'Höjd och bredd måste vara heltal';
 $lang['optional'] = 'valfritt';
+$lang['Video data like description and thumbnail might be missing'] = 'Information så som beskrivning och miniatyr kanske saknas';
