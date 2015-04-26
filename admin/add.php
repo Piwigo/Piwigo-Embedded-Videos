@@ -10,7 +10,11 @@ if (isset($_POST['add_video']))
   $_POST['url'] = trim($_POST['url']);
   $_POST['add_film_frame'] = isset($_POST['add_film_frame']);
   
-  if ($_POST['mode'] == 'provider')
+  if (empty($_POST['category']))
+  {
+    $page['errors'][] = l10n('Select an album');
+  } 
+  else if ($_POST['mode'] == 'provider')
   {
     // check inputs
     if (empty($_POST['url']))
@@ -83,23 +87,6 @@ SELECT id, name, permalink
     unset($_POST);
   }
 }
-
-// categories
-$query = '
-SELECT id, name, uppercats, global_rank
-  FROM '.CATEGORIES_TABLE.'
-;';
-display_select_cat_wrapper($query, array(), 'category_parent_options');
-
-// upload limit
-$upload_max_filesize = min(
-  get_ini_size('upload_max_filesize'),
-  get_ini_size('post_max_size')
-  );
-$upload_max_filesize_shorthand = 
-  ($upload_max_filesize == get_ini_size('upload_max_filesize')) ?
-  get_ini_size('upload_max_filesize', false) :
-  get_ini_size('post_max_filesize', false);
   
 if (!isset($_POST['safe_mode']))
 {
@@ -108,11 +95,10 @@ if (!isset($_POST['safe_mode']))
 
 // template
 $template->assign(array(
-  'upload_max_filesize' => $upload_max_filesize,
-  'upload_max_filesize_shorthand' => $upload_max_filesize_shorthand,
   'gd_available' => function_exists('imagecreatetruecolor'),
   'gvideo' => $conf['gvideo'],
   'POST' => @$_POST,
+  'CACHE_KEYS' => get_admin_client_cache_keys(array('categories')),
   ));
 
 $template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'admin/template/add.tpl'));

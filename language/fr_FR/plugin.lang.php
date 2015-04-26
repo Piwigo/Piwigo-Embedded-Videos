@@ -39,6 +39,5 @@ $lang['Please fill the embed code'] = 'Veuilles renseigner le code d\'intégrati
 $lang['This video was already registered'] = 'Cette vidéo existe déjà';
 $lang['Videos'] = 'Vidéos';
 $lang['Width and height must be integers'] = 'Hauteur et largeur doivent être des entiers';
-$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'N\'utilisez pas ce formulaire pour les vidéos hébergées par Youtube, Dailymotion, Vimeo, Wat or Wideo.';
+$lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'N\'utilisez pas ce formulaire pour les vidéos hébergées par Youtube, Dailymotion, Vimeo, Wat ou Wideo.';
 $lang['Video data like description and thumbnail might be missing'] = 'Des données de la vidéo comme sa description ou sa miniature peuvent manquer';
-?>

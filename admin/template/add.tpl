@@ -1,8 +1,28 @@
 {combine_css path=$GVIDEO_PATH|cat:'admin/template/style.css'}
+
+{combine_script id='common' load='footer' path='admin/themes/default/js/common.js'}
+
 {include file='include/colorbox.inc.tpl'}
 {include file='include/add_album.inc.tpl'}
 
+{combine_script id='LocalStorageCache' load='footer' path='admin/themes/default/js/LocalStorageCache.js'}
+
+{combine_script id='jquery.selectize' load='footer' path='themes/default/js/plugins/selectize.min.js'}
+{combine_css id='jquery.selectize' path="themes/default/js/plugins/selectize.{$themeconf.colorscheme}.css"}
+
+
 {footer_script}
+{* <!-- CATEGORIES --> *}
+var categoriesCache = new CategoriesCache({
+  serverKey: '{$CACHE_KEYS.categories}',
+  serverId: '{$CACHE_KEYS._hash}',
+  rootUrl: '{$ROOT_URL}'
+});
+
+categoriesCache.selectize(jQuery('[data-selectize=categories]'));
+
+jQuery('[data-add-album]').pwgAddAlbum();
+
 jQuery("input[data-toggle]").change(function() {
   $('#'+ $(this).data('toggle')).toggle();
 });
@@ -46,31 +66,21 @@ jQuery(".radio input").on('change', function() {
   
   <ul>
     <li>
-      <label>
-        <span class="property">{'Album'|translate}</span>
-        <select style="width:400px" name="category" id="albumSelect" size="1">
-          {html_options options=$category_parent_options selected=$POST.category}
-        </select>
-      </label>
-      {'... or '|translate}<a href="#" class="addAlbumOpen" title="{'create a new album'|translate}">{'create a new album'|translate}</a>
+      <span class="property">{'Album'|translate}</span>
+      <select data-selectize="categories" data-value="{$POST.category}" data-default="first" name="category"></select>
+      {'... or '|translate} <a href="#" data-add-album="category" title="{'create a new album'|@translate}">{'create a new album'|translate}</a>
     </li>
     <li class="embed-show provider-hide">
-      <label>
-        <span class="property">{'Title'|translate}</span>
-        <input type="text"name="title" value="{$POST.title}" style="width:400px;">
-      </label>
+      <span class="property">{'Title'|translate}</span>
+      <input type="text" name="title" value="{$POST.title}" style="width:400px;">
     </li>
     <li>
-      <label>
-        <span class="property">{'Video URL'|translate} <small class="embed-show provider-hide">({'optional'|translate})</small></span>
-        <input type="text" name="url" value="{$POST.url}" style="width:400px;">
-      </label>
+      <span class="property">{'Video URL'|translate} <small class="embed-show provider-hide">({'optional'|translate})</small></span>
+      <input type="text" name="url" value="{$POST.url}" style="width:400px;">
     </li>
     <li class="embed-show provider-hide">
-      <label>
-        <span class="property">{'Embed code'|translate}</span>
-        <textarea name="embed_code" style="width:600px;height:160px;">{$POST.embed_code}</textarea>
-      </label>
+      <span class="property">{'Embed code'|translate}</span>
+      <textarea name="embed_code" style="width:600px;height:160px;">{$POST.embed_code}</textarea>
     </li>
     <li class="embed-show {if $gd_available}provider-show{else}provider-hide{/if}">
       <span class="property">{'Thumbnail'|translate} <small class="embed-show provider-hide">({'optional'|translate})</small></span>

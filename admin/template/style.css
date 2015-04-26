@@ -104,3 +104,8 @@ ul.services li {
     list-style:none;
     margin:0 !important;
   }
+
+.selectize-control {
+  width:400px;
+  display:inline-block;
+}
