@@ -1,1 +1,1 @@
-<iframe src="http://www.youtube-nocookie.com/embed/{$GVIDEO.video_id}?autoplay={$GVIDEO.autoplay}" width="{$GVIDEO.width}" height="{$GVIDEO.height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="https://www.youtube-nocookie.com/embed/{$GVIDEO.video_id}?autoplay={$GVIDEO.autoplay}" width="{$GVIDEO.width}" height="{$GVIDEO.height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>
