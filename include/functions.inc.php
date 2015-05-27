@@ -22,7 +22,11 @@ function parse_video_url($source_url, &$safe_mode=false)
   
   switch ($url['host'][0])
   {
-    /* youtube */
+    /* youtube 
+     * API v2 is closed
+     * API v3 requires authentication
+     * we use oEmbed API which does not contain description and tags
+     */
     case 'youtube':
     {
       parse_str($url['query'], $url['query']);
@@ -45,7 +49,7 @@ function parse_video_url($source_url, &$safe_mode=false)
       $video['url'] = 'http://youtube.com/watch?v='.$video['video_id'];
       $video['title'] = 'YouTube #'.$video['video_id'];
       
-      $api_url = 'http://gdata.youtube.com/feeds/api/videos/'.$video['video_id'].'?v=2&alt=json';
+      $api_url = 'http://www.youtube.com/oembed?url='.$video['url'].'&format=json';
       $json = gvideo_download_remote_file($api_url, true);
       
       if ($json===false || $json=='file_error')
@@ -54,20 +58,15 @@ function parse_video_url($source_url, &$safe_mode=false)
       }
       else
       {
-        if (strip_tags($json) == 'GDataInvalidRequestUriExceptionInvalid id') return false; // unknown video
-        if (strip_tags($json) == 'GDataServiceForbiddenExceptionPrivate video') return false; // private video
+        if (strip_tags($json) == 'Not Found') return false; // unknown video
+        if (strip_tags($json) == 'Unauthorized') return false; // private video
         
         $json = json_decode($json, true);
         $video = array_merge($video, array(
-          'title' => $json['entry']['media$group']['media$title']['$t'],
-          'description' => $json['entry']['media$group']['media$description']['$t'],
-          'thumbnail' => $json['entry']['media$group']['media$thumbnail'][2]['url'],
-          'author' => $json['entry']['author'][0]['name']['$t'],
+          'title' => $json['title'],
+          'thumbnail' => $json['thumbnail_url'],
+          'author' => $json['author_name'],
           ));
-        if (!empty($json['entry']['media$group']['media$keywords']['$t']))
-        {
-          $video['tags'] = $json['entry']['media$group']['media$keywords']['$t'];
-        }
       }
       
       break;
