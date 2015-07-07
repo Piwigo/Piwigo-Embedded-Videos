@@ -21,7 +21,6 @@
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
 $lang['This element is a video added with "Embedded Video"'] = 'Ta posnetek je bil dodan z "Embedded Video"';
-$lang['Try in safe-mode'] = 'Poskusite v varnem načinu';
 $lang['Unable to contact host server'] = 'Povezava z oddaljenim gostiteljem ni uspela';
 $lang['Upload a new thumbnail'] = 'Naloži novo prikazno sličico (thumbnail)';
 $lang['Use common setting'] = 'Uporabi skupne nastavitve';
@@ -46,11 +45,9 @@ $lang['Common configuration'] = 'Skupne nastavitve';
 $lang['Dailymotion player'] = 'Dailymotion predvajalnik';
 $lang['Get video description'] = 'Pridobi opis video posnetka';
 $lang['Get video tags'] = 'Pridobi oznake video posnetka';
-$lang['In safe-mode, the plugin does\'t try to contact the video host, usefull on some websites where remote connections are blocked.'] = 'V varnem načinu vtičnik ne poskuša vzpostaviti povezave z gostiteljem. Uporabno na nakaterih spletnih mestih kjer je oddaljeno povezovanje onemogočeno';
 $lang['Logo'] = 'Logo';
 $lang['No privacy option.'] = 'Brez možnosti zasebnosti';
 $lang['Please fill the video URL'] = 'Prosimo vnesite URL naslov';
-$lang['Safe-mode'] = 'Varni način';
 $lang['Show privacy details'] = 'Prikaži lastnosti zasebnosti';
 $lang['Supported services'] = 'Podprte storitve';
 $lang['The thumbnail was updated'] = 'Prikazna sličica je bila posodobljena';
@@ -63,3 +60,4 @@ $lang['This video was already registered'] = 'Ta video je že vpisan';
 $lang['Videos'] = 'Video posnetki';
 $lang['Width and height must be integers'] = 'Širina in višina morata biti števili';
 $lang['optional'] = 'neobvezno';
+$lang['Video data like description and thumbnail might be missing'] = 'Podatki o videu, kot so opis in sličica (thumbnail) lahko manjkajo';
