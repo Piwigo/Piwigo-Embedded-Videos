@@ -46,10 +46,10 @@ function parse_video_url($source_url, &$safe_mode=false)
         $video['video_id'] = $url['path'][1];
       }
       
-      $video['url'] = 'http://youtube.com/watch?v='.$video['video_id'];
+      $video['url'] = 'https://youtube.com/watch?v='.$video['video_id'];
       $video['title'] = 'YouTube #'.$video['video_id'];
       
-      $api_url = 'http://www.youtube.com/oembed?url='.$video['url'].'&format=json';
+      $api_url = 'https://www.youtube.com/oembed?url='.$video['url'].'&format=json';
       $json = gvideo_download_remote_file($api_url, true);
       
       if ($json===false || $json=='file_error')
