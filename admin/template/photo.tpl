@@ -38,6 +38,7 @@ jQuery("input[name='url']").keyup(function() {
       </td>
       <td id="albumLinks" style="width:400px;vertical-align:top;">
         <ul style="padding-left:15px;margin:0;">
+          <li style="margin:10px 0 20px 0;"><a href="{$RESET_THUMBNAIL}">{'Reset thumbnail (download from host)'|translate}</a></li>
         {if $U_ADD_FILM_FRAME}
           <li style="margin:10px 0 20px 0;"><a href="{$U_ADD_FILM_FRAME}">{'Add film effect'|translate}</a></li>
         {/if}

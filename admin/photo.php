@@ -209,6 +209,17 @@ if (function_exists('imagecreatetruecolor') and isset($_GET['add_film_frame']))
   redirect($self_url);
 }
 
+// +-----------------------------------------------------------------------+
+// | Reset thumbnail                                                       |
+// +-----------------------------------------------------------------------+
+if (isset($_GET['reset_thumbnail']))
+{
+  $video = parse_video_url($gvideo['url']);
+  $thumb = gvideo_get_thumbnail($video);
+  add_uploaded_file($thumb['source'], $picture['file'], null, null, $_GET['image_id']);
+
+  redirect($self_url);
+}
 
 // +-----------------------------------------------------------------------+
 // | Template                                                              |
@@ -234,6 +245,7 @@ $template->assign(array(
   'GVIDEO' => array_map('stripslashes', $gvideo),
   'TN_SRC' => DerivativeImage::thumb_url($picture).'?'.time(),
   'TITLE' => render_element_name($picture),
+  'RESET_THUMBNAIL' => $self_url.'&amp;reset_thumbnail=1',
 ));
 
 $template->set_filename('gvideo_content', realpath(GVIDEO_PATH . 'admin/template/photo.tpl'));

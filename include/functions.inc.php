@@ -294,26 +294,15 @@ SELECT picture_id
     return $image_id;
   }
   
-  include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
-  
-  // download thumbnail
-  $thumb_ext = (empty($video['thumbnail']) or $video['type'] == 'vimeo') ? 'jpg' : get_extension($video['thumbnail']);
-  $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
-  $thumb_source = $conf['data_location'].$thumb_name;
-  
-  if (empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb_source) !== true)
-  {
-    $thumb_source = $conf['data_location'].get_filename_wo_extension($thumb_name).'.jpg';
-    copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb_source);
-  }
+  $thumb = gvideo_get_thumbnail($video);
   
   if ($config['add_film_frame'])
   {
-    add_film_frame($thumb_source);
+    add_film_frame($thumb['source']);
   }
   
   // add image and update infos
-  $image_id = add_uploaded_file($thumb_source, $thumb_name, array($config['category']));
+  $image_id = add_uploaded_file($thumb['source'], $thumb['name'], array($config['category']));
   
   $updates = array(
     'name' => pwg_db_real_escape_string($video['title']),
@@ -365,6 +354,27 @@ SELECT picture_id
     );
     
   return $image_id;
+}
+
+function gvideo_get_thumbnail($video)
+{
+  global $conf;
+
+  include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
+
+  // download thumbnail
+  $thumb = array();
+  $thumb['ext'] = (empty($video['thumbnail']) or $video['type'] == 'vimeo') ? 'jpg' : get_extension($video['thumbnail']);
+  $thumb['name'] = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb['ext'];
+  $thumb['source'] = $conf['data_location'].$thumb['name'];
+
+  if (empty($video['thumbnail']) or gvideo_download_remote_file($video['thumbnail'], $thumb['source']) !== true)
+  {
+    $thumb['source'] = $conf['data_location'].get_filename_wo_extension($thumb['name']).'.jpg';
+    copy(GVIDEO_PATH.'mimetypes/'.$video['type'].'.jpg', $thumb['source']);
+  }
+
+  return $thumb;
 }
 
 /**
@@ -615,6 +625,16 @@ function add_film_frame($src, $dest=null)
     default:
       if ($dest != $src) copy($src, $dest);
       return;
+  }
+
+  // Crop if too large
+  $srcWidth = imagesx($srcImage);
+  $srcHeight = imagesy($srcImage);
+  if (($srcWidth/$srcHeight) > (15/12))
+  {
+    $newWidth = round($srcHeight*15/12);
+    $x_start = round(($srcWidth - $newWidth) / 2);
+    $srcImage = imagecrop($srcImage, array('x'=>$x_start,'y'=>0,'width'=>$newWidth,'height'=>$srcHeight));
   }
   
   // source properties

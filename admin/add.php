@@ -66,24 +66,27 @@ if (isset($_POST['add_video']))
   
   if (isset($image_id))
   {
-    $query = '
+    if (empty($page['warnings']))
+    {
+      $query = '
 SELECT id, name, permalink
   FROM '.CATEGORIES_TABLE.'
   WHERE id = '.$_POST['category'].'
 ;';
-    $category = pwg_db_fetch_assoc(pwg_query($query));
-      
-    $page['infos'][] = l10n(
-      'Video successfully added. <a href="%s">View</a>', 
-      make_picture_url(array(
-        'image_id' => $image_id,
-        'category' => array(
-          'id' => $category['id'],
-          'name' => $category['name'],
-          'permalink' => $category['permalink'],
-          ),
-        ))
-      );
+      $category = pwg_db_fetch_assoc(pwg_query($query));
+
+      $page['infos'][] = l10n(
+        'Video successfully added. <a href="%s">View</a>',
+        make_picture_url(array(
+          'image_id' => $image_id,
+          'category' => array(
+            'id' => $category['id'],
+            'name' => $category['name'],
+            'permalink' => $category['permalink'],
+            ),
+          ))
+        );
+    }
     unset($_POST);
   }
 

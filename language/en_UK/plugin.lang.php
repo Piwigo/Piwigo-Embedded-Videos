@@ -41,4 +41,5 @@ $lang['Videos'] = 'Videos';
 $lang['Width and height must be integers'] = 'Width and height must be integers';
 $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.';
 $lang['Video data like description and thumbnail might be missing'] = 'Video data like description and thumbnail might be missing';
+$lang['Reset thumbnail (download from host)'] = 'Reset thumbnail (download from host)';
 ?>
