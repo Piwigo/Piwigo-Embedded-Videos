@@ -86,6 +86,11 @@ SELECT id, name, permalink
       );
     unset($_POST);
   }
+
+  if (function_exists('empty_lounge'))
+  {
+    empty_lounge();
+  }
 }
   
 if (!isset($_POST['safe_mode']))
