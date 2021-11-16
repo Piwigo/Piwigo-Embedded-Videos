@@ -297,7 +297,7 @@ SELECT picture_id
   include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
   
   // download thumbnail
-  $thumb_ext = empty($video['thumbnail']) ? 'jpg' : get_extension($video['thumbnail']);
+  $thumb_ext = (empty($video['thumbnail']) or $video['type'] == 'vimeo') ? 'jpg' : get_extension($video['thumbnail']);
   $thumb_name = $video['type'].'-'.$video['video_id'].'-'.uniqid().'.'.$thumb_ext;
   $thumb_source = $conf['data_location'].$thumb_name;
   
