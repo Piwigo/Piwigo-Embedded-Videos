@@ -6,6 +6,7 @@ Description: Add videos from Dailymotion, Youtube, Vimeo, Wideo and Wat.
 Plugin URI: auto
 Author: Mistic
 Author URI: http://www.strangeplanet.fr
+Has Settings: true
 */
 
 defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
@@ -39,24 +40,10 @@ add_event_handler('delete_elements', 'gvideo_delete_elements');
 
 if (defined('IN_ADMIN'))
 {
-  add_event_handler('get_admin_plugin_menu_links', 'gvideo_admin_menu');
   add_event_handler('tabsheet_before_select','gvideo_tab', EVENT_HANDLER_PRIORITY_NEUTRAL+10, 2);
   
   add_event_handler('get_batch_manager_prefilters', 'gvideo_add_prefilter');
   add_event_handler('perform_batch_manager_prefilters', 'gvideo_apply_prefilter', EVENT_HANDLER_PRIORITY_NEUTRAL, 2);
-}
-
-
-/**
- * admin plugins menu
- */
-function gvideo_admin_menu($menu) 
-{
-  $menu[] = array(
-    'NAME' => 'Embedded Videos',
-    'URL' => GVIDEO_ADMIN,
-    );
-  return $menu;
 }
 
 /**
