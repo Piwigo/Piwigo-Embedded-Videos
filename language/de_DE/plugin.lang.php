@@ -61,3 +61,4 @@ $lang['Videos'] = 'Videos';
 $lang['Width and height must be integers'] = 'Breite und Höhe müssen Ganzzahlen sein';
 $lang['optional'] = 'optional';
 $lang['Video data like description and thumbnail might be missing'] = 'Videodaten wie Beschreibung oder Vorschaubild könnte fehlen';
+$lang['Reset thumbnail (download from host)'] = 'Miniaturbild zurücksetzen (Download vom Host)';
