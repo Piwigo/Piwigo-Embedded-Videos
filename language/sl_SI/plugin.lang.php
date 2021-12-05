@@ -61,3 +61,4 @@ $lang['Videos'] = 'Video posnetki';
 $lang['Width and height must be integers'] = 'Širina in višina morata biti števili';
 $lang['optional'] = 'neobvezno';
 $lang['Video data like description and thumbnail might be missing'] = 'Podatki o videu, kot so opis in sličica (thumbnail) lahko manjkajo';
+$lang['Reset thumbnail (download from host)'] = 'Ponastavi sličico (prenos z gostitelja)';
