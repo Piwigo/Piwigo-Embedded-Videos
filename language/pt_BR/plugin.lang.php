@@ -62,3 +62,4 @@ $lang['Embed code'] = 'Código Embarcado';
 $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Não use este formulário para vídeos fornecidos pelo Youtube, Dailymotion, Vimeo, Wat ou Wideo.';
 $lang['Add video from hosting platform'] = 'Adicionar vídeo a partir de plataforma de hospedagem';
 $lang['Video data like description and thumbnail might be missing'] = 'Os dados de vídeo, como descrição e miniaturas pode estar faltando';
+$lang['Reset thumbnail (download from host)'] = 'Redefinir miniatura (download do host)';
