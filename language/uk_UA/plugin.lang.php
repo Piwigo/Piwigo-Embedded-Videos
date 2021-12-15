@@ -61,3 +61,4 @@ $lang['optional'] = 'Опціонально';
 $lang['Videos'] = 'Відео';
 $lang['Please fill the embed code'] = 'Будь ласка, заповніть код для вставки';
 $lang['Embed code'] = 'Код для вставки';
+$lang['Reset thumbnail (download from host)'] = 'Скинути мініатюру (завантажити з хосту)';
