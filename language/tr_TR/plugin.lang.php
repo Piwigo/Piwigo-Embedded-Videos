@@ -61,3 +61,4 @@ $lang['optional'] = 'opsiyonel';
 $lang['Width and height must be integers'] = 'Genişlik ve yükseklik tamsayı olmalı';
 $lang['Videos'] = 'Videolar';
 $lang['Video data like description and thumbnail might be missing'] = 'Açıklama ve küçük resim gibi vidyo bilgileri gerekli';
+$lang['Reset thumbnail (download from host)'] = 'Küçük resmi sıfırla (ana bilgisayardan indir)';
