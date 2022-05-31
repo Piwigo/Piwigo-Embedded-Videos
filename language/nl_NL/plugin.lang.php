@@ -61,3 +61,4 @@ $lang['Add video from embed code'] = 'Voeg de video van de embed code toe';
 $lang['Please fill the embed code'] = 'Vul alstublieft de embed code in';
 $lang['This video was already registered'] = 'Deze video is al geregistreerd';
 $lang['Video data like description and thumbnail might be missing'] = 'Het kan zijn dat video-gegevens, zoals beschrijving en klikplaatje, niet aanwezig zijn';
+$lang['Reset thumbnail (download from host)'] = 'Miniatuur resetten (download van host)';
