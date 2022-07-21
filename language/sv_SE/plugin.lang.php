@@ -61,3 +61,4 @@ $lang['Videos'] = 'Videos';
 $lang['Width and height must be integers'] = 'Höjd och bredd måste vara heltal';
 $lang['optional'] = 'valfritt';
 $lang['Video data like description and thumbnail might be missing'] = 'Information så som beskrivning och miniatyr kanske saknas';
+$lang['Reset thumbnail (download from host)'] = 'Återställ miniatyrbild (ladda ned från värd)';
