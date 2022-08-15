@@ -61,3 +61,4 @@ $lang['Embed code'] = 'Kód pre vloženie';
 $lang['Add video from embed code'] = 'Pridať video z kódu pre vloženie';
 $lang['Add video from hosting platform'] = 'Pridať video z hostingovej platformy';
 $lang['Video data like description and thumbnail might be missing'] = 'Video dáta ako popis a náhľad môžu chýbať';
+$lang['Reset thumbnail (download from host)'] = 'Obnoviť miniatúru (stiahnuť z hostiteľa)';
