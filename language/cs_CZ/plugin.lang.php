@@ -61,3 +61,4 @@ $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, 
 $lang['Embed code'] = 'Kód pro vložení';
 $lang['Please fill the embed code'] = 'Prosím vyplňte kód pro vložení';
 $lang['Video data like description and thumbnail might be missing'] = 'Video data, jako popis a náhled, mohou chybět';
+$lang['Reset thumbnail (download from host)'] = 'Resetovat náhled (stáhnout od hostitele)';
