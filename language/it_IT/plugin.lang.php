@@ -61,3 +61,4 @@ $lang['Add video from hosting platform'] = 'Aggiungi video da piattaforma di hos
 $lang['Videos'] = 'Video';
 $lang['optional'] = 'opzionale';
 $lang['Video data like description and thumbnail might be missing'] = 'I dati video come descrizione e miniatura potrebbero mancare';
+$lang['Reset thumbnail (download from host)'] = 'Cancella anteprime (scarica dall\'host)';
