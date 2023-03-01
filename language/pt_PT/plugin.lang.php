@@ -61,3 +61,4 @@ $lang['Embed code'] = 'Código embutido';
 $lang['Add video from hosting platform'] = 'Adicionar vídeo desde uma plataforma de hosting';
 $lang['Add video from embed code'] = 'Adicionar video desde um código embutido';
 $lang['Video data like description and thumbnail might be missing'] = 'Dados de video, como a descrição e miniatura foram esquecidos.';
+$lang['Reset thumbnail (download from host)'] = 'Redefinir miniatura (download do host)';
