@@ -61,3 +61,4 @@ $lang['Videos'] = '影片';
 $lang['Width and height must be integers'] = '寬度和高度必須是整數';
 $lang['optional'] = '可選';
 $lang['Video data like description and thumbnail might be missing'] = '影片資料，例如描述和縮圖可能會遺失';
+$lang['Reset thumbnail (download from host)'] = '重置縮圖（重新從主機下載）';
