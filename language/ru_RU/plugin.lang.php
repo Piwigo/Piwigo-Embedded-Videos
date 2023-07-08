@@ -61,3 +61,4 @@ $lang['Width and height must be integers'] = 'Ширина и высота до�
 $lang['optional'] = 'дополнительно';
 $lang['Add video from embed code'] = 'Добавить видео из встроенного кода';
 $lang['Video data like description and thumbnail might be missing'] = 'Видеоданные (такие, как описание и миниатюры), возможно, отсутствуют';
+$lang['Reset thumbnail (download from host)'] = 'Сбросить миниатюру (скачать с хоста)';
