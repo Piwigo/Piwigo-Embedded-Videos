@@ -61,3 +61,4 @@ $lang['Embed code'] = 'Embed-kode';
 $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, Wat or Wideo.'] = 'Ikke bruk dette skjemaet for videoer som leveres av Youtube, Dailymotion, Vimeo, Wat eller Wideo.';
 $lang['Add video from hosting platform'] = 'Legg til video fra hosting plattform';
 $lang['Add video from embed code'] = 'Legg til video fra embed-kode';
+$lang['Reset thumbnail (download from host)'] = 'Tilbakestill miniatyrbilde (last ned fra vert)';
