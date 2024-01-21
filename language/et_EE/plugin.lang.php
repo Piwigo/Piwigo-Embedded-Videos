@@ -61,3 +61,4 @@ $lang['Videos'] = 'Videod';
 $lang['Width and height must be integers'] = 'Kõrgus ja laius peavad olema täisnumbrid';
 $lang['optional'] = 'valikuline';
 $lang['Video data like description and thumbnail might be missing'] = 'Video andmed, nagu kirjeldus või pisipilt puuduvad';
+$lang['Reset thumbnail (download from host)'] = 'Lähtesta pisipilt (allalaadimine hostist)';
