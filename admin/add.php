@@ -4,7 +4,6 @@ defined('GVIDEO_PATH') or die('Hacking attempt!');
 include_once(GVIDEO_PATH.'include/functions.inc.php');
 include_once(PHPWG_ROOT_PATH . 'admin/include/functions_upload.inc.php');
 
-
 if (isset($_POST['add_video']))
 {
   $_POST['url'] = trim($_POST['url']);
@@ -94,6 +93,23 @@ SELECT id, name, permalink
   {
     empty_lounge();
   }
+}
+
+if (!isset($_POST['mode']))
+{
+  $_POST = array(
+    'mode' => 'provider',
+    'category' => '',
+    'title' => '',
+    'url' => '',
+    'embed_code' => '',
+    'add_film_frame' => true,
+    'size_common' => 'true',
+    'width' => '',
+    'height' => '',
+    'autoplay_common' => 'true',
+    'autoplay' => '0',
+    );
 }
   
 if (!isset($_POST['safe_mode']))

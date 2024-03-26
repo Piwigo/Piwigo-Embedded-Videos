@@ -3,10 +3,10 @@ defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
 function parse_video_url($source_url, &$safe_mode=false)
 {
-  $source_url = 'http://'.preg_replace('#^http(s?)://#', null, trim($source_url));
+  $source_url = 'http://'.preg_replace('#^http(s?)://#', '', trim($source_url));
   
   $url = parse_url($source_url);
-  $url['host'] = str_replace('www.', null, $url['host']);
+  $url['host'] = str_replace('www.', '', $url['host']);
   $url['host'] = explode('.', $url['host']);
   
   $video = array(
@@ -690,6 +690,9 @@ function add_film_frame($src, $dest=null)
  */
 function imagefilledroundrectangle(&$img, $x1, $y1, $x2, $y2, $color, $radius)
 {
+  $x1 = intval($x1);
+  $x2 = intval($x2);
+
   imagefilledrectangle($img, $x1+$radius, $y1, $x2-$radius, $y2, $color);
   
   if ($radius > 0)
