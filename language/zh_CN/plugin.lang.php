@@ -61,3 +61,4 @@ $lang['Please fill the embed code'] = '请填写嵌入代码';
 $lang['Add video from hosting platform'] = '通过主机平台添加视频';
 $lang['Add video from embed code'] = '通过嵌入代码添加视频';
 $lang['Video data like description and thumbnail might be missing'] = '视频数据,例如描述和缩略图,可能丢失';
+$lang['Reset thumbnail (download from host)'] = '重置缩略图（从服务器下载）';
