@@ -61,3 +61,4 @@ $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, 
 $lang['Add video from hosting platform'] = 'Προσθήκη βίντεο από την πλατφόρμα φιλοξενίας';
 $lang['Add video from embed code'] = 'Προσθήκη βίντεο από ενσωματωμένο κώδικα';
 $lang['Video data like description and thumbnail might be missing'] = 'Δεδομένα Βίντεο όπως περιγραφή και εικονίδιο δεν αποκλείεται να λείπουν';
+$lang['Reset thumbnail (download from host)'] = 'Επαναφέρετε τις μικρογραφίες (κατεβάστε από τον διακομιστή)';
