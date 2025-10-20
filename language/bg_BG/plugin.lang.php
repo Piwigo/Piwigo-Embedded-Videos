@@ -62,3 +62,4 @@ $lang['Do not use this form for videos provided by Youtube, Dailymotion, Vimeo, 
 $lang['Add video from hosting platform'] = 'Добави видео от отдалечен хостинг';
 $lang['Add video from embed code'] = 'Добави видео от кода за вграждане';
 $lang['Video data like description and thumbnail might be missing'] = 'Информация за видеото като описание и икона може да липсват';
+$lang['Reset thumbnail (download from host)'] = 'Възстановяване на миниатюрата от сървъра';
